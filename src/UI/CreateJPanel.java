@@ -8,6 +8,7 @@ package UI;
 import Model.ChefDetails;
 import Model.ContactInformation;
 import Model.Recipe;
+import Validation.ValidationClass;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -17,7 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class CreateJPanel extends javax.swing.JPanel {
 
@@ -26,6 +27,7 @@ public class CreateJPanel extends javax.swing.JPanel {
      */
     private ChefDetails chefDetails;
     private Recipe recipe;
+    private ValidationClass val;
     public CreateJPanel() {
         initComponents();
     }
@@ -33,6 +35,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         initComponents();
         this.chefDetails = chefDetails;
         recipe = this.chefDetails.getRecipe();
+        val = new ValidationClass();
     }
 
     /**
@@ -327,7 +330,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             System.out.println(selectedImagePath);
             JOptionPane.showMessageDialog(null,selectedImagePath );
             //Store the filePath in recipe picture variable
-           // Recipe recipe = this.chefDetails.getRecipe();
+        
             recipe.setRecipePicture(selectedImagePath);
             System.out.println("displaypath:" + recipe.getRecipePicture());
             ImageIcon ii = new ImageIcon(selectedImagePath);
@@ -350,13 +353,10 @@ public class CreateJPanel extends javax.swing.JPanel {
         String glutenFreeComboBoxValue = glutenFreeComboBox.getSelectedItem().toString();
         String diffcultyLevelValue = sliderTextField.getText();
         String descriptionValue = descriptionTextArea.getText();
-     
-                
-        
+
         this.chefDetails.setChefFirstName(chefFirstNameValue);
         this.chefDetails.setChefLastName(chefLastNameValue);
         this.chefDetails.setUserName(userNameValue);
-        
         
         recipe.setRecipeTitle(recipeTitleValue);
         recipe.setNoOfServing(Integer.valueOf(noOfServingValue));
@@ -373,12 +373,14 @@ public class CreateJPanel extends javax.swing.JPanel {
         recipe.setIsGlutenFree(glutenFreeValue);
         recipe.setDifficultyLevel(Integer.valueOf(diffcultyLevelValue));
         recipe.setDescription(descriptionValue);
-  
-      
         ContactInformation contact = this.chefDetails.getContact();
         contact.setEmailId(emailIdValue);
         contact.setPhoneNumber(Long.valueOf(phoneNumberValue));
         
+        val.validateEmail(emailIdValue);
+//        val.validateName(userNameValue);
+//        val.validateName(chefFirstNameValue);
+//        val.validateName(chefLastNameValue);
         JOptionPane.showMessageDialog(null, "SAVED SUCCESSFULLY");
     }//GEN-LAST:event_saveButtonActionPerformed
 
