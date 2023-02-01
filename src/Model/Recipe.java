@@ -45,13 +45,14 @@ public class Recipe {
         this.noOfServing = noOfServing;
     }
 
-    public boolean isIsGlutenFree() {
+    public boolean getIsGlutenFree() {
         return isGlutenFree;
     }
 
     public void setIsGlutenFree(boolean isGlutenFree) {
         this.isGlutenFree = isGlutenFree;
     }
+ 
 
     public double getDifficultyLevel() {
         return difficultyLevel;

@@ -6,6 +6,10 @@
 package UI;
 
 import Model.ChefDetails;
+import Model.ContactInformation;
+import Model.Recipe;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -22,7 +26,8 @@ public class ReadJPanel extends javax.swing.JPanel {
     }
     ReadJPanel(ChefDetails chefDetails) {
         initComponents();
-        this.chefDetails = new ChefDetails();
+        this.chefDetails = chefDetails;
+        displayChefDetails();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,17 +47,17 @@ public class ReadJPanel extends javax.swing.JPanel {
         descriptionLabel1 = new javax.swing.JLabel();
         noOfServing2 = new javax.swing.JTextField();
         userName2 = new javax.swing.JTextField();
-        noOfIngredients2 = new javax.swing.JTextField();
+        categoryOfFood2 = new javax.swing.JTextField();
         chefFirstName2 = new javax.swing.JTextField();
         contactDetailLabel1 = new javax.swing.JLabel();
         noOfServingjLabel = new javax.swing.JLabel();
         noOfServingjLabel1 = new javax.swing.JLabel();
         chefLastName2 = new javax.swing.JTextField();
-        emailId1 = new javax.swing.JTextField();
-        sliderTextField3 = new javax.swing.JTextField();
+        emailId2 = new javax.swing.JTextField();
+        isGlutenFree2 = new javax.swing.JTextField();
         emailIdLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        descriptionTextArea1 = new javax.swing.JTextArea();
+        description2 = new javax.swing.JTextArea();
         categoryOfFoodLabel1 = new javax.swing.JLabel();
         recipeTitle2 = new javax.swing.JTextField();
         phoneNumberLabel1 = new javax.swing.JLabel();
@@ -62,11 +67,10 @@ public class ReadJPanel extends javax.swing.JPanel {
         difficultyLevel = new javax.swing.JLabel();
         updateLabel = new javax.swing.JLabel();
         chefFirstNamejLabel1 = new javax.swing.JLabel();
-        phoneNumber1 = new javax.swing.JTextField();
-        updateButton = new javax.swing.JButton();
-        imageBorderLabel1 = new javax.swing.JLabel();
-        noOfIngredients3 = new javax.swing.JTextField();
-        sliderTextField2 = new javax.swing.JTextField();
+        phoneNumber2 = new javax.swing.JTextField();
+        imageBorderLabel2 = new javax.swing.JLabel();
+        noOfIngredients2 = new javax.swing.JTextField();
+        difficultyLevel2 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(102, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -93,7 +97,7 @@ public class ReadJPanel extends javax.swing.JPanel {
 
         recipePictureLabel1.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         recipePictureLabel1.setText("Recipe Picture");
-        add(recipePictureLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, -1, -1));
+        add(recipePictureLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
 
         descriptionLabel1.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         descriptionLabel1.setText("Description");
@@ -113,12 +117,12 @@ public class ReadJPanel extends javax.swing.JPanel {
         });
         add(userName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 70, 30));
 
-        noOfIngredients2.addActionListener(new java.awt.event.ActionListener() {
+        categoryOfFood2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfIngredients2ActionPerformed(evt);
+                categoryOfFood2ActionPerformed(evt);
             }
         });
-        add(noOfIngredients2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 70, 30));
+        add(categoryOfFood2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 70, 30));
 
         chefFirstName2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,29 +150,29 @@ public class ReadJPanel extends javax.swing.JPanel {
         });
         add(chefLastName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 70, 30));
 
-        emailId1.addActionListener(new java.awt.event.ActionListener() {
+        emailId2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailId1ActionPerformed(evt);
+                emailId2ActionPerformed(evt);
             }
         });
-        add(emailId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 140, 20));
+        add(emailId2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 140, 20));
 
-        sliderTextField3.addActionListener(new java.awt.event.ActionListener() {
+        isGlutenFree2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sliderTextField3ActionPerformed(evt);
+                isGlutenFree2ActionPerformed(evt);
             }
         });
-        add(sliderTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 50, -1));
+        add(isGlutenFree2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 50, -1));
 
         emailIdLabel1.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         emailIdLabel1.setText("Email Id");
         add(emailIdLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 50, 20));
 
-        descriptionTextArea1.setColumns(20);
-        descriptionTextArea1.setRows(5);
-        jScrollPane2.setViewportView(descriptionTextArea1);
+        description2.setColumns(20);
+        description2.setRows(5);
+        jScrollPane2.setViewportView(description2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 180, 60));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 180, 160));
 
         categoryOfFoodLabel1.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         categoryOfFoodLabel1.setText("Category of food");
@@ -212,35 +216,32 @@ public class ReadJPanel extends javax.swing.JPanel {
         chefFirstNamejLabel1.setText("Chef's First Name");
         add(chefFirstNamejLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        phoneNumber1.addActionListener(new java.awt.event.ActionListener() {
+        phoneNumber2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneNumber1ActionPerformed(evt);
+                phoneNumber2ActionPerformed(evt);
             }
         });
-        add(phoneNumber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 140, 20));
+        add(phoneNumber2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 140, 20));
 
-        updateButton.setText("UPDATE");
-        add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, 80, 30));
+        imageBorderLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        imageBorderLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        imageBorderLabel2.setText("Text Displayed here");
+        imageBorderLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        add(imageBorderLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 170, 180));
 
-        imageBorderLabel1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        imageBorderLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        imageBorderLabel1.setText("Text Displayed here");
-        imageBorderLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(imageBorderLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 170, 110));
-
-        noOfIngredients3.addActionListener(new java.awt.event.ActionListener() {
+        noOfIngredients2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noOfIngredients3ActionPerformed(evt);
+                noOfIngredients2ActionPerformed(evt);
             }
         });
-        add(noOfIngredients3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 70, 30));
+        add(noOfIngredients2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 70, 30));
 
-        sliderTextField2.addActionListener(new java.awt.event.ActionListener() {
+        difficultyLevel2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sliderTextField2ActionPerformed(evt);
+                difficultyLevel2ActionPerformed(evt);
             }
         });
-        add(sliderTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 50, -1));
+        add(difficultyLevel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 50, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void noOfServing2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfServing2ActionPerformed
@@ -251,9 +252,9 @@ public class ReadJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_userName2ActionPerformed
 
-    private void noOfIngredients2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfIngredients2ActionPerformed
+    private void categoryOfFood2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryOfFood2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_noOfIngredients2ActionPerformed
+    }//GEN-LAST:event_categoryOfFood2ActionPerformed
 
     private void chefFirstName2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chefFirstName2ActionPerformed
         // TODO add your handling code here:
@@ -263,15 +264,15 @@ public class ReadJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_chefLastName2ActionPerformed
 
-    private void emailId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailId1ActionPerformed
+    private void emailId2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailId2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailId1ActionPerformed
+    }//GEN-LAST:event_emailId2ActionPerformed
 
-    private void sliderTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sliderTextField3ActionPerformed
+    private void isGlutenFree2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isGlutenFree2ActionPerformed
         // TODO add your handling code here:
         //int sliderNumber = descriptionSlider1.getValue();
         //sliderTextField3.setText(String.valueOf(sliderNumber));
-    }//GEN-LAST:event_sliderTextField3ActionPerformed
+    }//GEN-LAST:event_isGlutenFree2ActionPerformed
 
     private void recipeTitle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recipeTitle2ActionPerformed
         // TODO add your handling code here:
@@ -281,51 +282,74 @@ public class ReadJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_noOfServing1ActionPerformed
 
-    private void phoneNumber1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNumber1ActionPerformed
+    private void phoneNumber2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNumber2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNumber1ActionPerformed
+    }//GEN-LAST:event_phoneNumber2ActionPerformed
 
-    private void noOfIngredients3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfIngredients3ActionPerformed
+    private void noOfIngredients2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noOfIngredients2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_noOfIngredients3ActionPerformed
+    }//GEN-LAST:event_noOfIngredients2ActionPerformed
 
-    private void sliderTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sliderTextField2ActionPerformed
+    private void difficultyLevel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difficultyLevel2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sliderTextField2ActionPerformed
-
+    }//GEN-LAST:event_difficultyLevel2ActionPerformed
+ public void displayChefDetails() {
+        chefFirstName2.setText(this.chefDetails.getChefFirstName());
+        chefLastName2.setText(this.chefDetails.getChefLastName());
+        userName2.setText(this.chefDetails.getUserName());
+        
+        Recipe recipe = this.chefDetails.getRecipe();
+        recipeTitle2.setText(recipe.getRecipeTitle());
+        noOfServing2.setText(String.valueOf(recipe.getNoOfServing()));
+        noOfIngredients2.setText(String.valueOf(recipe.getNoOfIngredients()));
+        categoryOfFood2.setText(recipe.getCategoryOfFood());
+        isGlutenFree2.setText(String.valueOf(recipe.getIsGlutenFree()));
+        difficultyLevel2.setText(String.valueOf(recipe.getDifficultyLevel()));
+        description2.setText(recipe.getDescription());
+        String imagePathValue = recipe.getRecipePicture();
+        //System.out.println("Updated image " + imagePathValue);
+       
+        //BufferedImage img = ImageIO.read(new File(imagePathValue));
+        ImageIcon ii = new ImageIcon(imagePathValue);
+        Image image = ii.getImage();
+        imageBorderLabel2.setIcon(new ImageIcon(image));
+       
+        ContactInformation contact = this.chefDetails.getContact();
+        emailId2.setText(contact.getEmailId());
+        phoneNumber2.setText(String.valueOf(contact.getPhoneNumber()));
+ }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField categoryOfFood2;
     private javax.swing.JLabel categoryOfFoodLabel1;
     private javax.swing.JTextField chefFirstName2;
     private javax.swing.JLabel chefFirstNamejLabel1;
     private javax.swing.JTextField chefLastName2;
     private javax.swing.JLabel chefLastNamejLabel1;
     private javax.swing.JLabel contactDetailLabel1;
+    private javax.swing.JTextArea description2;
     private javax.swing.JLabel descriptionLabel1;
-    private javax.swing.JTextArea descriptionTextArea1;
     private javax.swing.JLabel difficultyLevel;
-    private javax.swing.JTextField emailId1;
+    private javax.swing.JTextField difficultyLevel2;
+    private javax.swing.JTextField emailId2;
     private javax.swing.JLabel emailIdLabel1;
     private javax.swing.JLabel glutenFreeLabel1;
     private javax.swing.JLabel glutenFreeLabel3;
-    private javax.swing.JLabel imageBorderLabel1;
+    private javax.swing.JLabel imageBorderLabel2;
+    private javax.swing.JTextField isGlutenFree2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField noOfIngredients2;
-    private javax.swing.JTextField noOfIngredients3;
     private javax.swing.JLabel noOfIngredientsjLabel1;
     private javax.swing.JTextField noOfServing1;
     private javax.swing.JTextField noOfServing2;
     private javax.swing.JLabel noOfServingjLabel;
     private javax.swing.JLabel noOfServingjLabel1;
-    private javax.swing.JTextField phoneNumber1;
+    private javax.swing.JTextField phoneNumber2;
     private javax.swing.JLabel phoneNumberLabel1;
     private javax.swing.JLabel recipeDetailsLabel;
     private javax.swing.JLabel recipePictureLabel1;
     private javax.swing.JTextField recipeTitle2;
     private javax.swing.JLabel recipeTitlejLabel1;
-    private javax.swing.JTextField sliderTextField2;
-    private javax.swing.JTextField sliderTextField3;
-    private javax.swing.JButton updateButton;
     private javax.swing.JLabel updateLabel;
     private javax.swing.JTextField userName2;
     private javax.swing.JLabel userNamejLabel1;

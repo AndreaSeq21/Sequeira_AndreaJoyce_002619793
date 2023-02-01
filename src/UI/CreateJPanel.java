@@ -25,12 +25,14 @@ public class CreateJPanel extends javax.swing.JPanel {
      * Creates new form CreateJPanel
      */
     private ChefDetails chefDetails;
+    private Recipe recipe;
     public CreateJPanel() {
         initComponents();
     }
     CreateJPanel(ChefDetails chefDetails) {
         initComponents();
-        this.chefDetails = new ChefDetails();
+        this.chefDetails = chefDetails;
+        recipe = this.chefDetails.getRecipe();
     }
 
     /**
@@ -325,7 +327,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             System.out.println(selectedImagePath);
             JOptionPane.showMessageDialog(null,selectedImagePath );
             //Store the filePath in recipe picture variable
-            Recipe recipe = this.chefDetails.getRecipe();
+           // Recipe recipe = this.chefDetails.getRecipe();
             recipe.setRecipePicture(selectedImagePath);
             System.out.println("displaypath:" + recipe.getRecipePicture());
             ImageIcon ii = new ImageIcon(selectedImagePath);
@@ -355,12 +357,20 @@ public class CreateJPanel extends javax.swing.JPanel {
         this.chefDetails.setChefLastName(chefLastNameValue);
         this.chefDetails.setUserName(userNameValue);
         
-        Recipe recipe = this.chefDetails.getRecipe();
+        
         recipe.setRecipeTitle(recipeTitleValue);
         recipe.setNoOfServing(Integer.valueOf(noOfServingValue));
         recipe.setNoOfIngredients(Integer.valueOf(noOfIngredientsValue));
         recipe.setCategoryOfFood(categoryOfFoodComboBoxValue);
-        recipe.setIsGlutenFree(Boolean.valueOf(glutenFreeComboBoxValue));
+         Boolean glutenFreeValue = true;
+        if (glutenFreeComboBoxValue == "Yes") 
+        { 
+             glutenFreeValue = true; 
+        } else 
+        {  
+            glutenFreeValue = false; 
+        }
+        recipe.setIsGlutenFree(glutenFreeValue);
         recipe.setDifficultyLevel(Integer.valueOf(diffcultyLevelValue));
         recipe.setDescription(descriptionValue);
   

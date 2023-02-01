@@ -6,6 +6,16 @@
 package UI;
 
 import Model.ChefDetails;
+import Model.ContactInformation;
+import Model.Recipe;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -20,9 +30,10 @@ public class UpdateJPanel extends javax.swing.JPanel {
     public UpdateJPanel() {
         initComponents();
     }
-    UpdateJPanel(ChefDetails chefDetails) {
+    UpdateJPanel(ChefDetails chefDetails) throws IOException  {
         initComponents();
-        this.chefDetails = new ChefDetails();
+        this.chefDetails = chefDetails;
+        displayChefDetailsList();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,8 +86,9 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
         contactDetailLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         contactDetailLabel1.setText("Update Contact Details");
-        add(contactDetailLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 110, 30));
+        add(contactDetailLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 190, 30));
 
+        chefFirstName1.setBackground(new java.awt.Color(204, 204, 204));
         chefFirstName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chefFirstName1ActionPerformed(evt);
@@ -92,6 +104,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
         chefLastNamejLabel1.setText("Chef's Last Name");
         add(chefLastNamejLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
+        chefLastName1.setBackground(new java.awt.Color(204, 204, 204));
         chefLastName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chefLastName1ActionPerformed(evt);
@@ -99,6 +112,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
         });
         add(chefLastName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 70, 30));
 
+        userName1.setBackground(new java.awt.Color(204, 204, 204));
         userName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userName1ActionPerformed(evt);
@@ -112,7 +126,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
         updateLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updateLabel.setText("UPDATE");
-        add(updateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
+        add(updateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 80, 20));
 
         noOfServing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +177,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
         add(descriptionLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 80, 20));
 
         glutenFree1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
-        add(glutenFree1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 50, 20));
+        add(glutenFree1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 70, 30));
 
         glutenFreeLabel1.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         glutenFreeLabel1.setText("is gluten free?");
@@ -242,7 +256,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
                 sliderTextField1ActionPerformed(evt);
             }
         });
-        add(sliderTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 30, 20));
+        add(sliderTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 40, 30));
 
         categoryOfFood1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Indian", "Italian", "Chinese", "Japanese" }));
         add(categoryOfFood1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, -1, -1));
@@ -308,6 +322,24 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
     private void browsePictureButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browsePictureButton1ActionPerformed
         // TODO add your handling code here:
+        JFileChooser browseImageFile = new JFileChooser();
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
+        browseImageFile.addChoosableFileFilter(fnef);
+        int showOpenDialogue = browseImageFile.showOpenDialog(null);
+        if(showOpenDialogue == JFileChooser.APPROVE_OPTION)
+        {
+            File selectedImageFile = browseImageFile.getSelectedFile();
+            String selectedImagePath = selectedImageFile.getAbsolutePath();
+            System.out.println(selectedImagePath);
+            JOptionPane.showMessageDialog(null,selectedImagePath );
+            //Store the filePath in recipe picture variable
+            Recipe recipe = this.chefDetails.getRecipe();
+            recipe.setRecipePicture(selectedImagePath);
+            System.out.println("displaypath:" + recipe.getRecipePicture());
+            ImageIcon ii = new ImageIcon(selectedImagePath);
+            Image image = ii.getImage().getScaledInstance(imageBorderLabel1.getWidth(),imageBorderLabel1.getHeight(), Image.SCALE_SMOOTH);
+            imageBorderLabel1.setIcon(new ImageIcon(image));
+        }
     }//GEN-LAST:event_browsePictureButton1ActionPerformed
 
     private void sliderTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sliderTextField1ActionPerformed
@@ -319,7 +351,58 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
+      
+        
+        Recipe recipe = this.chefDetails.getRecipe();
+        recipe.setRecipeTitle(recipeTitle1.getText());
+        recipe.setNoOfServing(Integer.valueOf(noOfServing.getText()));
+        recipe.setNoOfIngredients(Integer.valueOf(noOfIngredients1.getText()));
+        recipe.setCategoryOfFood(String.valueOf(categoryOfFood1.getSelectedItem()));
+        Boolean glutenFreeValue = true;
+        if (glutenFree1.getSelectedItem() == "Yes") 
+        { 
+             glutenFreeValue = true; 
+        } else 
+        {  
+            glutenFreeValue = false; 
+        }
+        recipe.setIsGlutenFree(Boolean.valueOf(glutenFreeValue));
+        recipe.setDifficultyLevel(Double.valueOf(sliderTextField1.getText()));
+        recipe.setDescription(descriptionTextArea1.getText());
+
+        ContactInformation contact = this.chefDetails.getContact();
+        contact.setEmailId(emailId1.getText());
+        contact.setPhoneNumber(Long.valueOf(phoneNumber1.getText()));
+        JOptionPane.showMessageDialog(null, "UPDATED SUCCESSFULLY");
+       
     }//GEN-LAST:event_updateButtonActionPerformed
+  public void displayChefDetailsList() throws IOException {
+        // Set the values of Chef Details
+        chefFirstName1.setText(this.chefDetails.getChefFirstName());
+        System.out.println("Updated image " + this.chefDetails.getChefFirstName());
+        chefLastName1.setText(this.chefDetails.getChefLastName());
+        userName1.setText(this.chefDetails.getUserName());
+        
+        Recipe recipe = this.chefDetails.getRecipe();
+        recipeTitle1.setText(recipe.getRecipeTitle());
+        noOfServing.setText(String.valueOf(recipe.getNoOfServing()));
+        noOfIngredients1.setText(String.valueOf(recipe.getNoOfIngredients()));
+        categoryOfFood1.setSelectedItem(recipe.getCategoryOfFood());
+        glutenFree1.setSelectedItem(recipe.getIsGlutenFree());
+        sliderTextField1.setText(String.valueOf(recipe.getDifficultyLevel()));
+        descriptionTextArea1.setText(recipe.getDescription());
+        String imagePathValue = recipe.getRecipePicture();
+        System.out.println("Updated image " + imagePathValue);
+       
+      
+        ImageIcon ii = new ImageIcon(imagePathValue);
+        Image image = ii.getImage();
+        imageBorderLabel1.setIcon(new ImageIcon(image));
+       
+        ContactInformation contact = this.chefDetails.getContact();
+        emailId1.setText(contact.getEmailId());
+        phoneNumber1.setText(String.valueOf(contact.getPhoneNumber()));
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

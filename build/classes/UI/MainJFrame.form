@@ -51,8 +51,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="createButton" max="32767" attributes="0"/>
-                          <Component id="updateButton" max="32767" attributes="0"/>
                           <Component id="readButton" max="32767" attributes="0"/>
+                          <Component id="updateButton" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
@@ -64,9 +64,9 @@
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                       <Component id="createButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="updateButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="readButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="updateButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="92" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -84,7 +84,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="readButton">
+            <Component class="javax.swing.JButton" name="updateButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="99" red="99" type="rgb"/>
@@ -92,10 +92,10 @@
                 <Property name="text" type="java.lang.String" value="UPDATE"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="readButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="updateButton">
+            <Component class="javax.swing.JButton" name="readButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="99" red="99" type="rgb"/>
@@ -103,7 +103,7 @@
                 <Property name="text" type="java.lang.String" value="READ"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="readButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

@@ -6,6 +6,9 @@
 package UI;
 
 import Model.ChefDetails;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -41,8 +44,8 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane2 = new javax.swing.JSplitPane();
         ControlJPanel = new javax.swing.JPanel();
         createButton = new javax.swing.JButton();
-        readButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
+        readButton = new javax.swing.JButton();
         DisplayJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,19 +60,19 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        readButton.setBackground(new java.awt.Color(153, 153, 255));
-        readButton.setText("UPDATE");
-        readButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                readButtonActionPerformed(evt);
-            }
-        });
-
         updateButton.setBackground(new java.awt.Color(153, 153, 255));
-        updateButton.setText("READ");
+        updateButton.setText("UPDATE");
         updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateButtonActionPerformed(evt);
+            }
+        });
+
+        readButton.setBackground(new java.awt.Color(153, 153, 255));
+        readButton.setText("READ");
+        readButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                readButtonActionPerformed(evt);
             }
         });
 
@@ -81,8 +84,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(ControlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(createButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(readButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(readButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         ControlJPanelLayout.setVerticalGroup(
@@ -91,9 +94,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(87, 87, 87)
                 .addComponent(createButton)
                 .addGap(29, 29, 29)
-                .addComponent(updateButton)
-                .addGap(27, 27, 27)
                 .addComponent(readButton)
+                .addGap(27, 27, 27)
+                .addComponent(updateButton)
                 .addContainerGap(92, Short.MAX_VALUE))
         );
 
@@ -119,20 +122,25 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+    private void readButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readButtonActionPerformed
         // TODO add your handling code here:
-         jSplitPane2.setRightComponent(new UpdateJPanel(this.chefDetails));
-    }//GEN-LAST:event_updateButtonActionPerformed
+         
+        jSplitPane2.setRightComponent(new ReadJPanel(this.chefDetails));
+    }//GEN-LAST:event_readButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
          jSplitPane2.setRightComponent(new CreateJPanel(this.chefDetails));
     }//GEN-LAST:event_createButtonActionPerformed
 
-    private void readButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readButtonActionPerformed
-        // TODO add your handling code here:
-         jSplitPane2.setRightComponent(new ReadJPanel(this.chefDetails));
-    }//GEN-LAST:event_readButtonActionPerformed
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            jSplitPane2.setRightComponent(new UpdateJPanel(this.chefDetails));
+        } catch (IOException ex) {
+            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_updateButtonActionPerformed
 
     /**
      * @param args the command line arguments
