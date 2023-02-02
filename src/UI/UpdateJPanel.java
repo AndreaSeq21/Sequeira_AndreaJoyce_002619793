@@ -20,7 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class UpdateJPanel extends javax.swing.JPanel {
 

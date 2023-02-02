@@ -9,7 +9,7 @@ import java.io.File;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class Recipe {
     String recipeTitle;

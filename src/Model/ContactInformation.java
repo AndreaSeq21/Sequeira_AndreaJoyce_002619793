@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class ContactInformation {
     String emailId;
