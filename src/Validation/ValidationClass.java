@@ -23,7 +23,7 @@ public class ValidationClass {
         p = Pattern.compile(nameValidate);
         if (!p.matcher(name).matches()) 
         {
-            JOptionPane.showMessageDialog(null,"Entered name is not correct!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            
             return true;
         }
         return false;
@@ -34,7 +34,25 @@ public class ValidationClass {
         p = Pattern.compile(emailvalidate);
               if (!p.matcher(email).matches())
         {
-            JOptionPane.showMessageDialog(null,"Email format: someone@email.com", "Warning", JOptionPane.WARNING_MESSAGE);
+            
+            return true;
+        }
+        return false;
+    }
+    
+        public boolean nullCheck (String checkValue) {
+              if (checkValue != null && !checkValue.isBlank())
+        {
+            return true;
+        }
+        return false;
+    }
+        
+          public boolean phoneNumberCheck (String checkValue) {
+              //long phoneNumber = Long.parseLong(checkValue);
+              int a = checkValue.length();
+              if (a < 10)
+        {
             return true;
         }
         return false;

@@ -28,9 +28,11 @@ public class CreateJPanel extends javax.swing.JPanel {
     private ChefDetails chefDetails;
     private Recipe recipe;
     private ValidationClass val;
+
     public CreateJPanel() {
         initComponents();
     }
+
     CreateJPanel(ChefDetails chefDetails) {
         initComponents();
         this.chefDetails = chefDetails;
@@ -323,18 +325,17 @@ public class CreateJPanel extends javax.swing.JPanel {
         FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
         browseImageFile.addChoosableFileFilter(fnef);
         int showOpenDialogue = browseImageFile.showOpenDialog(null);
-        if(showOpenDialogue == JFileChooser.APPROVE_OPTION)
-        {
+        if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
             File selectedImageFile = browseImageFile.getSelectedFile();
             String selectedImagePath = selectedImageFile.getAbsolutePath();
             System.out.println(selectedImagePath);
-            JOptionPane.showMessageDialog(null,selectedImagePath );
+            JOptionPane.showMessageDialog(null, selectedImagePath);
             //Store the filePath in recipe picture variable
-        
+
             recipe.setRecipePicture(selectedImagePath);
             System.out.println("displaypath:" + recipe.getRecipePicture());
             ImageIcon ii = new ImageIcon(selectedImagePath);
-            Image image = ii.getImage().getScaledInstance(imageBorderLabel.getWidth(),imageBorderLabel.getHeight(), Image.SCALE_SMOOTH);
+            Image image = ii.getImage().getScaledInstance(imageBorderLabel.getWidth(), imageBorderLabel.getHeight(), Image.SCALE_SMOOTH);
             imageBorderLabel.setIcon(new ImageIcon(image));
         }
     }//GEN-LAST:event_browsePictureButtonActionPerformed
@@ -357,38 +358,72 @@ public class CreateJPanel extends javax.swing.JPanel {
         this.chefDetails.setChefFirstName(chefFirstNameValue);
         this.chefDetails.setChefLastName(chefLastNameValue);
         this.chefDetails.setUserName(userNameValue);
-        
+
         recipe.setRecipeTitle(recipeTitleValue);
         recipe.setNoOfServing(Integer.valueOf(noOfServingValue));
         recipe.setNoOfIngredients(Integer.valueOf(noOfIngredientsValue));
         recipe.setCategoryOfFood(categoryOfFoodComboBoxValue);
-         Boolean glutenFreeValue = true;
-        if (glutenFreeComboBoxValue == "Yes") 
-        { 
-             glutenFreeValue = true; 
-        } else 
-        {  
-            glutenFreeValue = false; 
+        Boolean glutenFreeValue = true;
+        if (glutenFreeComboBoxValue == "Yes") {
+            glutenFreeValue = true;
+        } else {
+            glutenFreeValue = false;
         }
         recipe.setIsGlutenFree(glutenFreeValue);
         recipe.setDifficultyLevel(Integer.valueOf(diffcultyLevelValue));
         recipe.setDescription(descriptionValue);
+
         ContactInformation contact = this.chefDetails.getContact();
         contact.setEmailId(emailIdValue);
         contact.setPhoneNumber(Long.valueOf(phoneNumberValue));
-        
-        val.validateEmail(emailIdValue);
-//        val.validateName(userNameValue);
-//        val.validateName(chefFirstNameValue);
-//        val.validateName(chefLastNameValue);
-        JOptionPane.showMessageDialog(null, "SAVED SUCCESSFULLY");
+
+        //System.out.println("recipe picture value " + recipe.getRecipePicture());
+        String recipePicture = recipe.getRecipePicture();
+
+        //validation check
+        boolean flag = false;
+        if (val.validateEmail(emailIdValue)) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Email format: someone@email.com", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Email Validation check passed");
+        }
+
+        if (val.validateName(chefFirstNameValue) || val.validateName(chefLastNameValue)) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Entered First name is not correct!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Name check passed");
+        }
+
+        if (val.nullCheck(emailIdValue) || val.nullCheck(userNameValue) || val.nullCheck(chefFirstNameValue) || val.nullCheck(chefLastNameValue) || val.nullCheck(recipeTitleValue) || val.nullCheck(noOfServingValue) || val.nullCheck(noOfIngredientsValue) || val.nullCheck(categoryOfFoodComboBoxValue) || val.nullCheck(phoneNumberValue) || val.nullCheck(glutenFreeComboBoxValue) || val.nullCheck(diffcultyLevelValue) || val.nullCheck(descriptionValue) || val.nullCheck(recipePicture)) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Entered Last name is not correct!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Null check passed");
+        }
+
+        if (val.phoneNumberCheck(phoneNumberValue)) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Phone Number should be 10 Characters", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Phone Number check passed");
+        }
+
+        if (flag == false) {
+            JOptionPane.showMessageDialog(null, "SAVED SUCCESSFULLY");
+        } else {
+            System.out.println("Validation check failed");
+        }
+
+
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void sliderTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sliderTextFieldActionPerformed
         // TODO add your handling code here:
         int sliderNumber = descriptionSlider.getValue();
         sliderTextField.setText(String.valueOf(sliderNumber));
-        
+
     }//GEN-LAST:event_sliderTextFieldActionPerformed
 
     private void descriptionSliderMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descriptionSliderMouseMoved
@@ -401,7 +436,7 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void descriptionSliderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descriptionSliderMouseClicked
         // TODO add your handling code here:
-          int sliderNumber = descriptionSlider.getValue();
+        int sliderNumber = descriptionSlider.getValue();
         sliderTextField.setText(String.valueOf(sliderNumber));
     }//GEN-LAST:event_descriptionSliderMouseClicked
 
