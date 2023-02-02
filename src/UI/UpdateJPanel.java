@@ -8,6 +8,7 @@ package UI;
 import Model.ChefDetails;
 import Model.ContactInformation;
 import Model.Recipe;
+import Validation.ValidationClass;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
      * Creates new form UpdateJPanel
      */
     private ChefDetails chefDetails;
+    private ValidationClass val;
     public UpdateJPanel() {
         initComponents();
     }
@@ -34,6 +36,7 @@ public class UpdateJPanel extends javax.swing.JPanel {
         initComponents();
         this.chefDetails = chefDetails;
         displayChefDetailsList();
+        val = new ValidationClass();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -193,6 +196,11 @@ public class UpdateJPanel extends javax.swing.JPanel {
                 descriptionSlider1MouseMoved(evt);
             }
         });
+        descriptionSlider1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                descriptionSlider1MouseClicked(evt);
+            }
+        });
         add(descriptionSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 140, -1));
 
         difficultyLevel.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
@@ -344,21 +352,16 @@ public class UpdateJPanel extends javax.swing.JPanel {
 
     private void sliderTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sliderTextField1ActionPerformed
         // TODO add your handling code here:
-        int sliderNumber = descriptionSlider1.getValue();
+        double sliderNumber = descriptionSlider1.getValue();
         sliderTextField1.setText(String.valueOf(sliderNumber));
+         
 
     }//GEN-LAST:event_sliderTextField1ActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
-      
-        
-        Recipe recipe = this.chefDetails.getRecipe();
-        recipe.setRecipeTitle(recipeTitle1.getText());
-        recipe.setNoOfServing(Integer.valueOf(noOfServing.getText()));
-        recipe.setNoOfIngredients(Integer.valueOf(noOfIngredients1.getText()));
-        recipe.setCategoryOfFood(String.valueOf(categoryOfFood1.getSelectedItem()));
-        Boolean glutenFreeValue = true;
+       Recipe recipe = this.chefDetails.getRecipe();
+            Boolean glutenFreeValue = true;
         if (glutenFree1.getSelectedItem() == "Yes") 
         { 
              glutenFreeValue = true; 
@@ -366,6 +369,45 @@ public class UpdateJPanel extends javax.swing.JPanel {
         {  
             glutenFreeValue = false; 
         }
+         //validation check
+        boolean flag = false;
+        String recipePictureValue = recipe.getRecipePicture();
+        if (val.validateEmail(emailId1.getText())) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Email format: someone@email.com", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Email Validation check passed");
+        }
+
+
+        if (val.nullCheck(emailId1.getText())   || val.nullCheck(recipeTitle1.getText()) || val.nullCheck(noOfServing.getText()) || val.nullCheck(noOfIngredients1.getText()) || val.nullCheck(String.valueOf(categoryOfFood1.getSelectedItem())) || val.nullCheck(String.valueOf(glutenFreeValue)) || val.nullCheck(descriptionTextArea1.getText()) || val.nullCheck(descriptionTextArea1.getText()) || val.nullCheck(recipePictureValue)) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Null value is not allowed!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Null check passed");
+        }
+        
+        if (val.silderCheck(String.valueOf(sliderTextField1.getText()))) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Difficulty level should be between 1 to 5", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Difficulty level check passed");
+        }
+
+        if (val.phoneNumberCheck(phoneNumber1.getText())) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Phone Number should be 10 Characters", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Phone Number check passed");
+        }
+        
+        
+        recipe.setRecipeTitle(recipeTitle1.getText());
+        recipe.setNoOfServing(Integer.valueOf(noOfServing.getText()));
+        recipe.setNoOfIngredients(Integer.valueOf(noOfIngredients1.getText()));
+        recipe.setCategoryOfFood(String.valueOf(categoryOfFood1.getSelectedItem()));
+       
+   
         recipe.setIsGlutenFree(Boolean.valueOf(glutenFreeValue));
         recipe.setDifficultyLevel(Double.valueOf(sliderTextField1.getText()));
         recipe.setDescription(descriptionTextArea1.getText());
@@ -373,9 +415,24 @@ public class UpdateJPanel extends javax.swing.JPanel {
         ContactInformation contact = this.chefDetails.getContact();
         contact.setEmailId(emailId1.getText());
         contact.setPhoneNumber(Long.valueOf(phoneNumber1.getText()));
-        JOptionPane.showMessageDialog(null, "UPDATED SUCCESSFULLY");
+        
+       
+
+        if (flag == false) {
+            JOptionPane.showMessageDialog(null, "UPDATED SUCCESSFULLY");
+        } else {
+            System.out.println("Validation check failed");
+        }
+        
+        
        
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void descriptionSlider1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descriptionSlider1MouseClicked
+        // TODO add your handling code here:
+             double sliderNumber = descriptionSlider1.getValue();
+        sliderTextField1.setText(String.valueOf(sliderNumber));
+    }//GEN-LAST:event_descriptionSlider1MouseClicked
   public void displayChefDetailsList() throws IOException {
         // Set the values of Chef Details
         chefFirstName1.setText(this.chefDetails.getChefFirstName());

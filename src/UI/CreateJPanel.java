@@ -352,30 +352,10 @@ public class CreateJPanel extends javax.swing.JPanel {
         String emailIdValue = emailId.getText();
         String phoneNumberValue = phoneNumber.getText();
         String glutenFreeComboBoxValue = glutenFreeComboBox.getSelectedItem().toString();
-        String diffcultyLevelValue = sliderTextField.getText();
+        String diffcultyLevelValue = String.valueOf(sliderTextField.getText());
         String descriptionValue = descriptionTextArea.getText();
 
-        this.chefDetails.setChefFirstName(chefFirstNameValue);
-        this.chefDetails.setChefLastName(chefLastNameValue);
-        this.chefDetails.setUserName(userNameValue);
 
-        recipe.setRecipeTitle(recipeTitleValue);
-        recipe.setNoOfServing(Integer.valueOf(noOfServingValue));
-        recipe.setNoOfIngredients(Integer.valueOf(noOfIngredientsValue));
-        recipe.setCategoryOfFood(categoryOfFoodComboBoxValue);
-        Boolean glutenFreeValue = true;
-        if (glutenFreeComboBoxValue == "Yes") {
-            glutenFreeValue = true;
-        } else {
-            glutenFreeValue = false;
-        }
-        recipe.setIsGlutenFree(glutenFreeValue);
-        recipe.setDifficultyLevel(Integer.valueOf(diffcultyLevelValue));
-        recipe.setDescription(descriptionValue);
-
-        ContactInformation contact = this.chefDetails.getContact();
-        contact.setEmailId(emailIdValue);
-        contact.setPhoneNumber(Long.valueOf(phoneNumberValue));
 
         //System.out.println("recipe picture value " + recipe.getRecipePicture());
         String recipePicture = recipe.getRecipePicture();
@@ -391,14 +371,15 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         if (val.validateName(chefFirstNameValue) || val.validateName(chefLastNameValue)) {
             flag = true;
-            JOptionPane.showMessageDialog(null, "Entered First name is not correct!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            System.out.println(" " + chefFirstNameValue + " " + chefLastNameValue );
+            JOptionPane.showMessageDialog(null, "Entered Name is not correct!!", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             System.out.println("Name check passed");
         }
 
-        if (val.nullCheck(emailIdValue) || val.nullCheck(userNameValue) || val.nullCheck(chefFirstNameValue) || val.nullCheck(chefLastNameValue) || val.nullCheck(recipeTitleValue) || val.nullCheck(noOfServingValue) || val.nullCheck(noOfIngredientsValue) || val.nullCheck(categoryOfFoodComboBoxValue) || val.nullCheck(phoneNumberValue) || val.nullCheck(glutenFreeComboBoxValue) || val.nullCheck(diffcultyLevelValue) || val.nullCheck(descriptionValue) || val.nullCheck(recipePicture)) {
+        if (val.nullCheck(emailIdValue) || val.nullCheck(userNameValue) || val.nullCheck(chefFirstNameValue) || val.nullCheck(chefLastNameValue) || val.nullCheck(recipeTitleValue) || val.nullCheck(noOfServingValue) || val.nullCheck(noOfIngredientsValue) || val.nullCheck(categoryOfFoodComboBoxValue) || val.nullCheck(phoneNumberValue) || val.nullCheck(glutenFreeComboBoxValue) || val.nullCheck(diffcultyLevelValue) || val.nullCheck(descriptionValue)) {
             flag = true;
-            JOptionPane.showMessageDialog(null, "Entered Last name is not correct!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Null values not allowed!!", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             System.out.println("Null check passed");
         }
@@ -409,7 +390,39 @@ public class CreateJPanel extends javax.swing.JPanel {
         } else {
             System.out.println("Phone Number check passed");
         }
+        
+       if (val.silderCheck(diffcultyLevelValue)) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Difficulty level should be between 1 to 5", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Difficulty level check passed");
+        }
 
+        
+        //Store values
+        this.chefDetails.setChefFirstName(chefFirstNameValue);
+        this.chefDetails.setChefLastName(chefLastNameValue);
+        this.chefDetails.setUserName(userNameValue);
+
+        recipe.setRecipeTitle(recipeTitleValue);
+        recipe.setNoOfServing(Integer.valueOf(noOfServingValue));
+        recipe.setNoOfIngredients(Integer.valueOf(noOfIngredientsValue));
+        recipe.setCategoryOfFood(categoryOfFoodComboBoxValue);
+        Boolean glutenFreeValue = true;
+        if (glutenFreeComboBoxValue == "Yes") {
+            glutenFreeValue = true;
+        } else {
+            glutenFreeValue = false;
+        }
+        recipe.setIsGlutenFree(glutenFreeValue);
+        recipe.setDifficultyLevel(Double.valueOf(diffcultyLevelValue));
+        recipe.setDescription(descriptionValue);
+
+        ContactInformation contact = this.chefDetails.getContact();
+        contact.setEmailId(emailIdValue);
+        contact.setPhoneNumber(Long.valueOf(phoneNumberValue));
+        
+        
         if (flag == false) {
             JOptionPane.showMessageDialog(null, "SAVED SUCCESSFULLY");
         } else {
@@ -421,7 +434,7 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void sliderTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sliderTextFieldActionPerformed
         // TODO add your handling code here:
-        int sliderNumber = descriptionSlider.getValue();
+        double sliderNumber = descriptionSlider.getValue();
         sliderTextField.setText(String.valueOf(sliderNumber));
 
     }//GEN-LAST:event_sliderTextFieldActionPerformed

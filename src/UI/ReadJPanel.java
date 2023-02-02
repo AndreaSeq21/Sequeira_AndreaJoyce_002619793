@@ -155,7 +155,7 @@ public class ReadJPanel extends javax.swing.JPanel {
                 emailId2ActionPerformed(evt);
             }
         });
-        add(emailId2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 140, 20));
+        add(emailId2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 140, 30));
 
         isGlutenFree2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,7 +221,7 @@ public class ReadJPanel extends javax.swing.JPanel {
                 phoneNumber2ActionPerformed(evt);
             }
         });
-        add(phoneNumber2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 140, 20));
+        add(phoneNumber2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 140, 30));
 
         imageBorderLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         imageBorderLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -303,7 +303,13 @@ public class ReadJPanel extends javax.swing.JPanel {
         noOfServing2.setText(String.valueOf(recipe.getNoOfServing()));
         noOfIngredients2.setText(String.valueOf(recipe.getNoOfIngredients()));
         categoryOfFood2.setText(recipe.getCategoryOfFood());
-        isGlutenFree2.setText(String.valueOf(recipe.getIsGlutenFree()));
+        String glutenFreeValue = "";
+        if ( recipe.getIsGlutenFree() == true) {
+            glutenFreeValue = "Yes";
+        } else {
+            glutenFreeValue = "No";
+        }
+        isGlutenFree2.setText(glutenFreeValue);
         difficultyLevel2.setText(String.valueOf(recipe.getDifficultyLevel()));
         description2.setText(recipe.getDescription());
         String imagePathValue = recipe.getRecipePicture();

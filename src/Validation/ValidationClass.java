@@ -24,9 +24,9 @@ public class ValidationClass {
         if (!p.matcher(name).matches()) 
         {
             
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
     
     public boolean validateEmail(String email) {
@@ -43,15 +43,25 @@ public class ValidationClass {
         public boolean nullCheck (String checkValue) {
               if (checkValue != null && !checkValue.isBlank())
         {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
         
           public boolean phoneNumberCheck (String checkValue) {
               //long phoneNumber = Long.parseLong(checkValue);
               int a = checkValue.length();
               if (a < 10)
+        {
+            return true;
+        }
+        return false;
+    }
+          
+      public boolean silderCheck (String checkValue) {
+              
+              double a = Double.parseDouble(checkValue);
+              if (a > 6)
         {
             return true;
         }
