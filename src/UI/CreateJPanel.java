@@ -69,7 +69,6 @@ public class CreateJPanel extends javax.swing.JPanel {
         glutenFreeComboBox = new javax.swing.JComboBox<>();
         glutenFreeLabel1 = new javax.swing.JLabel();
         descriptionSlider = new javax.swing.JSlider();
-        difficultyLevel = new javax.swing.JLabel();
         glutenFreeLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
@@ -176,14 +175,14 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         descriptionLabel.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         descriptionLabel.setText("Description");
-        add(descriptionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 80, 20));
+        add(descriptionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 80, 30));
 
         glutenFreeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
         add(glutenFreeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 60, 20));
 
         glutenFreeLabel1.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         glutenFreeLabel1.setText("is gluten free?");
-        add(glutenFreeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 80, 20));
+        add(glutenFreeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 80, 20));
 
         descriptionSlider.setMaximum(5);
         descriptionSlider.setMinimum(1);
@@ -202,13 +201,9 @@ public class CreateJPanel extends javax.swing.JPanel {
         });
         add(descriptionSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 140, -1));
 
-        difficultyLevel.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
-        difficultyLevel.setText("Difficult level");
-        add(difficultyLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 80, 20));
-
         glutenFreeLabel3.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         glutenFreeLabel3.setText("Difficult level");
-        add(glutenFreeLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 80, 20));
+        add(glutenFreeLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 80, 20));
 
         descriptionTextArea.setColumns(20);
         descriptionTextArea.setRows(5);
@@ -248,7 +243,7 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         phoneNumberLabel.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         phoneNumberLabel.setText("Phone");
-        add(phoneNumberLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 40, 10));
+        add(phoneNumberLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 60, 20));
 
         browsePictureButton.setText("BROWSE");
         browsePictureButton.addActionListener(new java.awt.event.ActionListener() {
@@ -377,7 +372,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             System.out.println("Name check passed");
         }
 
-        if (val.nullCheck(emailIdValue) || val.nullCheck(userNameValue) || val.nullCheck(chefFirstNameValue) || val.nullCheck(chefLastNameValue) || val.nullCheck(recipeTitleValue) || val.nullCheck(noOfServingValue) || val.nullCheck(noOfIngredientsValue) || val.nullCheck(categoryOfFoodComboBoxValue) || val.nullCheck(phoneNumberValue) || val.nullCheck(glutenFreeComboBoxValue) || val.nullCheck(diffcultyLevelValue) || val.nullCheck(descriptionValue)) {
+        if (val.nullCheck(emailIdValue) || val.nullCheck(userNameValue) || val.nullCheck(chefFirstNameValue) || val.nullCheck(chefLastNameValue) || val.nullCheck(recipeTitleValue) || val.nullCheck(noOfServingValue) || val.nullCheck(noOfIngredientsValue) || val.nullCheck(categoryOfFoodComboBoxValue) || val.nullCheck(phoneNumberValue) || val.nullCheck(glutenFreeComboBoxValue) || val.nullCheck(diffcultyLevelValue) || val.nullCheck(descriptionValue) || val.nullCheck(recipePicture)) {
             flag = true;
             JOptionPane.showMessageDialog(null, "Null values not allowed!!", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -466,7 +461,6 @@ public class CreateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JSlider descriptionSlider;
     private javax.swing.JTextArea descriptionTextArea;
-    private javax.swing.JLabel difficultyLevel;
     private javax.swing.JTextField emailId;
     private javax.swing.JLabel emailIdLabel;
     private javax.swing.JComboBox<String> glutenFreeComboBox;

@@ -19,14 +19,14 @@ public class ValidationClass {
     Pattern p;
     
     public boolean validateName(String name) {
-        String nameValidate = "[A-Za-z]";
+        String nameValidate = "[A-Za-z]*";
         p = Pattern.compile(nameValidate);
         if (!p.matcher(name).matches()) 
         {
             
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
     
     public boolean validateEmail(String email) {
