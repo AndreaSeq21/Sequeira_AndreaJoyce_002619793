@@ -43,17 +43,22 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        addVaccineBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(0, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Verdana", 3, 14)); // NOI18N
         jLabel1.setText("ADD APPLICANT");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
 
         jLabel2.setText("FIRST NAME");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 70, 20));
@@ -67,59 +72,108 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 120, 30));
 
         jLabel3.setText("DATE");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 70, 20));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 70, 20));
 
         jLabel4.setText("LAST NAME");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 70, 20));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
-        jLabel5.setText("VACCINATION DETAILS");
+        jLabel5.setText("INSURANCE PLAN");
         jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 550, 20));
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 120, 30));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 550, 20));
+        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 120, 30));
 
         jLabel6.setText("PET NAME");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 70, 20));
-        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 120, 30));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 70, 20));
+        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 120, 30));
 
         jLabel7.setText("GENDER");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 70, 20));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 70, 20));
 
         jLabel8.setText("PET AGE");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 70, 20));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 70, 20));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 120, 30));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 120, 30));
 
         jLabel9.setText("BREED");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 70, 20));
-        add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 120, 30));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 70, 20));
+        add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 120, 30));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         jLabel10.setText("PET DETAILS");
         jLabel10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 550, 20));
-
-        jLabel11.setText("VACCINE NAME");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 90, 20));
-        add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 120, 30));
-        add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 120, 30));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 550, 20));
 
         jLabel12.setText("Is Course Completed?");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 110, 20));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 110, 20));
+
+        jLabel13.setText("VACCINE NAME");
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 90, 20));
+        add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 120, 30));
+
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
+        add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 120, 30));
+
+        addVaccineBtn.setText("ADD VACCINE DETAILS");
+        addVaccineBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addVaccineBtnActionPerformed(evt);
+            }
+        });
+        add(addVaccineBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 160, 20));
+
+        jButton1.setText("ADD APPLICANT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 140, 30));
+
+        jLabel11.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
+        jLabel11.setText("VACCINATION DETAILS");
+        jLabel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 550, 20));
+
+        jLabel14.setText("INSURANCE PLANS");
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, -1, 20));
+
+        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 490, 110, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void addVaccineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVaccineBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addVaccineBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addVaccineBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
