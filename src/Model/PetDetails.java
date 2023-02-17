@@ -11,11 +11,20 @@ package Model;
  */
 public class PetDetails {
     String petName;
-    String petAge;
+    int petAge;
     String gender;
     String petType;
     String breed;
     VaccineDetails vaccine;
+    String insuranceDetails;
+
+    public String getInsuranceDetails() {
+        return insuranceDetails;
+    }
+
+    public void setInsuranceDetails(String insuranceDetails) {
+        this.insuranceDetails = insuranceDetails;
+    }
 
     public VaccineDetails getVaccine() {
         return vaccine;
@@ -30,13 +39,14 @@ public class PetDetails {
     }
     
 
-    public PetDetails(String petName, String petAge, String gender, String petType, String breed, VaccineDetails vaccine) {
+    public PetDetails(String petName, int petAge, String gender, String petType, String breed, VaccineDetails vaccine, String insuranceDetails) {
         this.petName = petName;
         this.petAge = petAge;
         this.gender = gender;
         this.petType = petType;
         this.breed = breed;
-        this.vaccine = new VaccineDetails();
+        this.vaccine = vaccine;
+        this.insuranceDetails = insuranceDetails;
     }
     
     
@@ -48,11 +58,11 @@ public class PetDetails {
         this.petName = petName;
     }
 
-    public String getPetAge() {
+    public int getPetAge() {
         return petAge;
     }
 
-    public void setPetAge(String petAge) {
+    public void setPetAge(int petAge) {
         this.petAge = petAge;
     }
 

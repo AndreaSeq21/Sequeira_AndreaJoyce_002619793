@@ -24,7 +24,7 @@ public class PlanDetail {
         this.planId = planId;
         this.planName = planName;
         this.costPerMonth = costPerMonth;
-        this.costPerAnnum = this.costPerMonth * 12;
+        this.costPerAnnum = costPerAnnum;
     }
     
     public int getPlanId() {

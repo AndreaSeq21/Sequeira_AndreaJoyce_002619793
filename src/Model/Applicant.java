@@ -16,16 +16,27 @@ public class Applicant {
     String ownerFirstName;
     String ownerLastName;
     Date applicationDate;
+    PetDetails pet;
     
     public Applicant() {
-        
+       
+        this.pet = new PetDetails();
     }
 
-    public Applicant(int applicationID, String ownerFirstName, String ownerLastName, Date applicationDate) {
+    public Applicant(int applicationID, String ownerFirstName, String ownerLastName, Date applicationDate ) {
         this.applicationID = applicationID;
         this.ownerFirstName = ownerFirstName;
         this.ownerLastName = ownerLastName;
         this.applicationDate = applicationDate;
+        //this.pet = pet;
+    }
+
+    public PetDetails getPet() {
+        return pet;
+    }
+
+    public void setPet(PetDetails pet) {
+        this.pet = pet;
     }
 
     public int getApplicationID() {

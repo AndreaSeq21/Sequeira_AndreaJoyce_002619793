@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class InsurancePlans {
     ArrayList<PlanDetail> insurancePlanList;
 
-    public InsurancePlans(ArrayList<PlanDetail> insurancePlanList) {
+    public InsurancePlans() {
         this.insurancePlanList = new ArrayList<PlanDetail>() ;
     }
     

@@ -31,6 +31,7 @@ public class ApplicantDirectory {
     
     //Add applicant 
     public Applicant createApplicant(int applicationID, String ownerFirstName, String ownerLastName, Date applicationDate){
+        System.out.println("Account created");
         Applicant user = new Applicant(applicationID,ownerFirstName,ownerLastName,applicationDate);
         applicantList.add(user);
         return user;
@@ -47,6 +48,7 @@ public class ApplicantDirectory {
         return null;
     }
     
+    
     //Delete Applicant
     public void removeApplicant (int id){
           for(Applicant m: this.applicantList){
@@ -55,6 +57,21 @@ public class ApplicantDirectory {
                   break;
               }
           }
+    
+    
+    public Boolean applicantExists(int id) {
+        
+        for (Applicant a : this.applicantList) {
+            if(a.getApplicationID() == id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Applicant createApplicant(Integer valueOf, String firstName, String lastName, Date dateValue, PetDetails pet) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
     }

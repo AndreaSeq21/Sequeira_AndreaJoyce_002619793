@@ -5,6 +5,12 @@
  */
 package UI;
 
+import Model.Applicant;
+import Model.ApplicantDirectory;
+import Model.Business;
+import Model.PetDetails;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author asequ
@@ -14,8 +20,22 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewApplicantJPanel
      */
+    private Business business;
+    private Applicant applicant;
+    DefaultTableModel tableModel;
+    PetDetails pet;
     public ViewApplicantJPanel() {
         initComponents();
+       
+    }
+     public ViewApplicantJPanel(Business business, Applicant applicant) {
+         this.setVisible(true);
+         initComponents();
+         this.business = business;
+         this.applicant = applicant;
+         this.tableModel = (DefaultTableModel)viewApplicant.getModel();
+         pet = this.applicant.getPet();
+         populate();
     }
 
     /**
@@ -28,32 +48,32 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        viewApplicant = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        viewApplicant.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Applicant", "First Name", "Last Name", "Date", "Pet Name", "Age", "Gender", "Pet Type", "Breed", "Insurance Plan Opted"
+                "ApplicantId", "First Name", "Last Name", "Date", "Pet Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(viewApplicant);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 700, 200));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 710, 200));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         jLabel5.setText("VIEW APPLICANT DETAILS");
@@ -69,6 +89,29 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable viewApplicant;
     // End of variables declaration//GEN-END:variables
+
+    private void populate() {
+            tableModel.setRowCount(0);
+        for (Applicant o: this.business.getApplicantDirectory().getApplicantList()){
+             
+            Object[] row = new Object[6];
+            
+            row[0] = o.getApplicationID();
+            System.out.println("Inside view method " + o.getApplicationID());
+            row[1] = o.getOwnerFirstName();
+            row[2] = o.getOwnerLastName();
+            row[3] = String.valueOf(o.getApplicationDate());
+            row[4] = o.getPet().getPetName();
+            
+//            row[5] = o.getPet().getPetAge();
+//            row[6] = o.getPet().getGender();
+//            row[7] = o.getPet().getBreed();
+//            row[8] = o.getPet().getInsuranceDetails();
+//            System.out.println("Inside view method " + o.getOwnerFirstName());
+            //row[5] = o.getPet().getPetType();
+            tableModel.addRow(row);
+        } //To change body of generated methods, choose Tools | Templates.
+    }
 }
