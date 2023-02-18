@@ -29,7 +29,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
     private Business business;
     private Applicant applicantAccount;
     private PetDetails pet;
-    DefaultTableModel tableModel;
+    DefaultTableModel tableModelUpdate;
      private int count=0;
     
     public UpdateApplicantJPanel() {
@@ -46,8 +46,9 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         this.business = business;
         this.applicantAccount = applicantAccount;
         //pet = this.applicantAccount.getPet();
-        this.tableModel = (DefaultTableModel)viewTableAppl.getModel();
+        this.tableModelUpdate = (DefaultTableModel)updateVaccinationTable.getModel();
         displayInsuranceDp();
+        //displayAllValues();
     }
 
  
@@ -65,31 +66,36 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtFirstName = new javax.swing.JTextField();
-        txtLastName = new javax.swing.JTextField();
+        txtFirstName1 = new javax.swing.JTextField();
+        txtLastName1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtPetName = new javax.swing.JTextField();
+        txtPetName1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtPetAge = new javax.swing.JTextField();
+        txtPetAge1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        comboPetGender = new javax.swing.JComboBox<>();
+        comboPetGender1 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        txtBreed = new javax.swing.JTextField();
+        txtBreed1 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        addApplicantBtn = new javax.swing.JButton();
+        updateApplicantBtn = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        comboInsurancePlan = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        comboInsurancePlan1 = new javax.swing.JComboBox<>();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
-        txtApplicantId = new javax.swing.JTextField();
-        txtPetType = new javax.swing.JTextField();
+        txtPetType1 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        viewVaccBtn = new javax.swing.JButton();
+        comboApplicantId = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        viewTableAppl = new javax.swing.JTable();
-        viewApplBtn = new javax.swing.JButton();
+        updateVaccinationTable = new javax.swing.JTable();
+        txtVaccineName = new javax.swing.JTextField();
+        comboCourse = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        updateVaccinationBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -100,14 +106,14 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("FIRST NAME");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 70, 20));
-        add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 120, 30));
+        add(txtFirstName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 120, 30));
 
-        txtLastName.addActionListener(new java.awt.event.ActionListener() {
+        txtLastName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLastNameActionPerformed(evt);
+                txtLastName1ActionPerformed(evt);
             }
         });
-        add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 120, 30));
+        add(txtLastName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 120, 30));
 
         jLabel3.setText("DATE");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 70, 20));
@@ -116,14 +122,14 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 70, 20));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
-        jLabel5.setText("DISPLAY APPLICANT AND PET DETAILS");
+        jLabel5.setText("UPDATE VACCINATION DETAILS");
         jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 550, 20));
-        add(txtPetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 120, 30));
+        add(txtPetName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 120, 30));
 
         jLabel6.setText("PET NAME");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 70, 20));
-        add(txtPetAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 120, 30));
+        add(txtPetAge1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 120, 30));
 
         jLabel7.setText("GENDER");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 70, 20));
@@ -131,91 +137,110 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         jLabel8.setText("PET AGE");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 70, 20));
 
-        comboPetGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
-        add(comboPetGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 120, 30));
+        comboPetGender1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        add(comboPetGender1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 120, 30));
 
         jLabel9.setText("BREED");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 70, 20));
-        add(txtBreed, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 120, 30));
+        add(txtBreed1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 120, 30));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         jLabel10.setText("UPDATE PET DETAILS");
         jLabel10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 550, 20));
 
-        addApplicantBtn.setText("ADD APPLICANT");
-        addApplicantBtn.addActionListener(new java.awt.event.ActionListener() {
+        updateApplicantBtn.setText("UPDATE APPLICANT");
+        updateApplicantBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addApplicantBtnActionPerformed(evt);
+                updateApplicantBtnActionPerformed(evt);
             }
         });
-        add(addApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 140, 30));
+        add(updateApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 140, 30));
 
         jLabel14.setText("INSURANCE PLANS");
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, 20));
 
-        comboInsurancePlan.addActionListener(new java.awt.event.ActionListener() {
+        comboInsurancePlan1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboInsurancePlanActionPerformed(evt);
+                comboInsurancePlan1ActionPerformed(evt);
             }
         });
-        add(comboInsurancePlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 440, 40));
-        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 180, 30));
+        add(comboInsurancePlan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 440, 40));
+        add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 180, 30));
 
         jLabel15.setText("APPLICANT ID");
         add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 70, 20));
-        add(txtApplicantId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 120, 30));
-        add(txtPetType, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 120, 30));
+        add(txtPetType1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 120, 30));
 
         jLabel16.setText("PET TYPE");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 70, 20));
 
-        viewTableAppl.setModel(new javax.swing.table.DefaultTableModel(
+        viewVaccBtn.setText("VIEW ");
+        viewVaccBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewVaccBtnActionPerformed(evt);
+            }
+        });
+        add(viewVaccBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 700, 130, -1));
+
+        comboApplicantId.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboApplicantIdItemStateChanged(evt);
+            }
+        });
+        add(comboApplicantId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 59, 120, 30));
+
+        updateVaccinationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Applicant ID", "First Name", "Last Name", "Date", "Pet Name"
+                "Vaccine Name", "Course Completed?"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(viewTableAppl);
+        jScrollPane1.setViewportView(updateVaccinationTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 550, 150));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 510, 240, 170));
+        add(txtVaccineName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, 120, 30));
 
-        viewApplBtn.setText("VIEW ");
-        viewApplBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewApplBtnActionPerformed(evt);
-            }
-        });
-        add(viewApplBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 700, 130, -1));
+        comboCourse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
+        add(comboCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 600, 120, 30));
+
+        jLabel12.setText("Is Course Completed?");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 610, 110, 20));
+
+        jLabel13.setText("VACCINE NAME");
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, 90, 20));
+
+        updateVaccinationBtn.setText("UPDATE VACCINATION");
+        add(updateVaccinationBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 670, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
+    private void txtLastName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastName1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtLastNameActionPerformed
+    }//GEN-LAST:event_txtLastName1ActionPerformed
 
-    private void addApplicantBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addApplicantBtnActionPerformed
+    private void updateApplicantBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateApplicantBtnActionPerformed
         // TODO add your handling code here:
-        String applicantId = txtApplicantId.getText();
-        String firstName = txtFirstName.getText();
-        String lastName = txtLastName.getText();
-        Date dateValue = jDateChooser1.getDate();
-        String petName = txtPetName.getText();
-        String petAge = txtPetAge.getText();
-        String petType = txtPetType.getText();
-        String gender = (String) comboPetGender.getSelectedItem();
-        String breed = txtBreed.getText();
-        String insurancePlan = (String)comboInsurancePlan.getSelectedItem();
-       // System.out.println("Added date details " +dateValue);
+//        String applicantId = txtApplicantId.getText();
+//        String firstName = txtFirstName.getText();
+//        String lastName = txtLastName.getText();
+//        Date dateValue = jDateChooser1.getDate();
+//        String petName = txtPetName.getText();
+//        String petAge = txtPetAge.getText();
+//        String petType = txtPetType.getText();
+//        String gender = (String) comboPetGender.getSelectedItem();
+//        String breed = txtBreed.getText();
+//        String insurancePlan = (String)comboInsurancePlan.getSelectedItem();
+//       // System.out.println("Added date details " +dateValue);
         //PetDetails pet = this.applicantAccount.getPet();
       
         //pet.setApplicantId(Integer.valueOf(applicantId));
@@ -229,26 +254,34 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Added Applicant");
             
          
-    }//GEN-LAST:event_addApplicantBtnActionPerformed
+    }//GEN-LAST:event_updateApplicantBtnActionPerformed
 
-    private void comboInsurancePlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboInsurancePlanActionPerformed
+    private void comboInsurancePlan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboInsurancePlan1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboInsurancePlanActionPerformed
+    }//GEN-LAST:event_comboInsurancePlan1ActionPerformed
 
-    private void viewApplBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewApplBtnActionPerformed
+    private void viewVaccBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewVaccBtnActionPerformed
         // TODO add your handling code here:
-        displayView();
+       // displayView();
         //count++;
-    }//GEN-LAST:event_viewApplBtnActionPerformed
+    }//GEN-LAST:event_viewVaccBtnActionPerformed
+
+    private void comboApplicantIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboApplicantIdItemStateChanged
+        // TODO add your handling code here:
+        displayAllValues();
+    }//GEN-LAST:event_comboApplicantIdItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addApplicantBtn;
-    private javax.swing.JComboBox<String> comboInsurancePlan;
-    private javax.swing.JComboBox<String> comboPetGender;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox comboApplicantId;
+    private javax.swing.JComboBox<String> comboCourse;
+    private javax.swing.JComboBox<String> comboInsurancePlan1;
+    private javax.swing.JComboBox<String> comboPetGender1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -261,64 +294,65 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtApplicantId;
-    private javax.swing.JTextField txtBreed;
-    private javax.swing.JTextField txtFirstName;
-    private javax.swing.JTextField txtLastName;
-    private javax.swing.JTextField txtPetAge;
-    private javax.swing.JTextField txtPetName;
-    private javax.swing.JTextField txtPetType;
-    private javax.swing.JButton viewApplBtn;
-    private javax.swing.JTable viewTableAppl;
+    private javax.swing.JTextField txtBreed1;
+    private javax.swing.JTextField txtFirstName1;
+    private javax.swing.JTextField txtLastName1;
+    private javax.swing.JTextField txtPetAge1;
+    private javax.swing.JTextField txtPetName1;
+    private javax.swing.JTextField txtPetType1;
+    private javax.swing.JTextField txtVaccineName;
+    private javax.swing.JButton updateApplicantBtn;
+    private javax.swing.JButton updateVaccinationBtn;
+    private javax.swing.JTable updateVaccinationTable;
+    private javax.swing.JButton viewVaccBtn;
     // End of variables declaration//GEN-END:variables
 
     private void displayInsuranceDp() {
-         comboInsurancePlan.removeAllItems();
+        comboInsurancePlan1.removeAllItems();
+        comboApplicantId.removeAllItems();
         
-        for(PlanDetail d : this.business.getInsurancePlans().getInsurancePlanList()) {
-            comboInsurancePlan.addItem("PLAN ID: " + d.getPlanId() + "PLAN NAME: " + d.getPlanName() + "COST PER MONTH: " + d.getCostPerMonth() + "COST PER ANNUM: " + d.getCostPerAnnum());       
+        for(Applicant appl: this.business.getApplicantDirectory().getApplicantList()){
+            comboApplicantId.addItem(appl.getApplicationID());
         }
+        
+//        for(PlanDetail d : this.business.getInsurancePlans().getInsurancePlanList()) {
+//            comboInsurancePlan.addItem("PLAN ID: " + d.getPlanId() + "PLAN NAME: " + d.getPlanName() + "COST PER MONTH: " + d.getCostPerMonth() + "COST PER ANNUM: " + d.getCostPerAnnum());       
+//        }
     }
 
-    private void displayView() {
-//        int varCount = count;
-//        if(count == 0) 
-//        {
-//            varCount = 0;
-//        }
-//        else 
-//        {
-//            varCount = count - 1;
-//        }
-           tableModel.setRowCount(0);
-        for (Applicant o: this.business.getApplicantDirectory().getApplicantList()){
-            //Applicant pet = o;
-            
-            //PetDetails petS =  o.getPet();
-            Object[] row = new Object[6];
-            row[0] = o.getApplicationID();
-            System.out.println("Inside view method " + o.getApplicationID());
-            row[1] = o.getOwnerFirstName();
-            row[2] = o.getOwnerLastName();
-            row[3] = String.valueOf(o.getApplicationDate());
-            row[4] = o.getPet().getPetName();
-            row[5] = o.getPet().getGender();
-            
+  
+
+    private void displayAllValues() {
+        int applicantId = (int) comboApplicantId.getSelectedItem();
+        for(Applicant appl: this.business.getApplicantDirectory().getApplicantList() )
+        if(Integer.valueOf(applicantId) == appl.getApplicationID())
+        {
+           txtFirstName1.setText(appl.getOwnerFirstName());
+           txtLastName1.setText(appl.getOwnerLastName());
+           txtPetName1.setText(appl.getPet().getPetName());
+           txtPetAge1.setText(String.valueOf(appl.getPet().getPetAge()));
+           txtPetType1.setText(appl.getPet().getPetType());
+           txtBreed1.setText(appl.getPet().getBreed());
+           comboPetGender1.setSelectedItem(appl.getPet().getGender());
+           //comboInsurancePlan1.setSelectedItem(appl.getPet().getInsuranceDetails());
+           for(PlanDetail d : this.business.getInsurancePlans().getInsurancePlanList()) {
+            comboInsurancePlan1.addItem("PLAN ID: " + d.getPlanId() + "PLAN NAME: " + d.getPlanName() + "COST PER MONTH: " + d.getCostPerMonth() + "COST PER ANNUM: " + d.getCostPerAnnum());          
+           }
+           comboInsurancePlan1.setSelectedItem(appl.getPet().getInsuranceDetails());
+           tableModelUpdate.setRowCount(0);
+            for (VaccineDetails Vaccine: this.business.getVaccineDirectory().getVaccineList()){
+
+            if(appl.getPet().getPetId().equals(Vaccine.getPetId()))
+            {  
+            Object[] row = new Object[2];
+            row[0] = Vaccine.getVaccineName();
+            row[1] = String.valueOf(Vaccine.getCourseCompleted());
+            tableModelUpdate.addRow(row);
+            }
+        } 
            
-            //System.out.println("" + o.getPet());
-            
-            
-            
-            //System.out.println("Inside pet view method " + o.getPet());
-//            row[5] = o.getPet().getPetAge();
-//            row[6] = o.getPet().getGender();
-//            row[7] = o.getPet().getBreed();
-//            row[8] = o.getPet().getInsuranceDetails();
-          
-            //row[5] = o.getPet().getPetType();
-            tableModel.addRow(row);
-        } //To change body of generated methods, choose Tools | Templates.
-        
+           
+        }
+}
     
-    }
 }

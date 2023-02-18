@@ -31,7 +31,7 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
         initComponents();
        
     }
-     public ViewApplicantJPanel(Business business, Applicant applicant) {
+     public ViewApplicantJPanel(Business business) {
          this.setVisible(true);
          initComponents();
          this.business = business;
@@ -102,7 +102,7 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -120,15 +120,19 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
           //InsurancePlans planList = this.business.getInsurancePlans();
         if(selectedRow >= 0 ){
             System.out.println("Inside vaccine btn");
-            this.applicant = (Applicant) viewApplicant.getValueAt(selectedRow,0 );
+            //Object dataVa =   viewApplicant.getValueAt(selectedRow,0 );
+            viewApplicant.getValueAt(selectedRow, WIDTH).toString();
+          System.out.println("Get Value At  "+ viewApplicant.getValueAt(selectedRow, 0).toString());
+            String petId = "petId" + viewApplicant.getValueAt(selectedRow, 0).toString();
             tableModelVaccine.setRowCount(0);
         for (VaccineDetails Vaccine: this.business.getVaccineDirectory().getVaccineList()){
             System.out.println("Inside vaccine");
-            if(this.applicant.getPet().getPetId() == Vaccine.getPetId())
+            System.out.println("Value of petId " + Vaccine.getPetId());
+            if(petId.equals(Vaccine.getPetId()))
             {  
             Object[] row = new Object[2];
             row[0] = Vaccine.getVaccineName();
-            row[1] = Boolean.valueOf(Vaccine.getCourseCompleted());
+            row[1] = String.valueOf(Vaccine.getCourseCompleted());
             tableModelVaccine.addRow(row);
             }
         } 

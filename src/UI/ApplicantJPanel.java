@@ -82,7 +82,6 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtVaccineName = new javax.swing.JTextField();
-        txtCourseCompleted = new javax.swing.JTextField();
         addVaccineBtn = new javax.swing.JButton();
         addApplicantBtn = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
@@ -97,6 +96,7 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         viewTableAppl = new javax.swing.JTable();
         viewApplBtn = new javax.swing.JButton();
+        comboCourse = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(0, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -156,13 +156,6 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         jLabel13.setText("VACCINE NAME");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 90, 20));
         add(txtVaccineName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 120, 30));
-
-        txtCourseCompleted.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCourseCompletedActionPerformed(evt);
-            }
-        });
-        add(txtCourseCompleted, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 120, 30));
 
         addVaccineBtn.setText("ADD VACCINE DETAILS");
         addVaccineBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -236,20 +229,19 @@ public class ApplicantJPanel extends javax.swing.JPanel {
             }
         });
         add(viewApplBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 750, 130, -1));
+
+        comboCourse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
+        add(comboCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 419, 120, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLastNameActionPerformed
 
-    private void txtCourseCompletedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCourseCompletedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCourseCompletedActionPerformed
-
     private void addVaccineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVaccineBtnActionPerformed
         // TODO add your handling code here:
         String vaccineName = txtVaccineName.getText();
-        String courseCompleted = txtCourseCompleted.getText();
+        String courseCompleted = (String) comboCourse.getSelectedItem();
         boolean courseCompletedValue = true;
         if(courseCompleted == "Yes") {
             courseCompletedValue = true;
@@ -311,6 +303,7 @@ public class ApplicantJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addApplicantBtn;
     private javax.swing.JButton addVaccineBtn;
+    private javax.swing.JComboBox<String> comboCourse;
     private javax.swing.JComboBox<String> comboInsurancePlan;
     private javax.swing.JComboBox<String> comboPetGender;
     private com.toedter.calendar.JDateChooser jDateChooser1;
@@ -334,7 +327,6 @@ public class ApplicantJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtApplicantId;
     private javax.swing.JTextField txtBreed;
-    private javax.swing.JTextField txtCourseCompleted;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtPetAge;
