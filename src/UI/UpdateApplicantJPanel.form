@@ -97,7 +97,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="50" y="480" width="550" height="20"/>
+          <AbsoluteConstraints x="40" y="430" width="550" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -207,7 +207,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="260" y="430" width="140" height="30"/>
+          <AbsoluteConstraints x="270" y="740" width="140" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -282,7 +282,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="420" y="700" width="130" height="-1"/>
+          <AbsoluteConstraints x="410" y="660" width="130" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -310,7 +310,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="360" y="510" width="240" height="170"/>
+          <AbsoluteConstraints x="350" y="470" width="240" height="170"/>
         </Constraint>
       </Constraints>
 
@@ -345,14 +345,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtVaccineName">
+    <Component class="javax.swing.JTextField" name="txtVaccineName1">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="170" y="560" width="120" height="30"/>
+          <AbsoluteConstraints x="160" y="520" width="120" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboCourse">
+    <Component class="javax.swing.JComboBox" name="comboCourse1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
@@ -366,7 +366,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="170" y="600" width="120" height="30"/>
+          <AbsoluteConstraints x="160" y="560" width="120" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -376,7 +376,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="610" width="110" height="20"/>
+          <AbsoluteConstraints x="50" y="570" width="110" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -386,7 +386,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="70" y="570" width="90" height="20"/>
+          <AbsoluteConstraints x="60" y="530" width="90" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -394,9 +394,12 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="UPDATE VACCINATION"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateVaccinationBtnActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="120" y="670" width="-1" height="30"/>
+          <AbsoluteConstraints x="110" y="630" width="-1" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
