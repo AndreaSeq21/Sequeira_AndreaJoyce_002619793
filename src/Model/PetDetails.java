@@ -10,6 +10,7 @@ package Model;
  * @author Andrea Joyce Sequeira
  */
 public class PetDetails {
+    String petId;
     String petName;
     int petAge;
     String gender;
@@ -18,6 +19,15 @@ public class PetDetails {
     VaccineDetails vaccine;
     String insuranceDetails;
 
+    public String getPetId() {
+        return petId;
+    }
+
+    public void setPetId(String petId) {
+        this.petId = petId;
+    }
+
+    
     public String getInsuranceDetails() {
         return insuranceDetails;
     }
@@ -39,7 +49,7 @@ public class PetDetails {
     }
     
 
-    public PetDetails(String petName, int petAge, String gender, String petType, String breed, VaccineDetails vaccine, String insuranceDetails) {
+    public PetDetails(String petName, int petAge, String gender, String petType, String breed, VaccineDetails vaccine, String insuranceDetails,String petId) {
         this.petName = petName;
         this.petAge = petAge;
         this.gender = gender;
@@ -47,6 +57,7 @@ public class PetDetails {
         this.breed = breed;
         this.vaccine = vaccine;
         this.insuranceDetails = insuranceDetails;
+        this.petId = petId;
     }
     
     
@@ -90,7 +101,5 @@ public class PetDetails {
         this.breed = breed;
     }
     
-    
-    
-    
+
 }

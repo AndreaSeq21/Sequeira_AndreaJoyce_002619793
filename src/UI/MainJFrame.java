@@ -22,7 +22,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private Business business;
    private ApplicantDirectory applicant;
     private Applicant applicantAccount;
-   
+   private int count;
     public MainJFrame() {
         initComponents();
         this.business = Business.getBusinessInstance();
@@ -53,6 +53,7 @@ public class MainJFrame extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         createInsuranceBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
+        updateApplicantBtn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -81,7 +82,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        createInsuranceBtn.setText("CREATE INSURANCE PLAN");
+        createInsuranceBtn.setText("CREATE & UPDATE INSURANCE PLAN");
         createInsuranceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createInsuranceBtnActionPerformed(evt);
@@ -92,6 +93,13 @@ public class MainJFrame extends javax.swing.JFrame {
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewBtnActionPerformed(evt);
+            }
+        });
+
+        updateApplicantBtn.setText("UPDATE APPLICANT & PET");
+        updateApplicantBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateApplicantBtnActionPerformed(evt);
             }
         });
 
@@ -106,9 +114,10 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(createInsuranceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(createInsuranceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateApplicantBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -122,7 +131,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(createInsuranceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(updateApplicantBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel3);
@@ -133,11 +144,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
+            .addGap(0, 176, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 298, Short.MAX_VALUE)
+            .addGap(0, 373, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(jPanel4);
@@ -163,6 +174,11 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
          jSplitPane1.setRightComponent(new CreateInsuranceJPanel(this.business));
     }//GEN-LAST:event_createInsuranceBtnActionPerformed
+
+    private void updateApplicantBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateApplicantBtnActionPerformed
+        // TODO add your handling code here:
+        jSplitPane1.setRightComponent(new UpdateApplicantJPanel(this.business,this.applicantAccount));
+    }//GEN-LAST:event_updateApplicantBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,6 +223,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton updateApplicantBtn;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

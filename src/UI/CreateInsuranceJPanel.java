@@ -52,10 +52,18 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         insuranceTable = new javax.swing.JTable();
         viewInsuranceDetails = new javax.swing.JButton();
-        addInsuranceBtn = new javax.swing.JButton();
+        updateInsuranceBtn = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         txtCostPerMonth = new javax.swing.JTextField();
         txtPlanName = new javax.swing.JTextField();
+        txtCostPerMonth1 = new javax.swing.JTextField();
+        txtPlanName1 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        addInsuranceBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        txtPlanId1 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,7 +89,7 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -98,7 +106,28 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
                 viewInsuranceDetailsActionPerformed(evt);
             }
         });
-        add(viewInsuranceDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 140, 30));
+        add(viewInsuranceDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, 140, 30));
+
+        updateInsuranceBtn.setText("UPDATE INSURANCE PLAN");
+        updateInsuranceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateInsuranceBtnActionPerformed(evt);
+            }
+        });
+        add(updateInsuranceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, 40));
+
+        jLabel15.setText("PLAN ID");
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 90, 20));
+        add(txtCostPerMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 120, 30));
+        add(txtPlanName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 120, 30));
+        add(txtCostPerMonth1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 120, 30));
+        add(txtPlanName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 120, 30));
+
+        jLabel16.setText("PLAN NAME");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 90, 20));
+
+        jLabel7.setText("COST PER MONTH");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 90, 20));
 
         addInsuranceBtn.setText("CREATE INSURANCE PLAN");
         addInsuranceBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -106,13 +135,59 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
                 addInsuranceBtnActionPerformed(evt);
             }
         });
-        add(addInsuranceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, 40));
+        add(addInsuranceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 170, 40));
 
-        jLabel15.setText("PLAN ID");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 90, 20));
-        add(txtCostPerMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 120, 30));
-        add(txtPlanName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 120, 30));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 10)); // NOI18N
+        jLabel1.setText("UPDATE INSURANCE");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 190, 20));
+
+        jLabel17.setText("PLAN ID");
+        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 90, 20));
+
+        txtPlanId1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtPlanId1.setEnabled(false);
+        add(txtPlanId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 120, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void updateInsuranceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateInsuranceBtnActionPerformed
+        // TODO add your handling code here:
+        
+        if( txtPlanId1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Make to selection for update");
+        }
+        else{
+            PlanDetail pd = this.business.getInsurancePlans().findbyId(Integer.valueOf(txtPlanId1.getText()));
+            pd.setPlanName(txtPlanName1.getText());
+            pd.setCostPerMonth(Double.valueOf(txtCostPerMonth1.getText())); 
+           
+            this.plan.setPlanName(txtPlanName1.getText());
+            this.plan.setCostPerMonth(Double.valueOf(txtCostPerMonth1.getText()));
+             double costPerAnnum = Double.valueOf(txtCostPerMonth1.getText()) * 12;
+            this.plan.setCostPerAnnum(costPerAnnum);
+            
+        }
+        JOptionPane.showMessageDialog(null, "Updated Insurance Plan Id" +txtPlanId1.getText() );
+       displayObservation();
+    }//GEN-LAST:event_updateInsuranceBtnActionPerformed
+
+    private void viewInsuranceDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInsuranceDetailsActionPerformed
+        // TODO add your handling code here:
+        
+         int selectedRow = insuranceTable.getSelectedRow();
+          //InsurancePlans planList = this.business.getInsurancePlans();
+        if(selectedRow >= 0 ){
+            this.plan = (PlanDetail) insuranceTable.getValueAt(selectedRow,0 );
+            //fill all the text fields
+            txtPlanId1.setText(String.valueOf(this.plan.getPlanId()));
+            txtPlanName1.setText(String.valueOf(this.plan.getPlanName()));
+            txtCostPerMonth1.setText(String.valueOf(this.plan.getCostPerMonth()));
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Please select a row!");
+        }
+        displayObservation();
+    }//GEN-LAST:event_viewInsuranceDetailsActionPerformed
 
     private void addInsuranceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addInsuranceBtnActionPerformed
         // TODO add your handling code here:
@@ -122,25 +197,29 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
         String costPerAnnum = String.valueOf(Double.valueOf(costPerMonth) * 12);
         PlanDetail insurance = this.business.getInsurancePlans().createPlans(Integer.valueOf(planId), planName, Double.valueOf(costPerMonth),Double.valueOf(costPerAnnum) );
         JOptionPane.showMessageDialog(null, "Added Insurance");
-    }//GEN-LAST:event_addInsuranceBtnActionPerformed
-
-    private void viewInsuranceDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInsuranceDetailsActionPerformed
-        // TODO add your handling code here:
         displayObservation();
-    }//GEN-LAST:event_viewInsuranceDetailsActionPerformed
+    }//GEN-LAST:event_addInsuranceBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addInsuranceBtn;
     private javax.swing.JTable insuranceTable;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCostPerMonth;
+    private javax.swing.JTextField txtCostPerMonth1;
     private javax.swing.JTextField txtPlanId;
+    private javax.swing.JTextField txtPlanId1;
     private javax.swing.JTextField txtPlanName;
+    private javax.swing.JTextField txtPlanName1;
+    private javax.swing.JButton updateInsuranceBtn;
     private javax.swing.JButton viewInsuranceDetails;
     // End of variables declaration//GEN-END:variables
 
@@ -152,11 +231,11 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
             {
 //                System.out.println(o.getObservationId());
                 Object row[]= new Object[4];
-                row[0] = o.getPlanId();
+                row[0] = o;
                 row[1] = o.getPlanName();
                 row[2] = o.getCostPerMonth();
                 row[3] = o.getCostPerAnnum();
-                //this.viewTableModel.
+                
                 viewTableModel.addRow(row);
             }
         }

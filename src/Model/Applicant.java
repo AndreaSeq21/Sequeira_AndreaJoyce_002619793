@@ -19,8 +19,8 @@ public class Applicant {
     PetDetails pet;
     
     public Applicant() {
-       
-        this.pet = new PetDetails();
+       this.pet = new PetDetails();
+        
     }
 
     public Applicant(int applicationID, String ownerFirstName, String ownerLastName, Date applicationDate ) {
@@ -70,7 +70,13 @@ public class Applicant {
     public void setApplicationDate(Date applicationDate) {
         this.applicationDate = applicationDate;
     }
-    
-    
+
+    public void addPet(PetDetails pet) {
+        this.pet = pet;
+    }
+      @Override
+    public String toString(){
+        return String.valueOf(this.applicationID);
+    }
     
 }

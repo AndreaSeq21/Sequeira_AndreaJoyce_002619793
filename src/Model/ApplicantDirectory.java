@@ -30,10 +30,21 @@ public class ApplicantDirectory {
     }
     
     //Add applicant 
-    public Applicant createApplicant(int applicationID, String ownerFirstName, String ownerLastName, Date applicationDate){
+    public Applicant createApplicant(int applicationID, String ownerFirstName, String ownerLastName, Date applicationDate,String petName, int petAge, String gender, String petType, String breed, String insuranceDetails,String petId){
         System.out.println("Account created");
-        Applicant user = new Applicant(applicationID,ownerFirstName,ownerLastName,applicationDate);
-        applicantList.add(user);
+        Applicant user = new Applicant();
+        user.setApplicationID(applicationID);
+        user.setOwnerFirstName(ownerFirstName);
+        user.setOwnerLastName(ownerLastName);
+        user.setApplicationDate(applicationDate);
+        user.getPet().setBreed(breed);
+        user.getPet().setGender(gender);
+        user.getPet().setPetName(petName);
+        user.getPet().setPetType(petType);
+        user.getPet().setPetAge(Integer.valueOf(petAge));
+        user.getPet().setInsuranceDetails(insuranceDetails);
+        user.getPet().setPetId(petId);
+        this.applicantList.add(user);
         return user;
         
     }
@@ -69,9 +80,7 @@ public class ApplicantDirectory {
         return false;
     }
 
-    public Applicant createApplicant(Integer valueOf, String firstName, String lastName, Date dateValue, PetDetails pet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
     
 
     }

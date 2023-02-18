@@ -29,9 +29,9 @@ public class VaccineDirectory {
         this.vaccineList = vaccineList;
     }
     
-   public VaccineDetails addVaccine (String vaccineName, boolean courseCompleted){
+   public VaccineDetails addVaccine (String petId,String vaccineName, boolean courseCompleted){
         System.out.println("Account created");
-        VaccineDetails vacc = new VaccineDetails(vaccineName, courseCompleted);
+        VaccineDetails vacc = new VaccineDetails(petId,vaccineName, courseCompleted);
         vaccineList.add(vacc);
         return vacc;
         

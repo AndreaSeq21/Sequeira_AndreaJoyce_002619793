@@ -58,5 +58,8 @@ public class PlanDetail {
     public void setCostPerAnnum(double costPerAnnum) {
         this.costPerAnnum = costPerAnnum;
     }
-    
+     @Override
+    public String toString(){
+        return String.valueOf(this.planId);
+    }
 }

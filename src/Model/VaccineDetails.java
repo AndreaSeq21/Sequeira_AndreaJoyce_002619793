@@ -10,15 +10,25 @@ package Model;
  * @author Andrea Joyce Sequeira
  */
 public class VaccineDetails {
+    String petId;
     String vaccineName;
     boolean courseCompleted;
 
     public VaccineDetails() {
     }
     
-    public VaccineDetails(String vaccineName, boolean courseCompleted) {
+    public VaccineDetails(String petId,String vaccineName, boolean courseCompleted) {
         this.vaccineName = vaccineName;
         this.courseCompleted = courseCompleted;
+        this.petId = petId;
+    }
+
+    public String getPetId() {
+        return petId;
+    }
+
+    public void setPetId(String petId) {
+        this.petId = petId;
     }
     
     public String getVaccineName() {
