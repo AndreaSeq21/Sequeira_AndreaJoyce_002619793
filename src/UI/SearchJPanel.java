@@ -5,6 +5,11 @@
  */
 package UI;
 
+import Model.Applicant;
+import Model.Business;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author asequ
@@ -14,8 +19,21 @@ public class SearchJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AssignJPanel
      */
+        private Business business;
+    private Applicant applicant;
+    DefaultTableModel tableModel;
+  
     public SearchJPanel() {
         initComponents();
+    }
+
+    SearchJPanel(Business business, Applicant applicantAccount) {
+        this.setVisible(true);
+         initComponents();
+         this.business = business;
+         this.applicant = applicant;
+         this.tableModel = (DefaultTableModel)searchTable.getModel();
+ 
     }
 
     /**
@@ -28,13 +46,16 @@ public class SearchJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtApplicationId2 = new javax.swing.JTextField();
+        txtApplicantName2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        searchBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtPetName2 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        searchTable = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -43,14 +64,14 @@ public class SearchJPanel extends javax.swing.JPanel {
         jLabel5.setText("SEARCH AN APPLICANT");
         jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 550, 20));
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 170, 30));
+        add(txtApplicationId2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 170, 30));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtApplicantName2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtApplicantName2ActionPerformed(evt);
             }
         });
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 170, 30));
+        add(txtApplicantName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 170, 30));
 
         jLabel1.setText("ENTER APPLICANT NAME:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
@@ -58,46 +79,113 @@ public class SearchJPanel extends javax.swing.JPanel {
         jLabel2.setText("ENTER APPLICANT ID:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 10));
 
-        jButton1.setText("SEARCH APPLICANT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchBtn.setText("SEARCH APPLICANT");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                searchBtnActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, -1, 40));
+        add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, 40));
 
         jLabel3.setText("ENTER PET NAME:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtPetName2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtPetName2ActionPerformed(evt);
             }
         });
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 170, 30));
+        add(txtPetName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 170, 30));
+
+        searchTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ApplicantId", "First Name", "Last Name", "Date", "Pet Name", "Pet Gender", "Pet Breed", "Pet Type", "Pet Age", "Insurance Plan Opted"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(searchTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 610, 140));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel4.setText("ENTER ANY ONE VALUE");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 320, 20));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtApplicantName2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApplicantName2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtApplicantName2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+            String applicationId = txtApplicationId2.getText();
+            int applId;
+        if(txtApplicationId2.getText().isEmpty()){
+             applId =0;
+             
+        }
+        else {
+           applId = Integer.valueOf(applicationId); 
+        }
+        String firstName = txtApplicantName2.getText();
+        String petName = txtPetName2.getText();
+          tableModel.setRowCount(0);
+          int count = 0;
+        for (Applicant o: this.business.getApplicantDirectory().getApplicantList()){
+            if(applId == o.getApplicationID() || firstName.equals(o.getOwnerFirstName()) || petName.equals(o.getPet().getPetName()) ){   
+           Object[] row = new Object[10];
+            row[0] = o.getApplicationID();
+           // System.out.println("Inside search method " + o.getApplicationID());
+            row[1] = o.getOwnerFirstName();
+            row[2] = o.getOwnerLastName();
+            row[3] = String.valueOf(o.getOwnerFirstName());
+            row[4] = o.getPet().getPetName();
+            row[5] = o.getPet().getGender();
+            row[6] = o.getPet().getBreed();
+            row[7] = o.getPet().getPetType();
+            row[8] = o.getPet().getPetAge();
+            row[9] = o.getPet().getInsuranceDetails();
+            tableModel.addRow(row);
+            count = 1;
+            }
+          
+        }
+        if(count == 0){
+            JOptionPane.showMessageDialog(null, "No result");
+        }
+        else {
+            System.out.println("displayed result");
+        }
+       
+        
+    }//GEN-LAST:event_searchBtnActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtPetName2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPetName2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtPetName2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTable searchTable;
+    private javax.swing.JTextField txtApplicantName2;
+    private javax.swing.JTextField txtApplicationId2;
+    private javax.swing.JTextField txtPetName2;
     // End of variables declaration//GEN-END:variables
 }

@@ -64,7 +64,9 @@ public class ApplicantDirectory {
     public void removeApplicant (int id){
           for(Applicant m: this.applicantList){
               if(m.getApplicationID() == id )
+                  
                   this.applicantList.remove(m);
+              System.out.println("Removed value of " +id);
                   break;
               }
           }

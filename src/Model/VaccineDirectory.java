@@ -36,5 +36,13 @@ public class VaccineDirectory {
         return vacc;
         
     }
+      public void removeVaccine (String id){
+          for(VaccineDetails m: this.vaccineList){
+              if(m.getPetId() == id )
+                  this.vaccineList.remove(m);
+              System.out.println("Removed value vaccine of " +id);
+                  break;
+              }
+          }
     
 }
