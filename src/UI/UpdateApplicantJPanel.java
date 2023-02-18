@@ -166,7 +166,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
                 comboInsurancePlan1ActionPerformed(evt);
             }
         });
-        add(comboInsurancePlan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 440, 40));
+        add(comboInsurancePlan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 570, 40));
         add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 180, 30));
 
         jLabel15.setText("APPLICANT ID");

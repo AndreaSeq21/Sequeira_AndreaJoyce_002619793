@@ -9,6 +9,7 @@ import Model.ApplicantDirectory;
 import Model.Business;
 import Model.InsurancePlans;
 import Model.PlanDetail;
+import Validation.ValidationClass;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,7 +22,7 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
     private Business business;
     DefaultTableModel viewTableModel;
     private PlanDetail plan;
-
+     private ValidationClass val;
     /**
      * Creates new form InsuranceJPanel
      */
@@ -34,6 +35,7 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
         initComponents();
         this.business = business;
         this.viewTableModel = (DefaultTableModel) insuranceTable.getModel();  
+        val = new ValidationClass();
     }
 
     /**
@@ -156,6 +158,18 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Make to selection for update");
         }
         else{
+            boolean flag = false;
+             
+          if (val.nullCheck(txtPlanName1.getText()) || val.nullCheck(txtCostPerMonth1.getText())  ) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Null values not allowed!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Null check passed");
+             
+        }
+          
+          
+            if (flag == false) {
             PlanDetail pd = this.business.getInsurancePlans().findbyId(Integer.valueOf(txtPlanId1.getText()));
             pd.setPlanName(txtPlanName1.getText());
             pd.setCostPerMonth(Double.valueOf(txtCostPerMonth1.getText())); 
@@ -164,10 +178,15 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
             this.plan.setCostPerMonth(Double.valueOf(txtCostPerMonth1.getText()));
              double costPerAnnum = Double.valueOf(txtCostPerMonth1.getText()) * 12;
             this.plan.setCostPerAnnum(costPerAnnum);
+            JOptionPane.showMessageDialog(null, "Updated Insurance Plan Id" +txtPlanId1.getText() );
+       displayObservation();
+            }
+            else {
+                System.out.println("Validation failed");
+            }
             
         }
-        JOptionPane.showMessageDialog(null, "Updated Insurance Plan Id" +txtPlanId1.getText() );
-       displayObservation();
+        
     }//GEN-LAST:event_updateInsuranceBtnActionPerformed
 
     private void viewInsuranceDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInsuranceDetailsActionPerformed
@@ -194,12 +213,52 @@ public class CreateInsuranceJPanel extends javax.swing.JPanel {
         String planId = txtPlanId.getText();
         String planName = txtPlanName.getText();
         String costPerMonth = txtCostPerMonth.getText();
-        String costPerAnnum = String.valueOf(Double.valueOf(costPerMonth) * 12);
-        PlanDetail insurance = this.business.getInsurancePlans().createPlans(Integer.valueOf(planId), planName, Double.valueOf(costPerMonth),Double.valueOf(costPerAnnum) );
-        JOptionPane.showMessageDialog(null, "Added Insurance");
-        displayObservation();
-    }//GEN-LAST:event_addInsuranceBtnActionPerformed
+        String costPerAnnum = "0";
+        
+        boolean flag = false;
+          if (val.nullCheck(planId) || val.nullCheck(planName) || val.nullCheck(costPerMonth) ) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Null values not allowed!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Null check passed");
+             costPerAnnum = String.valueOf(Double.valueOf(costPerMonth) * 12);
+        }
+          
+           if (val.validateNumber(planId) || val.validateNumber(costPerMonth)  ) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "This should be a number!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Null check passed");
+            
+        }
+           
+          if (flag == false) {
+        int count =0;
+             for(PlanDetail ap: this.business.getInsurancePlans().getInsurancePlanList()){
+            if(Integer.valueOf(planId) == ap.getPlanId()){
+                count = 1;
+                
+            }
+            else {
+               count = 0;
+            }
+             }
+            
+            if(count == 0){
+                 PlanDetail insurance = this.business.getInsurancePlans().createPlans(Integer.valueOf(planId), planName, Double.valueOf(costPerMonth),Double.valueOf(costPerAnnum) );
+                JOptionPane.showMessageDialog(null, "Added Insurance");
+                displayObservation();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Insurance Plan already exists!");
+            }
+          }
+          else {
+              System.out.println("Validation check failed");
+          }
 
+    }//GEN-LAST:event_addInsuranceBtnActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addInsuranceBtn;

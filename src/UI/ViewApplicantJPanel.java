@@ -79,12 +79,12 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(viewApplicant);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 710, 120));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 950, 120));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         jLabel5.setText("VIEW APPLICANT DETAILS");
         jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 590, 20));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 700, 20));
 
         viewVaccineBtn.setText("VIEW VACCINATION DETAILS");
         viewVaccineBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +112,7 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(vaccinationTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 690, 90));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 940, 90));
 
         deleteButton.setText("DELETE APPLICANT");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +131,7 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
             System.out.println("Inside vaccine btn");
             //Object dataVa =   viewApplicant.getValueAt(selectedRow,0 );
             viewApplicant.getValueAt(selectedRow, WIDTH).toString();
-          System.out.println("Get Value At  "+ viewApplicant.getValueAt(selectedRow, 0).toString());
+            System.out.println("Get Value At  "+ viewApplicant.getValueAt(selectedRow, 0).toString());
             String petId = "petId" + viewApplicant.getValueAt(selectedRow, 0).toString();
             tableModelVaccine.setRowCount(0);
         for (VaccineDetails Vaccine: this.business.getVaccineDirectory().getVaccineList()){
@@ -141,7 +141,14 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
             {  
             Object[] row = new Object[2];
             row[0] = Vaccine.getVaccineName();
-            row[1] = String.valueOf(Vaccine.getCourseCompleted());
+            if(Vaccine.getVaccineName() == "N/A"){
+                row[1] = "N/A";
+            }
+            else {
+                row[1] = String.valueOf(Vaccine.getCourseCompleted());
+            }
+            
+            
             tableModelVaccine.addRow(row);
             }
         } 
@@ -159,22 +166,20 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
             int selectedRow = viewApplicant.getSelectedRow();
           
         if(selectedRow >= 0 ){
-            //this.applicant = (Applicant) viewApplicant.getValueAt(selectedRow, 0);
+         //this.applicant = (Applicant) viewApplicant.getValueAt(selectedRow, 0);
           System.out.println("Get Value Delete Record At  "+ viewApplicant.getValueAt(selectedRow, 0).toString());
           int applicantId = Integer.valueOf(viewApplicant.getValueAt(selectedRow, 0).toString());
           String petId = "petId" + applicantId;
           this.business.getApplicantDirectory().removeApplicant(applicantId);
-          populate();   
+          populate();
         for (VaccineDetails Vaccine: this.business.getVaccineDirectory().getVaccineList()){
 
             if(petId.equals(Vaccine.getPetId()))
-            {  
-                
+            {   
               this.business.getVaccineDirectory().removeVaccine(petId);
             }
         } 
         JOptionPane.showMessageDialog(null,"Applicant deleted");
-        
         }
         else
         {

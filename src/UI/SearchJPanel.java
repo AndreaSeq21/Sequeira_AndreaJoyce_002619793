@@ -63,7 +63,7 @@ public class SearchJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         jLabel5.setText("SEARCH AN APPLICANT");
         jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 550, 20));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 800, 20));
         add(txtApplicationId2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 170, 30));
 
         txtApplicantName2.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +115,7 @@ public class SearchJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(searchTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 610, 140));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 870, 140));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel4.setText("ENTER ANY ONE VALUE");

@@ -12,6 +12,7 @@ import Model.InsurancePlans;
 import Model.PetDetails;
 import Model.PlanDetail;
 import Model.VaccineDetails;
+import Validation.ValidationClass;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class ApplicantJPanel extends javax.swing.JPanel {
     private Applicant applicantAccount;
     private PetDetails pet;
     DefaultTableModel tableModel;
+    private ValidationClass val;
      private int count=0;
     
     public ApplicantJPanel() {
@@ -47,6 +49,7 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         this.applicantAccount = applicantAccount;
         //pet = this.applicantAccount.getPet();
         this.tableModel = (DefaultTableModel)viewTableAppl.getModel();
+        val = new ValidationClass();
         displayInsuranceDp();
     }
 
@@ -186,7 +189,7 @@ public class ApplicantJPanel extends javax.swing.JPanel {
                 comboInsurancePlanActionPerformed(evt);
             }
         });
-        add(comboInsurancePlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 440, 40));
+        add(comboInsurancePlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 560, 40));
         add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 180, 30));
 
         jLabel15.setText("APPLICANT ID");
@@ -243,26 +246,34 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         String vaccineName = txtVaccineName.getText();
         String courseCompleted = (String) comboCourse.getSelectedItem();
         boolean courseCompletedValue = true;
+        
+        if (val.nullCheck(vaccineName)) {
+            vaccineName = "N/A";
+            //courseCompleted = "No";
+        } 
         if(courseCompleted == "Yes") {
             courseCompletedValue = true;
         }
         else 
         {
             courseCompletedValue= false;
-        }
-        
-                    
+        }             
        String applicantId = txtApplicantId.getText();
-       String petId = "petId" + applicantId;
+       if(applicantId == null || applicantId.isEmpty()){
+           JOptionPane.showMessageDialog(null, "Applicant Id cannot be null for vaccine details", "Warning", JOptionPane.WARNING_MESSAGE);
+       }
+       else {
+        String petId = "petId" + applicantId;
         System.out.println("Vaccination details added");
         VaccineDetails vaccine = this.business.getVaccineDirectory().addVaccine(petId,vaccineName, courseCompletedValue);
-
-        
         JOptionPane.showMessageDialog(null, "Vaccine Added");
+       }
+   
     }//GEN-LAST:event_addVaccineBtnActionPerformed
 
     private void addApplicantBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addApplicantBtnActionPerformed
         // TODO add your handling code here:
+        
         String applicantId = txtApplicantId.getText();
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
@@ -273,20 +284,51 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         String gender = (String) comboPetGender.getSelectedItem();
         String breed = txtBreed.getText();
         String insurancePlan = (String)comboInsurancePlan.getSelectedItem();
-       // System.out.println("Added date details " +dateValue);
-        //PetDetails pet = this.applicantAccount.getPet();
-      
-        //pet.setApplicantId(Integer.valueOf(applicantId));
-        //applicantAccount.setPet(pet);
-        
-        
+
+       
+         boolean flag = false;
+          if (val.nullCheck(applicantId) || val.nullCheck(firstName) || val.nullCheck(lastName) || val.nullCheck(String.valueOf(dateValue)) || val.nullCheck(petName) || val.nullCheck(petAge) || val.nullCheck(petType) || val.nullCheck(gender) || val.nullCheck(breed) || val.nullCheck(insurancePlan)) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Null values not allowed!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Null check passed");
+        }
+          
+          if (val.nullDateCheck((dateValue))) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Date value is null!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Null check passed");
+        }
+          
+        if (flag == false) {
+            int countFlag = 0;
         String petId = "petId" + applicantId;
-        this.applicantAccount = this.business.getApplicantDirectory().createApplicant(Integer.valueOf(applicantId), firstName, lastName, dateValue, petName,  Integer.valueOf(petAge),  gender,  petType,  breed,insurancePlan,petId);
-       //System.out.println("pet Name  " + pet.getPetName());
-        //this.applicantAccount.addPet(pet);
-        JOptionPane.showMessageDialog(null, "Added Applicant");
-            
-         
+        for(Applicant ap: this.business.getApplicantDirectory().getApplicantList()){
+            if(Integer.valueOf(applicantId) == ap.getApplicationID()){
+                countFlag = 1;
+            }
+            else {
+                countFlag = 0;
+            }
+        }
+        
+        if(countFlag == 0){
+            this.applicantAccount = this.business.getApplicantDirectory().createApplicant(Integer.valueOf(applicantId), firstName, lastName, dateValue, petName,  Integer.valueOf(petAge),  gender,  petType,  breed,insurancePlan,petId);
+                JOptionPane.showMessageDialog(null, "Added Applicant");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Applicant already exists!");
+        }
+        } else {
+            System.out.println("Validation check failed");
+        }
+          
+          
+        
+        
+    
+   
     }//GEN-LAST:event_addApplicantBtnActionPerformed
 
     private void comboInsurancePlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboInsurancePlanActionPerformed
@@ -296,7 +338,7 @@ public class ApplicantJPanel extends javax.swing.JPanel {
     private void viewApplBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewApplBtnActionPerformed
         // TODO add your handling code here:
         displayView();
-        //count++;
+      
     }//GEN-LAST:event_viewApplBtnActionPerformed
 
 
@@ -341,7 +383,7 @@ public class ApplicantJPanel extends javax.swing.JPanel {
          comboInsurancePlan.removeAllItems();
         
         for(PlanDetail d : this.business.getInsurancePlans().getInsurancePlanList()) {
-            comboInsurancePlan.addItem("PLAN ID: " + d.getPlanId() + "PLAN NAME: " + d.getPlanName() + "COST PER MONTH: " + d.getCostPerMonth() + "COST PER ANNUM: " + d.getCostPerAnnum());       
+            comboInsurancePlan.addItem("PLAN ID: " + d.getPlanId() + " PLAN NAME: " + d.getPlanName() + " COST PER MONTH: " + d.getCostPerMonth() + " COST PER ANNUM: " + d.getCostPerAnnum());       
         }
     }
 

@@ -40,7 +40,7 @@ public class VaccineDirectory {
           for(VaccineDetails m: this.vaccineList){
               if(m.getPetId() == id )
                   this.vaccineList.remove(m);
-              System.out.println("Removed value vaccine of " +id);
+                  System.out.println("Removed value vaccine of " +id);
                   break;
               }
           }
