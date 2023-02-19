@@ -12,6 +12,7 @@ import Model.InsurancePlans;
 import Model.PetDetails;
 import Model.PlanDetail;
 import Model.VaccineDetails;
+import Validation.ValidationClass;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -31,6 +32,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
     private PetDetails pet;
     VaccineDetails selectedVaccine;
     DefaultTableModel tableModelUpdate;
+    private ValidationClass val;
      private int count=0;
     
     public UpdateApplicantJPanel() {
@@ -48,7 +50,9 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         this.applicantAccount = applicantAccount;
         //pet = this.applicantAccount.getPet();
         this.tableModelUpdate = (DefaultTableModel)updateVaccinationTable.getModel();
+        val = new ValidationClass();
         displayInsuranceDp();
+        
         //displayAllValues();
     }
 
@@ -189,6 +193,11 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
                 comboApplicantIdItemStateChanged(evt);
             }
         });
+        comboApplicantId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboApplicantIdActionPerformed(evt);
+            }
+        });
         add(comboApplicantId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 59, 120, 30));
 
         updateVaccinationTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -236,13 +245,30 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
 
     private void updateApplicantBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateApplicantBtnActionPerformed
          //String applicantId = txtApplicantId.getText();
-         
-      int applicantId = (int) comboApplicantId.getSelectedItem();
+                  boolean flag = false;
+          if ( val.nullCheck(txtFirstName1.getText()) || val.nullCheck(txtLastName1.getText()) || val.nullCheck(String.valueOf(jDateChooser2.getDate())) || val.nullCheck(txtPetName1.getText()) || val.nullCheck(txtPetAge1.getText()) || val.nullCheck(txtPetType1.getText()) || val.nullCheck(String.valueOf(comboPetGender1.getSelectedItem())) || val.nullCheck(txtBreed1.getText())) {
+            flag = true;
+            JOptionPane.showMessageDialog(null, "Null values not allowed!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            System.out.println("Null check passed");
+        }
+          
+           
+           
+          if(flag == false){
+               int applicantId = (int) comboApplicantId.getSelectedItem();
         for(Applicant appl: this.business.getApplicantDirectory().getApplicantList() )
         if(Integer.valueOf(applicantId) == appl.getApplicationID())
         {
            appl.setOwnerFirstName(txtFirstName1.getText());
            appl.setOwnerLastName(txtLastName1.getText());
+           Date dateValue = jDateChooser2.getDate();
+           if(dateValue == null){
+               
+           }
+           else {
+               appl.setApplicationDate(jDateChooser2.getDate());
+           }
            PetDetails pet = appl.getPet();
            pet.setPetName(txtPetName1.getText());
            pet.setPetAge(Integer.valueOf(txtPetAge1.getText()));
@@ -252,8 +278,14 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
            String insuranceValue = (String)comboInsurancePlan1.getSelectedItem();
            pet.setInsuranceDetails(insuranceValue); 
            appl.setPet(pet);
+           JOptionPane.showMessageDialog(null, "Updated Applicant");
+          }
+        else {
+           System.out.println("Validation failed");
+        }
 
-        JOptionPane.showMessageDialog(null, "Updated Applicant");
+          
+     
        
         }       
          
@@ -270,10 +302,15 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         if(selectedRow >= 0 ){
             //String vaccineDetails =  updateVaccinationTable.getValueAt(selectedRow, 0).toString();
             txtVaccineName1.setText(String.valueOf(updateVaccinationTable.getValueAt(selectedRow, 0).toString()));
-            comboCourse1.setSelectedItem(String.valueOf(updateVaccinationTable.getValueAt(selectedRow, 1).toString()));
+            String selectCourse = updateVaccinationTable.getValueAt(selectedRow, 1).toString();
+            if(selectCourse == "false"){
+               comboCourse1.setSelectedItem("No"); 
+            }
+            else {
+                comboCourse1.setSelectedItem("Yes"); 
+            }
             
-         
-        
+
         }
         else
         {
@@ -312,6 +349,10 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_updateVaccinationBtnActionPerformed
+
+    private void comboApplicantIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboApplicantIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboApplicantIdActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -380,7 +421,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
            txtBreed1.setText(appl.getPet().getBreed());
            comboPetGender1.setSelectedItem(appl.getPet().getGender());
            //comboInsurancePlan1.setSelectedItem(appl.getPet().getInsuranceDetails());
-           
+           jDateChooser2.setDate(appl.getApplicationDate());
            comboInsurancePlan1.setSelectedItem(appl.getPet().getInsuranceDetails());
            tableModelUpdate.setRowCount(0);
             for (VaccineDetails Vaccine: this.business.getVaccineDirectory().getVaccineList()){

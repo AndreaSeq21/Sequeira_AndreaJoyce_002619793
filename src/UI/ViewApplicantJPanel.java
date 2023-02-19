@@ -92,7 +92,7 @@ public class ViewApplicantJPanel extends javax.swing.JPanel {
                 viewVaccineBtnActionPerformed(evt);
             }
         });
-        add(viewVaccineBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 250, 30));
+        add(viewVaccineBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, 250, 30));
 
         vaccinationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

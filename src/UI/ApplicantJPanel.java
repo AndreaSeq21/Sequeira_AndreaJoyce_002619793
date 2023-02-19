@@ -223,7 +223,7 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(viewTableAppl);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, 550, 80));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, 650, 80));
 
         viewApplBtn.setText("VIEW ");
         viewApplBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -246,11 +246,8 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         String vaccineName = txtVaccineName.getText();
         String courseCompleted = (String) comboCourse.getSelectedItem();
         boolean courseCompletedValue = true;
-        
-        if (val.nullCheck(vaccineName)) {
-            vaccineName = "N/A";
-            //courseCompleted = "No";
-        } 
+          
+       
         if(courseCompleted == "Yes") {
             courseCompletedValue = true;
         }
@@ -263,10 +260,18 @@ public class ApplicantJPanel extends javax.swing.JPanel {
            JOptionPane.showMessageDialog(null, "Applicant Id cannot be null for vaccine details", "Warning", JOptionPane.WARNING_MESSAGE);
        }
        else {
+        
+           if (val.nullCheck(vaccineName)) {
+            JOptionPane.showMessageDialog(null, "Please add Vaccine Name", "Warning", JOptionPane.WARNING_MESSAGE);
+        } 
+           else {
         String petId = "petId" + applicantId;
-        System.out.println("Vaccination details added");
+       
         VaccineDetails vaccine = this.business.getVaccineDirectory().addVaccine(petId,vaccineName, courseCompletedValue);
         JOptionPane.showMessageDialog(null, "Vaccine Added");
+           }
+           
+   
        }
    
     }//GEN-LAST:event_addVaccineBtnActionPerformed
@@ -284,8 +289,14 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         String gender = (String) comboPetGender.getSelectedItem();
         String breed = txtBreed.getText();
         String insurancePlan = (String)comboInsurancePlan.getSelectedItem();
+        String vaccineName = txtVaccineName.getText();
+        boolean courseCompletedValue;
+         String petId = "petId" + applicantId;
+        
+         
+         
+        
 
-       
          boolean flag = false;
           if (val.nullCheck(applicantId) || val.nullCheck(firstName) || val.nullCheck(lastName) || val.nullCheck(String.valueOf(dateValue)) || val.nullCheck(petName) || val.nullCheck(petAge) || val.nullCheck(petType) || val.nullCheck(gender) || val.nullCheck(breed) || val.nullCheck(insurancePlan)) {
             flag = true;
@@ -303,7 +314,7 @@ public class ApplicantJPanel extends javax.swing.JPanel {
           
         if (flag == false) {
             int countFlag = 0;
-        String petId = "petId" + applicantId;
+        //String petId = "petId" + applicantId;
         for(Applicant ap: this.business.getApplicantDirectory().getApplicantList()){
             if(Integer.valueOf(applicantId) == ap.getApplicationID()){
                 countFlag = 1;
@@ -315,12 +326,19 @@ public class ApplicantJPanel extends javax.swing.JPanel {
         
         if(countFlag == 0){
             this.applicantAccount = this.business.getApplicantDirectory().createApplicant(Integer.valueOf(applicantId), firstName, lastName, dateValue, petName,  Integer.valueOf(petAge),  gender,  petType,  breed,insurancePlan,petId);
-                JOptionPane.showMessageDialog(null, "Added Applicant");
+             if (val.nullCheck(vaccineName)) {
+            vaccineName = "N/A";
+            courseCompletedValue = false;
+            VaccineDetails vaccine = this.business.getVaccineDirectory().addVaccine(petId,vaccineName, courseCompletedValue);
+        }    
+            JOptionPane.showMessageDialog(null, "Added Applicant");
         }
         else {
             JOptionPane.showMessageDialog(null, "Applicant already exists!");
         }
-        } else {
+        } 
+        
+        else {
             System.out.println("Validation check failed");
         }
           

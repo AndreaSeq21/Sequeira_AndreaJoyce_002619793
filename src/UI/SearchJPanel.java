@@ -148,7 +148,7 @@ public class SearchJPanel extends javax.swing.JPanel {
            // System.out.println("Inside search method " + o.getApplicationID());
             row[1] = o.getOwnerFirstName();
             row[2] = o.getOwnerLastName();
-            row[3] = String.valueOf(o.getOwnerFirstName());
+            row[3] = String.valueOf(o.getApplicationID());
             row[4] = o.getPet().getPetName();
             row[5] = o.getPet().getGender();
             row[6] = o.getPet().getBreed();
