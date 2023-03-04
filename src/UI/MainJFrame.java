@@ -27,7 +27,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         this.applicationsystem = ApplicationSystem.getInstance();
         this.branch = new Branch();
-        this.useraccount = useraccount;
+        this.useraccount = new UserAccount();
         populateDropdown();
     }
     
@@ -64,7 +64,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jLabel1.setText("WELCOME TO BOSTON LIBRARY");
+        jLabel1.setText("WELCOME TO PUBLIC LIBRARY");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel2.setText("USERNAME");
@@ -141,14 +141,15 @@ public class MainJFrame extends javax.swing.JFrame {
         if(this.applicationsystem.getTopLevelUserAccountDirectory().authenticateUser(txtUserName1.getText(), txtPassword.getText()) != null) {
             UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().authenticateUser(txtUserName1.getText(), txtPassword.getText());
             foundUser = true;
-            user.getRole().createWorkArea(applicationsystem, branch, useraccount);
+            user.getRole().createWorkArea(this.applicationsystem, this.branch, user);
+            
             this.setVisible(false);
         } else {
             for(Branch branch: this.applicationsystem.getBranches()) {
                 if(branch.getBranchuseraccountDirectory().authenticateUser(txtUserName1.getText(), txtPassword.getText()) != null) {
                     UserAccount branchUser = branch.getBranchuseraccountDirectory().authenticateUser(txtUserName1.getText(), txtPassword.getText());
                     foundUser = true;
-                    branchUser.getRole().createWorkArea(applicationsystem,branch, useraccount);
+                    branchUser.getRole().createWorkArea(this.applicationsystem,this.branch, this.useraccount);
                     this.setVisible(false);
                 }
             }

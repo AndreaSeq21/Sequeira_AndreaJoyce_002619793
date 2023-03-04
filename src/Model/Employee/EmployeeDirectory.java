@@ -6,6 +6,7 @@
 package Model.Employee;
 
 
+import Model.Library.Library;
 import java.util.ArrayList;
 
 /**
@@ -29,16 +30,39 @@ public class EmployeeDirectory {
     
       public Employee createEmployeeAccount(String userId, String name,int age,String designation,int experience, String libraryName) {
         Employee user = new Employee();
+        Library lib = null ;
         System.out.println("Inside create employee");
         user.setPersonId(userId);
         user.setName(name);
         user.setAge(age);
         user.setDesignation(designation);
         user.setExperience(experience);
-        user.setLibraryName(libraryName);
+        lib.setLibraryName(libraryName);
         this.employeelist.add(user);
         return user;
     }
+      
     
+      public Boolean searchLibrary(String libraryName) {
+         for (Employee u : this.employeelist) {
+             if(u.libraryName.equals(libraryName)){
+                return true;
+            }
+         }
+        return false;
+    
+    }
+      
+     
+       public Employee findbyId(String id) {
+        for(Employee u: this.employeelist) {
+            if(u.getPersonId().equals(id)) {
+                System.out.println("Imside u.personId " + u.getPersonId());
+                System.out.println("Inside Id " +id);
+                return u;
+            }
+        }
+        return null;
+    }
 
 }

@@ -8,6 +8,7 @@ package UI.SystemAdminPanel;
 import Model.system.ApplicationSystem;
 import Model.system.Branch;
 import Model.system.UserAccount;
+import UI.MainJFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -52,7 +53,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         btnLibrarian = new javax.swing.JButton();
         btnBranchManager = new javax.swing.JButton();
         btnCustomer = new javax.swing.JButton();
-        btnAssign = new javax.swing.JButton();
+        txtLogOut = new javax.swing.JButton();
         displayJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,20 +83,29 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
         btnCustomer.setText("MANAGE CUSTOMER");
 
-        btnAssign.setText("ASSIGN");
+        txtLogOut.setText("LOGOUT");
+        txtLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLogOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlJPanelLayout = new javax.swing.GroupLayout(controlJPanel);
         controlJPanel.setLayout(controlJPanelLayout);
         controlJPanelLayout.setHorizontalGroup(
             controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnAssign, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBranchManager, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBranch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLibrarian, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlJPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBranchManager, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBranch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLibrarian, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(controlJPanelLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(txtLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         controlJPanelLayout.setVerticalGroup(
@@ -109,9 +119,9 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                 .addComponent(btnBranchManager, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(txtLogOut)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(controlJPanel);
@@ -144,12 +154,18 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
     private void btnBranchManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBranchManagerActionPerformed
         // TODO add your handling code here:
-        jSplitPane1.setRightComponent(new ManageBranchJPanel(this.applicationsystem,this.branch, this.useraccount));
+        jSplitPane1.setRightComponent(new ManageBranchMJPanel(this.applicationsystem,this.branch, this.useraccount));
     }//GEN-LAST:event_btnBranchManagerActionPerformed
 
     private void btnLibrarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibrarianActionPerformed
         jSplitPane1.setRightComponent(new ManageLibrarian(this.applicationsystem,this.branch, this.useraccount)); // TODO add your handling code here:
     }//GEN-LAST:event_btnLibrarianActionPerformed
+
+    private void txtLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLogOutActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new MainJFrame(this.applicationsystem,this.branch, this.useraccount);
+    }//GEN-LAST:event_txtLogOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,7 +203,6 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnBranch;
     private javax.swing.JButton btnBranchManager;
     private javax.swing.JButton btnCustomer;
@@ -195,5 +210,6 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel controlJPanel;
     private javax.swing.JPanel displayJPanel;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton txtLogOut;
     // End of variables declaration//GEN-END:variables
 }

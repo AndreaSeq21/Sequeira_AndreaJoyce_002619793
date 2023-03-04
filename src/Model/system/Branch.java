@@ -19,7 +19,7 @@ public class Branch {
     public Branch(String name) {
         System.out.println("Inside branch class");
         this.name = name;
-         this.lib = new Library();
+        //this.lib = new Library();
         this.branchuseraccountDirectory = new UserAccountDirectory();
     }
 
@@ -29,7 +29,7 @@ public class Branch {
     
 
     public Library getLib() {
-        System.out.println("Inside Branch CLASS");
+       
         return lib;
     }
 
@@ -52,4 +52,8 @@ public class Branch {
     public void setBranchuseraccountDirectory(UserAccountDirectory branchuseraccountDirectory) {
         this.branchuseraccountDirectory = branchuseraccountDirectory;
     }
+    
+    
+    
+    
 }

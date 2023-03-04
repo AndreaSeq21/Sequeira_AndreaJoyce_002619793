@@ -8,6 +8,7 @@ package UI.SystemAdminPanel;
 
 import Model.Employee.Employee;
 import Model.Employee.EmployeeDirectory;
+import Model.Library.Library;
 import Model.Role.LibrarianRole;
 import Model.Role.Role;
 import Model.system.ApplicationSystem;
@@ -96,18 +97,18 @@ public class ManageLibrarian extends javax.swing.JPanel {
                 btnLibSubmitActionPerformed(evt);
             }
         });
-        add(btnLibSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 470, 80, 30));
+        add(btnLibSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 430, 80, 30));
 
         tableLibrarian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "NAME", "AGE", "LIBRARY", "USERNAME", "Password", "Experience"
+                "NAME", "AGE", "LIBRARY", "BRANCHNAME", "USERNAME", "Password", "Experience"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -116,7 +117,7 @@ public class ManageLibrarian extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableLibrarian);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 760, 260));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 790, 260));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel2.setText("EXPERIENCE");
@@ -209,25 +210,48 @@ public class ManageLibrarian extends javax.swing.JPanel {
 //        this.branch = this.applicationsystem.createBranch(branchName,libraryName,Integer.valueOf(buildingNum));
 //        JOptionPane.showMessageDialog(null, "Added branch");
 //        displayBranch();
-          String libName = txtLibName.getText();
-          String libAge = txtAge.getText();
-          String libraryName = (String) comboBoxLib.getSelectedItem();
-          String experience = txtExperience.getText();
-          String userName = txtUsername.getText();
-          String passWord = txtPassword.getText();
+   
             
         UserAccountDirectory ua = this.applicationsystem.getTopLevelUserAccountDirectory();
-        if(ua.accountExists(userName, passWord, "librarian")) {
+        if(ua.accountExists(txtUsername.getText())) {
             JOptionPane.showMessageDialog(null, "Sorry  credentials are taken");
             
         }
         else {
+          String libName = txtLibName.getText();
+          String libAge = txtAge.getText();
+          String libraryName = "Public Library " + (String) comboBoxLib.getSelectedItem();
+          String experience = txtExperience.getText();
+          String userName = txtUsername.getText();
+          String passWord = txtPassword.getText();
+            Boolean checkBranchAssigned = this.applicationsystem.branchAlreadyAssigned((String) comboBoxLib.getSelectedItem(),"librarian");
+            if(!checkBranchAssigned){
             UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new LibrarianRole());
-            this.branch.getLib().getEmployeelist().createEmployeeAccount(user.getAccountId(), libName, Integer.valueOf(libAge), "librarian", Integer.valueOf(experience),libraryName);
+            Library lib = this.branch.getLib();
+            EmployeeDirectory emp = lib.getEmployeelist();
+            Employee e = new Employee();
+            e.setPersonId(user.getAccountId());
+            e.setName(libName);
+            e.setAge(Integer.valueOf(libAge));
+            e.setExperience(Integer.valueOf(experience));
+            e.setDesignation("librarian");
+            emp.getEmployeelist().add(e);
+            lib.setEmployeelist(emp);
+            lib.setLibraryName(libraryName);
+            
+            this.applicationsystem.AddEmpToBranch((String) comboBoxLib.getSelectedItem(), lib);
+            
+            System.out.println("LIBARY VALUE OF CURRENT FLOW " + this.branch.getLib().getLibraryName());
+            
             JOptionPane.showMessageDialog(null, "Employee has been added");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Select Another Branch");
+            }
+            
+  
+            }
             displayLibrarian();
-        }
-          
           
     }//GEN-LAST:event_btnLibSubmitActionPerformed
 
@@ -293,35 +317,65 @@ public class ManageLibrarian extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void displayLibrarian() {
-        ArrayList<Branch> br = this.applicationsystem.getBranches();
+        //ArrayList<Branch> br = this.applicationsystem.getBranches();
         //EmployeeDirectory emp = this.branch.getLib().getEmployeelist();
-        UserAccountDirectory user = this.applicationsystem.getTopLevelUserAccountDirectory();
+        //UserAccountDirectory user = this.applicationsystem.getTopLevelUserAccountDirectory();
+        ArrayList<Branch> x = this.applicationsystem.getBranches();
+        
+        System.out.println("Size of branches of librarian:  "+ x.size());
+       //System.out.println("Size of employee list of librarian:  "+ empz.size());
         viewTableModel.setRowCount(0);
         
-        for (Employee emp: this.branch.getLib().getEmployeelist().getEmployeelist())
-        {  
-            UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(emp.getPersonId());
-             Object row[] = new Object[6];
-             row[0] = emp.getName();
-             row[1] = emp.getAge();
-             row[2] = emp.getLibraryName();
-             row[3] = u.getUsername();
-             row[4] = u.getPassword();
-             row[5] = emp.getExperience();
+        for(int i=0 ; i < x.size(); i++ )
+        {
+            
+            Object row[] = new Object[7];
+             String userName = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
+             UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(userName);
+               row[0] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getName();
+               row[1] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getAge();
+               row[2] = "Public Library " +x.get(i).getName();
+               //row[2] = x.get(i).getLib().getLibraryName();
+               row[3] = x.get(i).getName();
+               row[4] = u.getUsername();
+              row[5] = u.getPassword();
+              row[6] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getExperience();;
              viewTableModel.addRow(row);
         }
-                        
-    }
+        
+//        for (Branch ap: this.applicationsystem.getBranches())
+//        {   
+//            
+//            System.out.println("Branch name " + ap.getName());
+//            ArrayList<Employee> emp = ap.getLib().getEmployeelist().getEmployeelist();
+//            System.out.println("Branch size " + emp.size());
+//             
+//             
+//            for(int i=0 ; i < emp.size(); i++){
+//            Object row[] = new Object[6];
+//             String userName = ap.getLib().getEmployeelist().getEmployeelist().get(0).getPersonId();
+//             UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(emp.get(i).getPersonId());
+//             row[0] = emp.get(i).getName();
+//             row[1] = emp.get(i).getAge();
+//             row[2] = ap.getLib().getLibraryName();
+//             row[3] = u.getUsername();
+//             row[4] = u.getPassword();
+//             row[5] = emp.get(i).getExperience();
+//             viewTableModel.addRow(row);
+//             }
+//             }
+            }
+            
+                         
     
     
       private void displayLibraryDp() {
          comboBoxLib.removeAllItems();
-         ArrayList<Branch> br = this.applicationsystem.getBranches();
+         ArrayList<String> br = this.applicationsystem.getBranchName();
         for (int i = 0; i < br.size(); i++)
         {
-            comboBoxLib.addItem(br.get(i).getLib().getLibraryName());
+            comboBoxLib.addItem(br.get(i));
         }
     }
 
-  
 }

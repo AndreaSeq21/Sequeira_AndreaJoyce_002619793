@@ -57,6 +57,7 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
         txtLibName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtBuildNumber = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 153, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,6 +112,9 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
         jLabel3.setText("BUILDING NUMBER");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 130, 40));
         add(txtBuildNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 160, 30));
+
+        jButton1.setText("DELETE");
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 340, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBranchSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBranchSubmitActionPerformed
@@ -118,8 +122,17 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
         String branchName = txtBranch.getText();
         String libraryName = "PublicLibrary-" + branchName;
         String buildingNum = txtBuildNumber.getText();
-        this.branch = this.applicationsystem.createBranch(branchName,libraryName,Integer.valueOf(buildingNum));
-        JOptionPane.showMessageDialog(null, "Added branch");
+        Boolean branchExist = this.applicationsystem.branchAlreadyUsed(branchName);
+        
+        if(!branchExist){
+             this.applicationsystem.storeBranchName(branchName);
+             JOptionPane.showMessageDialog(null, "Added branch");
+        }
+        else {
+             JOptionPane.showMessageDialog(null, "Branch already exist");   
+        }
+        
+      
         displayBranch();
     }//GEN-LAST:event_btnBranchSubmitActionPerformed
 
@@ -132,6 +145,7 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBranchSubmit;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -143,7 +157,7 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void displayBranch() {
-        ArrayList<Branch> br = this.applicationsystem.getBranches();
+        ArrayList<String> br = this.applicationsystem.getBranchName();
         
         if(br.size() > 0){
             viewTableModel.setRowCount(0);
@@ -151,9 +165,8 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
          {  
             // Printing and display the elements in ArrayList
              Object row[]= new Object[4];
-                row[0] = br.get(i).getName();
-                row[1] = br.get(i).getLib().getLibraryName();
-                row[2] = br.get(i).getLib().getBuildingNo();
+                row[0] = br.get(i);
+             
                 viewTableModel.addRow(row);
     }
         }

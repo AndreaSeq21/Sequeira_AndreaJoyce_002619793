@@ -28,7 +28,7 @@ public class UserAccountDirectory {
     }
     
     public UserAccount createUserAccount(String name, String password, Role role) {
-        System.out.println("Inside create Account");
+        System.out.println("Inside create Account " +name);
         UserAccount user = new UserAccount(name, password, role);
         this.useraccountlist.add(user);
         return user;
@@ -43,10 +43,10 @@ public class UserAccountDirectory {
         return null;
     }
     
-      public Boolean accountExists(String username, String password, String role) {
+      public Boolean accountExists(String username) {
         
         for (UserAccount u : this.useraccountlist) {
-            if(u.getUsername().equals(username) && u.getPassword().equals(password) && u.getRole().equals(role)){
+            if(u.getUsername().equals(username)){
                 return true;
             }
         }
@@ -56,6 +56,7 @@ public class UserAccountDirectory {
     public UserAccount findbyId(String id) {
         for(UserAccount u: this.useraccountlist) {
             if(u.getAccountId().equals(id)) {
+                System.out.println("Inside findby Id");
                 return u;
             }
         }

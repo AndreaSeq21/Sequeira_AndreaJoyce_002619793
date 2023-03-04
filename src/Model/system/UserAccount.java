@@ -18,11 +18,15 @@ public class UserAccount {
     private static int counter = 0;
     private Role role;
     
-    UserAccount(String username, String password, Role role) {
+    public UserAccount(String username, String password, Role role) {
         this.accountId = "user" + this.counter++;
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public UserAccount() {
+       
     }
 
     public String getAccountId() {

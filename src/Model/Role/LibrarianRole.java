@@ -7,7 +7,9 @@ package Model.Role;
 
 import Model.system.ApplicationSystem;
 import Model.system.Branch;
+
 import Model.system.UserAccount;
+import UI.LibrarianPanel.LibrarianJFrame;
 import javax.swing.JFrame;
 
 /**
@@ -18,9 +20,7 @@ public class LibrarianRole extends Role {
 
     @Override
     public JFrame createWorkArea(ApplicationSystem appSystem, Branch branch, UserAccount useraccount) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        return null;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return new LibrarianJFrame(appSystem, branch, useraccount);
     }
     
 }

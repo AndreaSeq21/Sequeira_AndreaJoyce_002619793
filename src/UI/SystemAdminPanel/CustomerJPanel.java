@@ -130,8 +130,8 @@ public class CustomerJPanel extends javax.swing.JPanel {
         add(comboBoxCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 140, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel4.setText("ASSIGN LIBRARY");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 130, 40));
+        jLabel4.setText("ADD CUSTOMER TO LIBRARY");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 170, 40));
 
         txtCustomerAge.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -186,7 +186,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
           String passWord = txtCustomerPassword.getText();
             
         UserAccountDirectory ua = this.applicationsystem.getTopLevelUserAccountDirectory();
-        if(ua.accountExists(userName, passWord, "branch manager")) {
+        if(ua.accountExists(userName)) {
             JOptionPane.showMessageDialog(null, "Sorry  credentials are taken");
             
         }

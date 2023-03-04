@@ -101,7 +101,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="WELCOME TO BOSTON LIBRARY"/>
+            <Property name="text" type="java.lang.String" value="WELCOME TO PUBLIC LIBRARY"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">

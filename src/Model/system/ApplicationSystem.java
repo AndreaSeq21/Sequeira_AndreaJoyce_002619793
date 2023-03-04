@@ -5,6 +5,8 @@
  */
 package Model.system;
 
+import Model.Employee.Employee;
+import Model.Employee.EmployeeDirectory;
 import Model.Library.Library;
 import Model.Role.SystemAdminRole;
 import java.util.ArrayList;
@@ -15,25 +17,30 @@ import java.util.ArrayList;
  */
 public class ApplicationSystem {
     ArrayList<Branch> branches;
+    ArrayList <String> branchName;
     UserAccountDirectory topLevelUserAccountDirectory;
+
+    public ArrayList<String> getBranchName() {
+        return branchName;
+    }
+
+    public void setBranchName(ArrayList<String> branchName) {
+        this.branchName = branchName;
+    }
     
     ApplicationSystem() {
         this.branches = new ArrayList<Branch>();
         this.topLevelUserAccountDirectory = new UserAccountDirectory();
-        
+        this.branchName = new ArrayList <String>();
         // CREATING ADMIN
         this.topLevelUserAccountDirectory.createUserAccount("admin", "admin", new SystemAdminRole());
     }
      public static ApplicationSystem getInstance() {
         return new ApplicationSystem();
     }
-      public Branch createBranch(String name,String LibName,int buildingNumber) {
-        Branch branch = new Branch(name);
-        Library lib = new Library(LibName,buildingNumber);
-        branch.setLib(lib);
-        this.branches.add(branch);
-        System.out.println("Inside create branch");
-        return branch;
+      public void storeBranchName(String name) {
+        this.branchName.add(name);
+        
     }
           public ArrayList<Branch> getBranches() {
         return branches;
@@ -50,4 +57,53 @@ public class ApplicationSystem {
     public void setTopLevelUserAccountDirectory(UserAccountDirectory topLevelUserAccountDirectory) {
         this.topLevelUserAccountDirectory = topLevelUserAccountDirectory;
     }
+    
+      public Branch AddEmpToBranch(String BranchName, Library lib) {  
+        Branch branch = new Branch();
+        branch.setName(BranchName);
+        branch.setLib(lib);
+        this.branches.add(branch);
+        return branch;
+    }
+      
+        public void AddBookToBranch(String BranchName, Library lib) {  
+        //Branch branch = new Branch();
+        for(Branch branch: this.branches)
+        {
+            if(BranchName.equals(branch.getName()))
+             branch.setLib(lib); 
+        }     
+    }
+     
+      public Boolean branchAlreadyUsed (String branchName){
+          for (String u : this.branchName) {
+             if(u.equals(branchName)){
+                return true;
+            }
+         }
+        return false;
+      }
+      
+     public Boolean branchAlreadyAssigned (String branchName, String designation){
+          for (Branch u : this.branches) {
+              ArrayList<Employee> emp = u.getLib().getEmployeelist().getEmployeelist();
+              String getDesignationValue = "";
+              for(int i=0;i> emp.size();i++){
+                  String empId = emp.get(i).getPersonId();
+                  getDesignationValue = emp.get(i).getDesignation();
+                  if(u.getName().equals(branchName) && getDesignationValue.equals(designation) ){
+                 
+                return true;
+            }
+              
+                 
+              }
+              
+            
+         }
+        return false;
+      }
+
+       
+      
 }

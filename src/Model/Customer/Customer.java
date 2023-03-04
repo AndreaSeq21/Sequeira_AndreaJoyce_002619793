@@ -7,10 +7,13 @@ package Model.Customer;
 
 /**
  *
- * @author Andrea Joyce Sequeira
+ * @author A
  */
 public class Customer {
-    String libraryName;
+    String customerFirstName;
+    String customerLastName;
+    int customerAge;
+    
     
     
 }

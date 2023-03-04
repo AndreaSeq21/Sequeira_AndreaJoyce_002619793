@@ -7,6 +7,7 @@ package Model.Library;
 
 
 import Model.Employee.EmployeeDirectory;
+import Model.Material.BookCollection;
 import java.util.ArrayList;
 
 /**
@@ -17,10 +18,12 @@ public class Library {
     String LibraryName;
     int buildingNo;
     EmployeeDirectory employeelist;
-   // private ArrayList<Employee> employeelist1;
+    BookCollection booklist;
+    
 
     public Library() {
         this.employeelist = new EmployeeDirectory();
+        this.booklist = new BookCollection();
     }
 
     public Library(String LibraryName, int buildingNo) {
@@ -28,12 +31,21 @@ public class Library {
         this.buildingNo = buildingNo;
         this.employeelist = employeelist;
     }
+
+    public BookCollection getBooklist() {
+        return booklist;
+    }
+
+    public void setBooklist(BookCollection booklist) {
+        this.booklist = booklist;
+    }
     
     public String getLibraryName() {
         return LibraryName;
     }
 
     public void setLibraryName(String LibraryName) {
+        System.out.println("setLibraryName " +LibraryName);
         this.LibraryName = LibraryName;
     }
 
@@ -46,7 +58,6 @@ public class Library {
     }
 
     public EmployeeDirectory getEmployeelist() {
-        System.out.println("Inside Library");
         return employeelist;
     }
 
@@ -54,8 +65,17 @@ public class Library {
         this.employeelist = employeelist;
     }
     
+    public EmployeeDirectory createEmployeeList (String LibraryName, int buildingNo,EmployeeDirectory employeelists ){
+        Library lib = new Library();
+        lib.setLibraryName(LibraryName);
+        lib.setBuildingNo(buildingNo);
+        lib.setEmployeelist(employeelist);
+        return null;    
+    }
+   
     
     
+     
    
     
     
