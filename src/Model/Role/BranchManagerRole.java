@@ -17,7 +17,6 @@ import javax.swing.JFrame;
 public class BranchManagerRole extends Role{
       @Override
     public JFrame createWorkArea(ApplicationSystem appSystem, Branch branch, UserAccount useraccount) {
-       //return new BranchManagerJFrame(business, branch, useraccount);
        return null;
     }
 }

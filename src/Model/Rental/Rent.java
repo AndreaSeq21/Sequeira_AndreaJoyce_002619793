@@ -16,20 +16,31 @@ public class Rent {
     Double rentPrice;
     String status;
     String rentDuration;
+    long serialNumber;
     private static int counter = 0;
     
     
-    public Rent(Double rentPrice, String status, String rentDuration) {
+    public Rent(Double rentPrice, String status, String rentDuration, long serialNumber) {
         this.rentId = "rentId" + this.counter++;
         this.rentPrice = rentPrice;
         this.status = status;
         this.rentDuration = rentDuration;
+        this.serialNumber = serialNumber;
     }
 
     public Rent() {
          //To change body of generated methods, choose Tools | Templates.
     }
 
+    public long getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(long serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    
     public String getRentId() {
         return rentId;
     }

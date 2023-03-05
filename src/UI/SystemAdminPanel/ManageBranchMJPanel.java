@@ -9,6 +9,7 @@ package UI.SystemAdminPanel;
 import Model.Employee.Employee;
 import Model.Employee.EmployeeDirectory;
 import Model.Library.Library;
+import Model.Role.BranchManagerRole;
 import Model.Role.LibrarianRole;
 import Model.Role.Role;
 import Model.system.ApplicationSystem;
@@ -103,11 +104,11 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "NAME", "AGE", "LIBRARY", "BRANCHNAME", "USERNAME", "Password", "Experience"
+                "NAME", "AGE", "LIBRARY", "BRANCHNAME", "USERNAME", "Password", "Experience", "Designation"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -220,8 +221,9 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
           String userName = txtUsername.getText();
           String passWord = txtPassword.getText();
             Boolean checkBranchAssigned = this.applicationsystem.branchAlreadyAssigned((String) comboBoxLib.getSelectedItem(),"branch manager");
-            if(!checkBranchAssigned){
-            UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new LibrarianRole());
+            if(!checkBranchAssigned)
+            {
+            UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new BranchManagerRole());
             Library lib = this.branch.getLib();
             EmployeeDirectory emp = lib.getEmployeelist();
             Employee e = new Employee();
@@ -236,7 +238,7 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
             
             this.applicationsystem.AddEmpToBranch((String) comboBoxLib.getSelectedItem(), lib);
             
-            System.out.println("LIBARY VALUE OF CURRENT FLOW " + this.branch.getLib().getLibraryName());
+//            System.out.println("LIBARY VALUE OF CURRENT FLOW " + this.branch.getLib().getLibraryName());
             
             JOptionPane.showMessageDialog(null, "Employee has been added");
             }
@@ -323,7 +325,7 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
         for(int i=0 ; i < x.size(); i++ )
         {
             
-            Object row[] = new Object[7];
+            Object row[] = new Object[8];
              String userName = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
              UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(userName);
                row[0] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getName();
@@ -333,31 +335,10 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
                row[3] = x.get(i).getName();
                row[4] = u.getUsername();
               row[5] = u.getPassword();
-              row[6] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getExperience();;
+              row[6] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getExperience();
+               row[7] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getDesignation();
              viewTableModel.addRow(row);
         }
-        
-//        for (Branch ap: this.applicationsystem.getBranches())
-//        {   
-//            
-//            System.out.println("Branch name " + ap.getName());
-//            ArrayList<Employee> emp = ap.getLib().getEmployeelist().getEmployeelist();
-//            System.out.println("Branch size " + emp.size());
-//             
-//             
-//            for(int i=0 ; i < emp.size(); i++){
-//            Object row[] = new Object[6];
-//             String userName = ap.getLib().getEmployeelist().getEmployeelist().get(0).getPersonId();
-//             UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(emp.get(i).getPersonId());
-//             row[0] = emp.get(i).getName();
-//             row[1] = emp.get(i).getAge();
-//             row[2] = ap.getLib().getLibraryName();
-//             row[3] = u.getUsername();
-//             row[4] = u.getPassword();
-//             row[5] = emp.get(i).getExperience();
-//             viewTableModel.addRow(row);
-//             }
-//             }
             }
             
                          

@@ -122,7 +122,7 @@ public class AddBookJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Long.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -289,7 +289,7 @@ public class AddBookJPanel extends javax.swing.JPanel {
           book.setTypeOfBinding(typeOfBinding);
           book.setRegisteredDate(dateValue);
           book.setIsAvailableFlag(isAvailableValue);
-          Rent rt = new Rent(Double.valueOf(rentPrice), "Available", rentDuration);
+          Rent rt = new Rent(Double.valueOf(rentPrice), "Available", rentDuration,Long.valueOf(serialNumber));
           book.setRt(rt);
           
           bookcollection.getBooklist().add(book);
@@ -298,19 +298,23 @@ public class AddBookJPanel extends javax.swing.JPanel {
           //Fetching branch name
           String branchName = fetchBranchName();
           
-          String userAccount = this.useraccount.getAccountId();
-          System.out.println("UserName logged in is "+userAccount);
+         
+          
+          this.applicationsystem.AddBookToBranch(branchName, lib);
           ArrayList<Branch> br = this.applicationsystem.getBranches();
-          for(int i=0;i< br.size(); i++){
-            Employee emp = br.get(i).getLib().getEmployeelist().findbyId(userAccount);
-            if(emp.getPersonId().equals(userAccount)){
-                branchName = br.get(i).getName();
-            }
-           }
-          
-            this.applicationsystem.AddBookToBranch(branchName, lib);
+          for(int i =0;i< br.size();i++ ){
+              if(br.get(i).getName().equals("Boston"))
+              {
+                  ArrayList<Book> books = br.get(i).getLib().getBooklist().getBooklist();
+                  for(int j=0 ;j < books.size();j++){
+                  System.out.println("Author Name in Boston "+ books.get(j).getAuthorName());
+                  System.out.println("Material Book Name in Boston "+ books.get(j).getMaterialName());
+                  
+              }
+              }
+          }
           JOptionPane.showMessageDialog(null, "Book Added");
-          
+          displayBookDetails();
           
           
           
@@ -396,15 +400,23 @@ public class AddBookJPanel extends javax.swing.JPanel {
         //EmployeeDirectory emp = this.branch.getLib().getEmployeelist();
         UserAccountDirectory user = this.applicationsystem.getTopLevelUserAccountDirectory();
         viewTableModel.setRowCount(0);
-        
         for(Branch branch: this.applicationsystem.getBranches()){
             if(branch.getName().equals(fetchBranchName())){
-                ArrayList<Book> bk = branch.getLib().getBooklist().getBooklist();
-                for(int i = 0; i< bk.size(); i++){
-             Object row[] = new Object[6];
+//            System.out.println("INSIDE BRANCH " + fetchBranchName());
+            ArrayList<Book> bk = branch.getLib().getBooklist().getBooklist();
+             for(int i = 0; i< bk.size(); i++){
+             Object row[] = new Object[11];
              row[0] = bk.get(i).getMaterialName();
              row[1] = bk.get(i).getNoOfPages();
-           
+             row[2] = bk.get(i).getLanguages();
+             row[3] = bk.get(i).getAuthorName();
+             row[4] = bk.get(i).getGenre();
+             row[5] = bk.get(i).getTypeOfBinding();
+             row[6] = String.valueOf(bk.get(i).getRegisteredDate());
+             row[7] = bk.get(i).getIsAvailableFlag();
+             row[8] = bk.get(i).getRt().getRentPrice();
+             row[9] = bk.get(i).getRt().getRentDuration();
+             row[10] = bk.get(i).getRt().getSerialNumber();
              viewTableModel.addRow(row);
             }
         }
@@ -412,21 +424,23 @@ public class AddBookJPanel extends javax.swing.JPanel {
     }
     }
     
-    public String fetchBranchName(){
-        String branchName = "";
-         String userAccount = this.useraccount.getAccountId();
-          System.out.println("UserName logged in is "+userAccount);
-          ArrayList<Branch> br = this.applicationsystem.getBranches();
-          for(int i=0;i< br.size(); i++){
-            Employee emp = br.get(i).getLib().getEmployeelist().findbyId(userAccount);
-            if(emp.getPersonId().equals(userAccount)){
-                branchName = br.get(i).getName();
+ 
+     public String fetchBranchName()
+    {
+        String BranchName = "";
+        String userAccountValue = this.useraccount.getAccountId();      
+        ArrayList<Branch> br = this.applicationsystem.getBranches();
+        int fetchNumber = 0;
+        for(int i=0;i< br.size(); i++){
+            String emp = br.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
+
+            if(emp.equals(userAccountValue)){
+                fetchNumber = i;
+                break;  
             }
-           }
-        return branchName;
+        }
+        BranchName = br.get(fetchNumber).getName();
+        return BranchName;
     }
 
-   
-
-  
 }

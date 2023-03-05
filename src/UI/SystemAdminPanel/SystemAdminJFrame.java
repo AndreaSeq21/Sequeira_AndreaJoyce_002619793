@@ -35,7 +35,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         this.applicationsystem = applicationsystem;
         this.branch = branch;
         this.useraccount = useraccount;
-        System.out.println("Inside system admin page");
+//        System.out.println("Inside system admin page");
     }
 
     /**

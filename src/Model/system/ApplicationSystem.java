@@ -67,7 +67,7 @@ public class ApplicationSystem {
     }
       
         public void AddBookToBranch(String BranchName, Library lib) {  
-        //Branch branch = new Branch();
+        
         for(Branch branch: this.branches)
         {
             if(BranchName.equals(branch.getName()))
@@ -88,11 +88,10 @@ public class ApplicationSystem {
           for (Branch u : this.branches) {
               ArrayList<Employee> emp = u.getLib().getEmployeelist().getEmployeelist();
               String getDesignationValue = "";
-              for(int i=0;i> emp.size();i++){
-                  String empId = emp.get(i).getPersonId();
+              for(int i=0;i < emp.size();i++) {
                   getDesignationValue = emp.get(i).getDesignation();
-                  if(u.getName().equals(branchName) && getDesignationValue.equals(designation) ){
-                 
+                  System.out.println("DesignationValue " +getDesignationValue);
+                  if(u.getName().equals(branchName) && getDesignationValue.equals(designation) ){    
                 return true;
             }
               

@@ -104,11 +104,11 @@ public class ManageLibrarian extends javax.swing.JPanel {
 
             },
             new String [] {
-                "NAME", "AGE", "LIBRARY", "BRANCHNAME", "USERNAME", "Password", "Experience"
+                "NAME", "AGE", "LIBRARY", "BRANCHNAME", "USERNAME", "Password", "Experience", "Designation"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -329,7 +329,7 @@ public class ManageLibrarian extends javax.swing.JPanel {
         for(int i=0 ; i < x.size(); i++ )
         {
             
-            Object row[] = new Object[7];
+            Object row[] = new Object[8];
              String userName = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
              UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(userName);
                row[0] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getName();
@@ -339,7 +339,8 @@ public class ManageLibrarian extends javax.swing.JPanel {
                row[3] = x.get(i).getName();
                row[4] = u.getUsername();
               row[5] = u.getPassword();
-              row[6] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getExperience();;
+              row[6] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getExperience();
+              row[7] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getDesignation();
              viewTableModel.addRow(row);
         }
         

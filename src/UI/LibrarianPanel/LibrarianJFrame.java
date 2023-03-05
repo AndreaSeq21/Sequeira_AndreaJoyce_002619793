@@ -245,9 +245,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
     {
         String userAccount = this.useraccount.getAccountId();
         System.out.println("Librarian - UserName logged in is "+userAccount);
-
         ArrayList<Branch> br = this.applicationsystem.getBranches();
-
         int fetchNumber = 0;
         for(int i=0;i< br.size(); i++){
             String emp = br.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
@@ -260,7 +258,6 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         System.out.println("Librarian branch name" +br.get(fetchNumber).getName());
         txtLocation.setText(br.get(fetchNumber).getName());
         jLabelUser.setText(br.get(fetchNumber).getLib().getEmployeelist().getEmployeelist().get(fetchNumber).getName());
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
