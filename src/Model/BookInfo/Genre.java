@@ -13,6 +13,28 @@ import java.util.ArrayList;
  * @author asequ
  */
 public class Genre {
-    String genreName;
     
+    String genreName;
+    ArrayList<Book> bookList;
+    public Genre () {
+        this.bookList = new ArrayList<Book>();
+    }
+
+    public String getGenreName() {
+        return genreName;
+    }
+
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
+
+    public ArrayList<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(ArrayList<Book> bookList) {
+        this.bookList = bookList;
+    }
+    
+
 }

@@ -13,11 +13,34 @@ import java.util.ArrayList;
  * @author asequ
  */
 public class Author {
+    
     String AuthorName;
-    ArrayList <Book> BookList;
+    ArrayList <Book> bookList;
+
+   
+    public Author () {
+        this.bookList = new ArrayList<Book>();
+    }
+
+    public String getAuthorName() {
+        return AuthorName;
+    }
+
+    public void setAuthorName(String AuthorName) {
+        this.AuthorName = AuthorName;
+    }
+
+    public ArrayList<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(ArrayList<Book> bookList) {
+        this.bookList = bookList;
+    }
     
+    public void addBookToAuthor(String bookName){
+        
+    }
     
-    
-    
-    
+  
 }

@@ -6,6 +6,8 @@
 
 package UI.CustomerPanel;
 
+import Model.BookInfo.Author;
+import Model.BookInfo.Genre;
 import UI.LibrarianPanel.*;
 import UI.SystemAdminPanel.*;
 import Model.Employee.Employee;
@@ -50,7 +52,9 @@ public class RentBookJPanel extends javax.swing.JPanel {
         this.applicationsystem = applicationsystem;
         this.branch = branch;
         this.useraccount = useraccount;
-        displayBook();
+        displayLocationDp();
+        displayAuthorNameDp();
+        displayGenreNameDp();
         //displayLibraryDp();
 //        displayBookDetails();
 //        displayBook();
@@ -67,14 +71,15 @@ public class RentBookJPanel extends javax.swing.JPanel {
 
         jLabel12 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboLocation = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comboAuthorName = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        comboGenre = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBookTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnRent = new javax.swing.JButton();
+        btnViewLocation = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -88,27 +93,34 @@ public class RentBookJPanel extends javax.swing.JPanel {
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 800, 20));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 230, 30));
+        comboLocation.setBorder(null);
+        comboLocation.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboLocationItemStateChanged(evt);
+            }
+        });
+        comboLocation.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboLocationKeyPressed(evt);
+            }
+        });
+        add(comboLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 230, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel3.setText("SELECT AUTHOR");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 800, 20));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 230, 30));
+        comboAuthorName.setBorder(null);
+        add(comboAuthorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 230, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel4.setText("SELECT GENRE");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 800, 20));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 230, 30));
+        comboGenre.setBorder(null);
+        add(comboGenre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 230, 30));
 
         tableBookTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,18 +140,46 @@ public class RentBookJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableBookTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 840, 260));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 840, 270));
 
-        jButton1.setText("ADD BOOK");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, 150, 30));
+        btnRent.setText("RENT");
+        add(btnRent, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 610, 150, 30));
+
+        btnViewLocation.setText("VIEW");
+        btnViewLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewLocationActionPerformed(evt);
+            }
+        });
+        add(btnViewLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void comboLocationKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboLocationKeyPressed
+        // TODO add your handling code here:
+       
+        
+        
+        
+    }//GEN-LAST:event_comboLocationKeyPressed
+
+    private void comboLocationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLocationItemStateChanged
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_comboLocationItemStateChanged
+
+    private void btnViewLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocationActionPerformed
+        // TODO add your handling code here:
+          String location = (String) comboLocation.getSelectedItem();
+        displayBookTableDetails(location);
+    }//GEN-LAST:event_btnViewLocationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JButton btnRent;
+    private javax.swing.JButton btnViewLocation;
+    private javax.swing.JComboBox<String> comboAuthorName;
+    private javax.swing.JComboBox<String> comboGenre;
+    private javax.swing.JComboBox<String> comboLocation;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -198,7 +238,113 @@ public String fetchBranchName()
              
               }    
           }
+
+    private void displayLocationDp() {
+            comboLocation.removeAllItems();
+         ArrayList<String> br = this.applicationsystem.getBranchName();
+        for (int i = 0; i < br.size(); i++)
+        {
+            comboLocation.addItem(br.get(i));
+        }
+        
     }
+    
+    private void displayAuthorNameDp() {
+            comboAuthorName.removeAllItems();
+         ArrayList<Branch> br = this.applicationsystem.getBranches();
+         ArrayList<String> displayAuthor = new ArrayList<String>() ;
+//         ArrayList<String> displayAuthor2 = null ;
+        for (int i = 0; i < br.size(); i++)
+        {
+                ArrayList<Author> author = br.get(i).getLib().getAuthorCompleteList().getAuthorlist();
+                
+                    for(int j=0;j< author.size();j++){
+                        displayAuthor.add(author.get(j).getAuthorName());
+                    } 
+        }
+        
+        
+        int authorSize = displayAuthor.size();
+        if(authorSize < 2){
+            authorSize = 1;
+        }else if(authorSize > 2) {
+            authorSize = displayAuthor.size() / 2;
+           
+        }
+        
+        //display data
+         for(int j = 0 ;j < authorSize ;j++)
+             {
+                   comboAuthorName.addItem(displayAuthor.get(j));
+             }
+          
+    }
+    
+        private void displayGenreNameDp() {
+                comboGenre.removeAllItems();
+         ArrayList<Branch> br = this.applicationsystem.getBranches();
+         ArrayList<String> displayAuthor = new ArrayList<String>() ;
+//         ArrayList<String> displayAuthor2 = null ;
+        for (int i = 0; i < br.size(); i++)
+        {
+                ArrayList<Genre> author = br.get(i).getLib().getGenreCompleteList().getGenrelist();
+                
+                    for(int j=0;j< author.size();j++){
+                        displayAuthor.add(author.get(j).getGenreName());
+                    } 
+        }
+        
+        
+        int authorSize = displayAuthor.size();
+        if(authorSize < 2){
+            authorSize = 1;
+        }else if(authorSize > 2) {
+            authorSize = displayAuthor.size() / 2;
+           
+        }
+        
+        //display data
+         for(int j = 0 ;j < authorSize ;j++)
+             {
+                   comboGenre.addItem(displayAuthor.get(j));
+             }
+            
+    }
+
+    private void displayBookTableDetails(String location) {
+        viewTableModel.setRowCount(0);
+          Library lib = this.branch.getLib();
+          ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+        
+        
+//        String branchNameFunc = fetchBranchName();
+          for(int i =0;i< bookcollection.size();i++ ){
+               Object row[] = new Object[11];
+               if(bookcollection.get(i).getLocation().equals(location))
+               {
+                    System.out.println("Inside display book function");
+                     row[0] = bookcollection.get(i).getMaterialName();
+                     row[1] = bookcollection.get(i).getNoOfPages();
+                     row[2] = bookcollection.get(i).getLanguages();
+                     row[3] = bookcollection.get(i).getAuthorName();
+                     row[4] = bookcollection.get(i).getGenre();
+                     row[5] = bookcollection.get(i).getTypeOfBinding();
+                     row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
+                     row[7] = bookcollection.get(i).getIsAvailableFlag();
+                     row[8] = bookcollection.get(i).getRt().getRentPrice();
+                     row[9] = bookcollection.get(i).getRt().getRentDuration();
+                     row[10] = bookcollection.get(i).getRt().getSerialNumber();
+                    
+                    viewTableModel.addRow(row);
+               }
+                  
+             
+              }    
+          }
+    }
+    
+    
+    
     
  
      

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class BookCollection {
     private ArrayList<Book> booklistCollection;
@@ -26,11 +26,5 @@ public class BookCollection {
         this.booklistCollection = booklistCollection;
     }
      
-
-   
-    
-    
-    
-    
-    
+ 
 }

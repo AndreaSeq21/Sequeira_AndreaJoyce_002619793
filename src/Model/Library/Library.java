@@ -6,6 +6,8 @@
 package Model.Library;
 
 
+import Model.BookInfo.AuthorDirectory;
+import Model.BookInfo.GenreDirectory;
 import Model.Employee.EmployeeDirectory;
 import Model.Material.BookCollection;
 import java.util.ArrayList;
@@ -19,7 +21,26 @@ public class Library {
     int buildingNo;
     EmployeeDirectory employeelist;
     BookCollection booklist;
+    AuthorDirectory authorCompleteList;
+    GenreDirectory genreCompleteList;
+
+    public GenreDirectory getGenreCompleteList() {
+        return genreCompleteList;
+    }
+
+    public void setGenreCompleteList(GenreDirectory genreCompleteList) {
+        this.genreCompleteList = genreCompleteList;
+    }
+
+    public AuthorDirectory getAuthorCompleteList() {
+        return authorCompleteList;
+    }
+
+    public void setAuthorCompleteList(AuthorDirectory authorCompleteList) {
+        this.authorCompleteList = authorCompleteList;
+    }
     
+
     public BookCollection getBooklist() {
 //        System.out.println("Inside library");
         return booklist;
@@ -32,6 +53,8 @@ public class Library {
     public Library() {
         this.employeelist = new EmployeeDirectory();
         this.booklist = new BookCollection();
+        this.authorCompleteList = new AuthorDirectory();
+        this.genreCompleteList = new GenreDirectory();
     }
 
     public String getLibraryName() {

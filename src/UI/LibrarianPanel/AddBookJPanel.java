@@ -297,9 +297,13 @@ public class AddBookJPanel extends javax.swing.JPanel {
           rt.setSerialNumber(Long.valueOf(serialNumber));
           rt.setStatus("Available");
           
+          //adding author and genre to the list
+          lib.getAuthorCompleteList().addAuthor(authorName);
+          lib.getGenreCompleteList().addGenre(genreName);
+          
           book.setRt(rt);
           bookcollection.getBooklistCollection().add(book);
-        
+          
           lib.setBooklist(bookcollection);
           
           //Fetching branch name
