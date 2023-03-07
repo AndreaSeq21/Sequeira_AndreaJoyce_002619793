@@ -211,14 +211,14 @@ public class RentBookJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = tableBookTable.getSelectedRow();
         if(selectedRow >= 0 ){
-            String selectSerialNumber = tableBookTable.getValueAt(selectedRow, 11).toString();
+            String selectSerialNumber = tableBookTable.getValueAt(selectedRow, 10).toString();
             Library lib = this.branch.getLib();
              ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
              //update rent with requested
               for(int i =0;i< bookcollection.size();i++ ){
                   long serialNumber = bookcollection.get(i).getRt().getSerialNumber();
                   
-               if( serialNumber == Long.valueOf(selectSerialNumber) )
+               if( serialNumber == Long.valueOf(selectSerialNumber)  )
                {
                    Book bk= bookcollection.get(i);
                   Rent rt = bk.getRt();
@@ -228,6 +228,7 @@ public class RentBookJPanel extends javax.swing.JPanel {
                   this.applicationsystem.getCustomerList().updateCustomer(this.useraccount.getAccountId(), rt);
                   break;
                }
+               
               }
                JOptionPane.showMessageDialog(null, "Rent Request Sent to Librarian");
               
@@ -388,7 +389,7 @@ public String fetchBranchName()
           for(int i =0;i< bookcollection.size();i++ ){
               Object row[] = new Object[11];
               
-               if(bookcollection.get(i).getLocation().equals(location))
+               if(bookcollection.get(i).getLocation().equals(location) && bookcollection.get(i).getIsAvailableFlag()!= false)
                {
                    System.out.println("Inside display book function");
                      row[0] = bookcollection.get(i).getMaterialName();

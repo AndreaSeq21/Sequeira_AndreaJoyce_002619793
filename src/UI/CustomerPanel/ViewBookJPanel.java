@@ -6,6 +6,7 @@
 
 package UI.CustomerPanel;
 
+import Model.Customer.Customer;
 import UI.LibrarianPanel.*;
 import UI.SystemAdminPanel.*;
 import Model.Employee.Employee;
@@ -50,7 +51,8 @@ public class ViewBookJPanel extends javax.swing.JPanel {
         this.applicationsystem = applicationsystem;
         this.branch = branch;
         this.useraccount = useraccount;
-        displayBook();
+//        displayBook();
+        displayLocationDp();
         //displayLibraryDp();
 //        displayBookDetails();
 //        displayBook();
@@ -67,37 +69,37 @@ public class ViewBookJPanel extends javax.swing.JPanel {
 
         jLabel12 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboLocationBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBookTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnReturnBook = new javax.swing.JButton();
+        btnViewLocation1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel12.setText("BOOK RENT HISTORY");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 280, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 280, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel2.setText("SELECT LOCATION");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 800, 20));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 230, 30));
+        comboLocationBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        add(comboLocationBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 230, 30));
 
         tableBookTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "BOOK NAME", "No. of Pages", "Languages", "Author", "Genre", "Type of Binding", "Date", "Available", "Rent Price", "Rent Duration", "Serial Number"
+                "BOOK NAME", "No. of Pages", "Languages", "Author", "Genre", "Type of Binding", "Date", "Rent Price", "Rent Duration", "Serial Number", "STATUS"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Long.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -106,54 +108,86 @@ public class ViewBookJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableBookTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 840, 260));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 840, 300));
 
-        jButton1.setText("ADD BOOK");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, 150, 30));
+        btnReturnBook.setText("RETURN BOOK");
+        btnReturnBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnBookActionPerformed(evt);
+            }
+        });
+        add(btnReturnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 160, 30));
+
+        btnViewLocation1.setText("VIEW");
+        btnViewLocation1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewLocation1ActionPerformed(evt);
+            }
+        });
+        add(btnViewLocation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnReturnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnBookActionPerformed
+        // TODO add your handling code here:
+        String location = (String) comboLocationBox.getSelectedItem();
+        displayBookTableDetails(location);
+    }//GEN-LAST:event_btnReturnBookActionPerformed
+
+    private void btnViewLocation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocation1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewLocation1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btnReturnBook;
+    private javax.swing.JButton btnViewLocation1;
+    private javax.swing.JComboBox<String> comboLocationBox;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableBookTable;
     // End of variables declaration//GEN-END:variables
 
-public String fetchBranchName()
-    {
-        String BranchName = "";
-        String userAccountValue = this.useraccount.getAccountId();      
-        ArrayList<Branch> br = this.applicationsystem.getBranches();
-        int fetchNumber = 0;
-        for(int i=0;i< br.size(); i++){
-            String emp = br.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
-            if(emp.equals(userAccountValue) ){
-                fetchNumber = i;
-                break;  
-            }
+
+
+    
+       private void displayLocationDp() {
+            comboLocationBox.removeAllItems();
+         ArrayList<String> br = this.applicationsystem.getBranchName();
+        for (int i = 0; i < br.size(); i++)
+        {
+            comboLocationBox.addItem(br.get(i));
         }
-        BranchName = br.get(fetchNumber).getName();
-        System.out.println("BRANCH NAME PRINTING "+BranchName);
-        return BranchName;
+        
     }
 
-    private void displayBook(){
-        viewTableModel.setRowCount(0);
-//        ArrayList<Branch> br = this.applicationsystem.getBranches();
-       
+    private void displayBookTableDetails(String location) {
+        ArrayList<Customer> cust = this.applicationsystem.getCustomerList().getCustomerlist();
+        ArrayList<String> rentArray = new ArrayList<String>();
+      for(int i =0; i< cust.size();i++){
+          if(cust.get(i).getCustomerId().equals(useraccount.getAccountId()))
+          {
+            ArrayList<Rent> rt = cust.get(i).getRentlist();
+          for(int j=0;j<rt.size();j++){
+              rentArray.add(rt.get(j).getRentId());
+          }  
+          }
+          
+      }
+      
+      Library lib = this.branch.getLib();
+        ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
         
-          Library lib = this.branch.getLib();
-          ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
-        
-        
-//        String branchNameFunc = fetchBranchName();
-          for(int i =0;i< bookcollection.size();i++ ){
-               Object row[] = new Object[11];
-               if(bookcollection.get(i).getLocation().equals(useraccount.getAccessTo()))
+             for(int i =0;i< bookcollection.size();i++ ){
+               
+               
+               if(bookcollection.get(i).getLocation().equals(location))
                {
+                   for(int j=0;j<rentArray.size();j++){
+                   
+                   if(rentArray.get(j) == bookcollection.get(i).getRt().getRentId() )
+                   {
+                       Object row[] = new Object[12];
                      row[0] = bookcollection.get(i).getMaterialName();
                      row[1] = bookcollection.get(i).getNoOfPages();
                      row[2] = bookcollection.get(i).getLanguages();
@@ -161,18 +195,36 @@ public String fetchBranchName()
                      row[4] = bookcollection.get(i).getGenre();
                      row[5] = bookcollection.get(i).getTypeOfBinding();
                      row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
-                     row[7] = bookcollection.get(i).getIsAvailableFlag();
-                     row[8] = bookcollection.get(i).getRt().getRentPrice();
-                     row[9] = bookcollection.get(i).getRt().getRentDuration();
-                     row[10] = bookcollection.get(i).getRt().getSerialNumber();
-                    
-                    viewTableModel.addRow(row);
+//                     row[7] = bookcollection.get(i).getIsAvailableFlag();
+                     row[7] = bookcollection.get(i).getRt().getRentPrice();
+                     row[8] = bookcollection.get(i).getRt().getRentDuration();
+                     row[9] = bookcollection.get(i).getRt().getSerialNumber();
+                     row[10] = bookcollection.get(i).getRt().getBookRequested();
+//                      row[11] = customerArray.get(j);
+                     viewTableModel.addRow(row);
+                   }
+                   
+                   }
                }
-                  
-             
-              }    
-          }
+             }
     }
+}
+      
+      
+      
+      
+      
+      
+      
+              
+        
+        
+        
+   
+        
+
+    
+    
     
  
      

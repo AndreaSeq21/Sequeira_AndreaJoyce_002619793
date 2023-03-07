@@ -65,22 +65,22 @@ public class RentReqJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBookAdd = new javax.swing.JButton();
+        btnDeclineBook = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBookTable = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
-        btnBookAdd1 = new javax.swing.JButton();
+        btnAcceptBook = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 204, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnBookAdd.setText("DECLINE");
-        btnBookAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnDeclineBook.setText("DECLINE");
+        btnDeclineBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBookAddActionPerformed(evt);
+                btnDeclineBookActionPerformed(evt);
             }
         });
-        add(btnBookAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 130, 30));
+        add(btnDeclineBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 130, 30));
 
         tableBookTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,22 +100,22 @@ public class RentReqJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableBookTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1060, 210));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 1070, 280));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel12.setText("ACCEPT/REJECT RENT");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 280, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 280, -1));
 
-        btnBookAdd1.setText("ACCEPT");
-        btnBookAdd1.addActionListener(new java.awt.event.ActionListener() {
+        btnAcceptBook.setText("ACCEPT");
+        btnAcceptBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBookAdd1ActionPerformed(evt);
+                btnAcceptBookActionPerformed(evt);
             }
         });
-        add(btnBookAdd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 130, 30));
+        add(btnAcceptBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, 130, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBookAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookAddActionPerformed
+    private void btnDeclineBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineBookActionPerformed
 
           Library lib = this.branch.getLib();
           Book book = new Book();
@@ -129,16 +129,43 @@ public class RentReqJPanel extends javax.swing.JPanel {
        
           
           
-    }//GEN-LAST:event_btnBookAddActionPerformed
+    }//GEN-LAST:event_btnDeclineBookActionPerformed
 
-    private void btnBookAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookAdd1ActionPerformed
+    private void btnAcceptBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptBookActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBookAdd1ActionPerformed
+        int selectedRow = tableBookTable.getSelectedRow();
+             if(selectedRow >= 0 ){
+            String selectSerialNumber = tableBookTable.getValueAt(selectedRow, 10).toString();
+            Library lib = this.branch.getLib();
+             ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+             //update rent with requested
+              for(int i =0;i< bookcollection.size();i++ ){
+                  long serialNumber = bookcollection.get(i).getRt().getSerialNumber();
+                  
+               if( serialNumber == Long.valueOf(selectSerialNumber) )
+               {
+                   Book bk= bookcollection.get(i);
+                   bk.setIsAvailableFlag(false);
+                  Rent rt = bk.getRt();
+                  rt.setBookRequested("ACCEPTED");
+                  bk.setRt(rt);
+                  this.applicationsystem.UpdateBookToBranch(bookcollection.get(i).getLocation(),bk);
+                  this.applicationsystem.getCustomerList().updateRentStatus(this.useraccount.getAccountId(), rt);
+                  break;
+               }
+              }
+               JOptionPane.showMessageDialog(null, "Accepted Request");
+              
+        }
+             
+        
+        
+    }//GEN-LAST:event_btnAcceptBookActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBookAdd;
-    private javax.swing.JButton btnBookAdd1;
+    private javax.swing.JButton btnAcceptBook;
+    private javax.swing.JButton btnDeclineBook;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableBookTable;
@@ -206,7 +233,7 @@ public String fetchBranchName()
            for(int j=0;j<rt.size();j++){
                if(rt.get(j).getBookRequested().equals("SENT"));
                {
-               customerArray.add(cust.get(i).getCustomerId());
+               customerArray.add(cust.get(i).getCustomerName());
                rentArray.add(rt.get(j).getRentId());
                }
 
@@ -226,7 +253,7 @@ public String fetchBranchName()
                    
                    if(rentArray.get(j) == bookcollection.get(i).getRt().getRentId() )
                    {
-                       Object row[] = new Object[11];
+                       Object row[] = new Object[12];
                      row[0] = bookcollection.get(i).getMaterialName();
                      row[1] = bookcollection.get(i).getNoOfPages();
                      row[2] = bookcollection.get(i).getLanguages();
@@ -238,6 +265,7 @@ public String fetchBranchName()
                      row[8] = bookcollection.get(i).getRt().getRentPrice();
                      row[9] = bookcollection.get(i).getRt().getRentDuration();
                      row[10] = bookcollection.get(i).getRt().getSerialNumber();
+                      row[11] = customerArray.get(j);
                      viewTableModel.addRow(row);
                    }
                    

@@ -49,6 +49,22 @@ public class CustomerDirectory {
                
            }
        }
+      }
+       
+        public void updateRentStatus(String customerId,Rent rt){
+       for(Customer cust: this.customerlist)
+       {
+           if(cust.getCustomerId().equals(customerId)){
+               ArrayList<Rent> rent = cust.getRentlist();
+               for(int i=0;i<rent.size();i++){
+                   if(rent.get(i).getRentId().equals(rt.getRentId())){
+                       rent.get(i).setBookRequested(rt.getBookRequested());
+                   }
+                       
+               }
+               
+           }
+       }
        
 //        return customer;
 //        return null;

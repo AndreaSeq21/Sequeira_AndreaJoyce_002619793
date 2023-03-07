@@ -222,8 +222,6 @@ public class CustomerJFrame extends javax.swing.JFrame {
                 break;  
             }
         }
-//        System.out.println("Librarian branch name" +br.get(fetchNumber).getName());
-//        txtLocation.setText(br.get(fetchNumber).getName());
         jLabelUser.setText(br.get(fetchNumber).getLib().getEmployeelist().getEmployeelist().get(fetchNumber).getName());
     }
 
