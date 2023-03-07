@@ -79,7 +79,9 @@ public class RentBookJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBookTable = new javax.swing.JTable();
         btnRent = new javax.swing.JButton();
-        btnViewLocation = new javax.swing.JButton();
+        btnViewGenre = new javax.swing.JButton();
+        btnViewLocation1 = new javax.swing.JButton();
+        btnViewAuthor = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -145,13 +147,29 @@ public class RentBookJPanel extends javax.swing.JPanel {
         btnRent.setText("RENT");
         add(btnRent, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 610, 150, 30));
 
-        btnViewLocation.setText("VIEW");
-        btnViewLocation.addActionListener(new java.awt.event.ActionListener() {
+        btnViewGenre.setText("VIEW");
+        btnViewGenre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewLocationActionPerformed(evt);
+                btnViewGenreActionPerformed(evt);
             }
         });
-        add(btnViewLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 70, 30));
+        add(btnViewGenre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 70, 30));
+
+        btnViewLocation1.setText("VIEW");
+        btnViewLocation1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewLocation1ActionPerformed(evt);
+            }
+        });
+        add(btnViewLocation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 70, 30));
+
+        btnViewAuthor.setText("VIEW");
+        btnViewAuthor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewAuthorActionPerformed(evt);
+            }
+        });
+        add(btnViewAuthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboLocationKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboLocationKeyPressed
@@ -167,16 +185,26 @@ public class RentBookJPanel extends javax.swing.JPanel {
          
     }//GEN-LAST:event_comboLocationItemStateChanged
 
-    private void btnViewLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocationActionPerformed
+    private void btnViewGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewGenreActionPerformed
         // TODO add your handling code here:
           String location = (String) comboLocation.getSelectedItem();
         displayBookTableDetails(location);
-    }//GEN-LAST:event_btnViewLocationActionPerformed
+    }//GEN-LAST:event_btnViewGenreActionPerformed
+
+    private void btnViewLocation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocation1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewLocation1ActionPerformed
+
+    private void btnViewAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAuthorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewAuthorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRent;
-    private javax.swing.JButton btnViewLocation;
+    private javax.swing.JButton btnViewAuthor;
+    private javax.swing.JButton btnViewGenre;
+    private javax.swing.JButton btnViewLocation1;
     private javax.swing.JComboBox<String> comboAuthorName;
     private javax.swing.JComboBox<String> comboGenre;
     private javax.swing.JComboBox<String> comboLocation;
