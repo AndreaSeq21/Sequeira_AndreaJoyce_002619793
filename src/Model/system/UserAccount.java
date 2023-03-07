@@ -15,14 +15,16 @@ public class UserAccount {
     private String accountId;
     private String username;
     private String password;
+    private String accessTo;
     private static int counter = 0;
     private Role role;
     
-    public UserAccount(String username, String password, Role role) {
+    public UserAccount(String username, String password, Role role, String accessTo) {
         this.accountId = "user" + this.counter++;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.accessTo = accessTo;
     }
 
     public UserAccount() {
@@ -68,6 +70,15 @@ public class UserAccount {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public String getAccessTo() {
+        return accessTo;
+    }
+
+    public void setAccessTo(String accessTo) {
+        this.accessTo = accessTo;
+    }
+    
     
     
 }

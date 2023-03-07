@@ -6,9 +6,11 @@
 
 package UI.SystemAdminPanel;
 
+import Model.Customer.Customer;
+import Model.Customer.CustomerDirectory;
 import Model.Employee.Employee;
 import Model.Employee.EmployeeDirectory;
-import Model.Role.LibrarianRole;
+import Model.Role.CustomerRole;
 import Model.Role.Role;
 import Model.Role.SystemAdminRole;
 import Model.system.ApplicationSystem;
@@ -43,8 +45,8 @@ public class CustomerJPanel extends javax.swing.JPanel {
         this.branch = branch;
         this.useraccount = useraccount;
         
-        displayLibraryDp();
-        displayBranchManager();
+//        displayLibraryDp();
+//        displayBranchManager();
     }
 
     /** This method is called from within the constructor to
@@ -62,8 +64,6 @@ public class CustomerJPanel extends javax.swing.JPanel {
         tableCustomer = new javax.swing.JTable();
         txtCustomerName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        comboBoxCustomer = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
         txtCustomerAge = new javax.swing.JTextField();
         txtAge1 = new javax.swing.JTextField();
         txtCustomerUsername = new javax.swing.JTextField();
@@ -91,11 +91,11 @@ public class CustomerJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "NAME", "AGE", "LIBRARY", "USERNAME", "Password", "Experience"
+                "NAME", "AGE", "USERNAME", "Password"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -104,7 +104,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableCustomer);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 760, 370));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 580, 370));
 
         txtCustomerName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -121,17 +121,6 @@ public class CustomerJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel3.setText("CUSTOMER AGE");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 130, 40));
-
-        comboBoxCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxCustomerActionPerformed(evt);
-            }
-        });
-        add(comboBoxCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 140, 30));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel4.setText("ADD CUSTOMER TO LIBRARY");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 170, 40));
 
         txtCustomerAge.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -152,22 +141,22 @@ public class CustomerJPanel extends javax.swing.JPanel {
                 txtCustomerUsernameFocusLost(evt);
             }
         });
-        add(txtCustomerUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 160, 30));
+        add(txtCustomerUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 160, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel7.setText("USERNAME");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 130, 40));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 130, 40));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel8.setText("PASSWORD");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 130, 40));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 130, 40));
 
         txtCustomerPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCustomerPasswordFocusLost(evt);
             }
         });
-        add(txtCustomerPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 160, 30));
+        add(txtCustomerPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLibSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibSubmitActionPerformed
@@ -178,10 +167,8 @@ public class CustomerJPanel extends javax.swing.JPanel {
 //        this.branch = this.applicationsystem.createBranch(branchName,libraryName,Integer.valueOf(buildingNum));
 //        JOptionPane.showMessageDialog(null, "Added branch");
 //        displayBranch();
-          String libName = txtCustomerName.getText();
-          String libAge = txtCustomerAge.getText();
-          String libraryName = (String) comboBoxCustomer.getSelectedItem();
-          //String experience = txtBranchExperience.getText();
+          String custName = txtCustomerName.getText();
+          String custAge = txtCustomerAge.getText();
           String userName = txtCustomerUsername.getText();
           String passWord = txtCustomerPassword.getText();
             
@@ -191,10 +178,16 @@ public class CustomerJPanel extends javax.swing.JPanel {
             
         }
         else {
-            UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new SystemAdminRole());
+//            UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new SystemAdminRole());
             //this.branch.getLib().getEmployeelist().createEmployeeAccount(user.getAccountId(), libName, Integer.valueOf(libAge), "branch manager", Integer.valueOf(experience),libraryName);
-            JOptionPane.showMessageDialog(null, "Employee has been added");
-            displayBranchManager();
+            UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new CustomerRole(),"ALL");
+//            Customer cust = new Customer();
+//            cust.setCustomerName(custName);
+//            cust.setCustomerAge(Integer.valueOf(custAge));
+//            cust.setCustomerId(user.getAccountId());
+            this.applicationsystem.getCustomerList().addCustomer(custName,Integer.valueOf(custAge),user.getAccountId());
+            JOptionPane.showMessageDialog(null, "Customer has been added");
+            displayCustomer();
         }
           
           
@@ -207,10 +200,6 @@ public class CustomerJPanel extends javax.swing.JPanel {
     private void txtCustomerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCustomerNameActionPerformed
-
-    private void comboBoxCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCustomerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxCustomerActionPerformed
 
     private void txtCustomerAgeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCustomerAgeFocusLost
         // TODO add your handling code here:
@@ -231,10 +220,8 @@ public class CustomerJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLibSubmit;
-    private javax.swing.JComboBox<String> comboBoxCustomer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
@@ -246,35 +233,38 @@ public class CustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtCustomerUsername;
     // End of variables declaration//GEN-END:variables
 
-    private void displayBranchManager() {
-        ArrayList<Branch> br = this.applicationsystem.getBranches();
-        //EmployeeDirectory emp = this.branch.getLib().getEmployeelist();
-        UserAccountDirectory user = this.applicationsystem.getTopLevelUserAccountDirectory();
+    private void displayCustomer() {
+        ArrayList<Customer> cust = this.applicationsystem.getCustomerList().getCustomerlist();
+
         viewTableModel.setRowCount(0);
         
-        for (Employee emp: this.branch.getLib().getEmployeelist().getEmployeelist())
-        {  
-            UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(emp.getPersonId());
+        for(int i=0;i<cust.size();i++){
+//            UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(emp.getPersonId());
              Object row[] = new Object[6];
-             row[0] = emp.getName();
-             row[1] = emp.getAge();
-             row[2] = emp.getLibraryName();
-             row[3] = u.getUsername();
-             row[4] = u.getPassword();
-             row[5] = emp.getExperience();
+             UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(cust.get(i).getCustomerId());
+              row[0] = cust.get(i).getCustomerName();
+              row[1] = cust.get(i).getCustomerAge();
+              row[2] = u.getUsername();
+              row[3] = u.getPassword();
+
              viewTableModel.addRow(row);
         }
+//        for (Employee emp: this.branch.getLib().getEmployeelist().getEmployeelist())
+//        {  
+//            UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(emp.getPersonId());
+//             Object row[] = new Object[6];
+//             row[0] = emp.getName();
+//             row[1] = emp.getAge();
+//             row[2] = emp.getLibraryName();
+//             row[3] = u.getUsername();
+//             row[4] = u.getPassword();
+//             row[5] = emp.getExperience();
+//             viewTableModel.addRow(row);
+//        }
                         
     }
 
-      private void displayLibraryDp() {
-         comboBoxCustomer.removeAllItems();
-         ArrayList<Branch> br = this.applicationsystem.getBranches();
-        for (int i = 0; i < br.size(); i++)
-        {
-            comboBoxCustomer.addItem(br.get(i).getLib().getLibraryName());
-        }
-    }
+   
 
   
 }

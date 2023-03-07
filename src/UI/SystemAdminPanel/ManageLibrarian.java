@@ -9,6 +9,7 @@ package UI.SystemAdminPanel;
 import Model.Employee.Employee;
 import Model.Employee.EmployeeDirectory;
 import Model.Library.Library;
+import Model.Material.BookCollection;
 import Model.Role.LibrarianRole;
 import Model.Role.Role;
 import Model.system.ApplicationSystem;
@@ -117,7 +118,7 @@ public class ManageLibrarian extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableLibrarian);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 790, 260));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 800, 260));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel2.setText("EXPERIENCE");
@@ -220,13 +221,14 @@ public class ManageLibrarian extends javax.swing.JPanel {
         else {
           String libName = txtLibName.getText();
           String libAge = txtAge.getText();
-          String libraryName = "Public Library " + (String) comboBoxLib.getSelectedItem();
+          String libraryName = (String) comboBoxLib.getSelectedItem();
           String experience = txtExperience.getText();
           String userName = txtUsername.getText();
           String passWord = txtPassword.getText();
             Boolean checkBranchAssigned = this.applicationsystem.branchAlreadyAssigned((String) comboBoxLib.getSelectedItem(),"librarian");
             if(!checkBranchAssigned){
-            UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new LibrarianRole());
+            String accessTo = (String) comboBoxLib.getSelectedItem();
+            UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new LibrarianRole(),accessTo);
             Library lib = this.branch.getLib();
             EmployeeDirectory emp = lib.getEmployeelist();
             Employee e = new Employee();
@@ -235,15 +237,17 @@ public class ManageLibrarian extends javax.swing.JPanel {
             e.setAge(Integer.valueOf(libAge));
             e.setExperience(Integer.valueOf(experience));
             e.setDesignation("librarian");
+            e.setLibraryName(libraryName);
             emp.getEmployeelist().add(e);
             lib.setEmployeelist(emp);
             lib.setLibraryName(libraryName);
-            
+           
             this.applicationsystem.AddEmpToBranch((String) comboBoxLib.getSelectedItem(), lib);
             
-            System.out.println("LIBARY VALUE OF CURRENT FLOW " + this.branch.getLib().getLibraryName());
+//            System.out.println("LIBARY VALUE OF CURRENT FLOW " + this.branch.getLib().getLibraryName());
             
             JOptionPane.showMessageDialog(null, "Employee has been added");
+            
             }
             else {
                 JOptionPane.showMessageDialog(null, "Select Another Branch");
@@ -252,7 +256,8 @@ public class ManageLibrarian extends javax.swing.JPanel {
   
             }
             displayLibrarian();
-          
+        
+         
     }//GEN-LAST:event_btnLibSubmitActionPerformed
 
     private void txtExperienceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtExperienceFocusLost

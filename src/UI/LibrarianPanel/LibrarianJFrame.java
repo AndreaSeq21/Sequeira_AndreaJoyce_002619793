@@ -39,7 +39,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         this.applicationsystem = applicationsystem;
         this.branch = branch;
         this.useraccount = useraccount;
-        System.out.println("Inside librarian page");
+//        System.out.println("Inside librarian page");
         displayLocation();
     }
 
@@ -255,7 +255,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
                 break;  
             }
         }
-        System.out.println("Librarian branch name" +br.get(fetchNumber).getName());
+//        System.out.println("Librarian branch name" +br.get(fetchNumber).getName());
         txtLocation.setText(br.get(fetchNumber).getName());
         jLabelUser.setText(br.get(fetchNumber).getLib().getEmployeelist().getEmployeelist().get(fetchNumber).getName());
     }

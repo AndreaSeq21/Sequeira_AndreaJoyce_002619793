@@ -9,6 +9,7 @@ import Model.Role.Role;
 import Model.system.ApplicationSystem;
 import Model.system.Branch;
 import Model.system.UserAccount;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -140,8 +141,35 @@ public class MainJFrame extends javax.swing.JFrame {
         Boolean foundUser = false;
         if(this.applicationsystem.getTopLevelUserAccountDirectory().authenticateUser(txtUserName1.getText(), txtPassword.getText()) != null) {
             UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().authenticateUser(txtUserName1.getText(), txtPassword.getText());
+               Branch branch = null;
+                Role fetchRole = user.getRole();
+                System.out.println("The Role of this user is " +fetchRole.toString());
+                
+                if(fetchRole.toString().contains("SystemAdmin") || fetchRole.toString().contains("Customer") ){
+                    System.out.println("Entered the value of SystemAdmin");
+                     branch = new Branch();
+                   
+                    
+                }
+                else if(fetchRole.toString().contains("Librarian")){
+                    System.out.println("Entered the value of Librarian");
+                    ArrayList<Branch> br = this.applicationsystem.getBranches();
+                    for(int i =0 ; i< br.size();i++)
+                    {
+                        if(br.get(i).getName().equals(user.getAccessTo()))
+                        {
+                             System.out.println("USER ACCESS "+ user.getAccessTo());
+                             branch = br.get(i);
+                              break;
+                        }
+                           
+                       
+                    }
+                    System.out.println("BRANCH IN "+branch.getName());
+                }
+                
             foundUser = true;
-            user.getRole().createWorkArea(this.applicationsystem, this.branch, user);
+            user.getRole().createWorkArea(this.applicationsystem, branch, user);
             
             this.setVisible(false);
         } else {

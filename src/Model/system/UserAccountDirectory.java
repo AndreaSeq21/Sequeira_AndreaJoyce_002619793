@@ -27,9 +27,9 @@ public class UserAccountDirectory {
         this.useraccountlist = useraccountlist;
     }
     
-    public UserAccount createUserAccount(String name, String password, Role role) {
+    public UserAccount createUserAccount(String name, String password, Role role,String accessTo) {
 //        System.out.println("Inside create Account " +name);
-        UserAccount user = new UserAccount(name, password, role);
+        UserAccount user = new UserAccount(name, password, role,accessTo);
         this.useraccountlist.add(user);
         return user;
     }

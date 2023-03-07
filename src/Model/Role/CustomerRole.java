@@ -8,6 +8,7 @@ package Model.Role;
 import Model.system.ApplicationSystem;
 import Model.system.Branch;
 import Model.system.UserAccount;
+import UI.CustomerPanel.CustomerJFrame;
 import javax.swing.JFrame;
 
 /**
@@ -18,8 +19,7 @@ public class CustomerRole extends Role {
         @Override
     public JFrame createWorkArea(ApplicationSystem appSystem, Branch branch, UserAccount useraccount) {
         // return jframe
-        //return new CustomerJFrame(business, branch, useraccount);
-            return null;
-        
+        return new CustomerJFrame(appSystem, branch, useraccount);
+         
     }
 }

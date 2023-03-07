@@ -19,6 +19,7 @@ public class Book extends Material {
     String languages;
     String AuthorName;
     String genre;
+    String location;
     Rent rt;
 
     public Book() {
@@ -26,12 +27,13 @@ public class Book extends Material {
          this.rt = new Rent();
     }
 
-    public Book(String typeOfBinding, int noOfPages, String languages, String AuthorName, String genre) {
+    public Book(String typeOfBinding, int noOfPages, String languages, String AuthorName, String genre,String location) {
         this.typeOfBinding = typeOfBinding;
         this.noOfPages = noOfPages;
         this.languages = languages;
         this.AuthorName = AuthorName;
         this.genre = genre;
+        this.location = location;
     }
 
     public Rent getRt() {
@@ -42,9 +44,7 @@ public class Book extends Material {
         this.rt = rt;
     }
 
-    
-    
-    
+
     public String getAuthorName() {
         return AuthorName;
     }
@@ -86,6 +86,15 @@ public class Book extends Material {
     public void setLanguages(String languages) {
         this.languages = languages;
     }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
      
+    
     
 }

@@ -223,7 +223,8 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
             Boolean checkBranchAssigned = this.applicationsystem.branchAlreadyAssigned((String) comboBoxLib.getSelectedItem(),"branch manager");
             if(!checkBranchAssigned)
             {
-            UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new BranchManagerRole());
+                String accessTo = (String) comboBoxLib.getSelectedItem();
+            UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new BranchManagerRole(),accessTo);
             Library lib = this.branch.getLib();
             EmployeeDirectory emp = lib.getEmployeelist();
             Employee e = new Employee();

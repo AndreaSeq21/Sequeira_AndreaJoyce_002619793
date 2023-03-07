@@ -12,21 +12,22 @@ import java.util.ArrayList;
  * @author asequ
  */
 public class BookCollection {
-    ArrayList<Book> booklist;
+    private ArrayList<Book> booklistCollection;
 
-    public ArrayList<Book> getBooklist() {
-        return booklist;
+     public BookCollection(){
+     this.booklistCollection = new ArrayList<Book>();
+ }
+     
+    public ArrayList<Book> getBooklistCollection() {
+        return booklistCollection;
     }
 
-    public void setBooklist(ArrayList<Book> booklist) {
-        this.booklist = booklist;
+    public void setBooklistCollection(ArrayList<Book> booklistCollection) {
+        this.booklistCollection = booklistCollection;
     }
+     
 
-    public BookCollection() {
-        this.booklist = new ArrayList<Book>();
-    }
-
-  
+   
     
     
     

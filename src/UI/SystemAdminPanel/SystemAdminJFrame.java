@@ -82,6 +82,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         });
 
         btnCustomer.setText("MANAGE CUSTOMER");
+        btnCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCustomerActionPerformed(evt);
+            }
+        });
 
         txtLogOut.setText("LOGOUT");
         txtLogOut.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +171,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         this.setVisible(false);
         new MainJFrame(this.applicationsystem,this.branch, this.useraccount);
     }//GEN-LAST:event_txtLogOutActionPerformed
+
+    private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
+        // TODO add your handling code here:
+        jSplitPane1.setRightComponent(new CustomerJPanel(this.applicationsystem,this.branch, this.useraccount));
+    }//GEN-LAST:event_btnCustomerActionPerformed
 
     /**
      * @param args the command line arguments

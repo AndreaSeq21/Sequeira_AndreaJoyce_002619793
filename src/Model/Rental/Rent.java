@@ -29,6 +29,7 @@ public class Rent {
     }
 
     public Rent() {
+        this.rentId = "rentId" + this.counter++;
          //To change body of generated methods, choose Tools | Templates.
     }
 

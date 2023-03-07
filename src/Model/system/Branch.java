@@ -24,12 +24,18 @@ public class Branch {
     }
 
     public Branch() {
+        this.name = "";
          this.lib = new Library();
     }
+
+//    Branch(String name, Library lib) {
+//        this.name = name;
+//        this.lib = lib;
+//    }
     
 
     public Library getLib() {
-       
+//       System.out.println("Inside Branch class");
         return lib;
     }
 

@@ -20,26 +20,20 @@ public class Library {
     EmployeeDirectory employeelist;
     BookCollection booklist;
     
+    public BookCollection getBooklist() {
+//        System.out.println("Inside library");
+        return booklist;
+    }
+     
+    public void setBooklist(BookCollection booklist) {
+        this.booklist = booklist;
+    }
 
     public Library() {
         this.employeelist = new EmployeeDirectory();
         this.booklist = new BookCollection();
     }
 
-    public Library(String LibraryName, int buildingNo) {
-        this.LibraryName = LibraryName;
-        this.buildingNo = buildingNo;
-        this.employeelist = employeelist;
-    }
-
-    public BookCollection getBooklist() {
-        return booklist;
-    }
-
-    public void setBooklist(BookCollection booklist) {
-        this.booklist = booklist;
-    }
-    
     public String getLibraryName() {
         return LibraryName;
     }
@@ -65,19 +59,5 @@ public class Library {
         this.employeelist = employeelist;
     }
     
-    public EmployeeDirectory createEmployeeList (String LibraryName, int buildingNo,EmployeeDirectory employeelists ){
-        Library lib = new Library();
-        lib.setLibraryName(LibraryName);
-        lib.setBuildingNo(buildingNo);
-        lib.setEmployeelist(employeelist);
-        return null;    
-    }
-   
-    
-    
-     
-   
-    
-    
-    
+
 }
