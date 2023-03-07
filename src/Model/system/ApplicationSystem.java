@@ -9,6 +9,8 @@ import Model.Customer.CustomerDirectory;
 import Model.Employee.Employee;
 import Model.Employee.EmployeeDirectory;
 import Model.Library.Library;
+import Model.Material.Book;
+import Model.Material.BookCollection;
 import Model.Role.SystemAdminRole;
 import java.util.ArrayList;
 
@@ -31,8 +33,6 @@ public class ApplicationSystem {
         this.customerList = customerList;
     }
     
-    
-
     public ArrayList<String> getBranchName() {
         return branchName;
     }
@@ -95,6 +95,32 @@ public class ApplicationSystem {
                 branch.setLib(lib);
                 System.out.println("Appending data in only branch: "+BranchName);
                 break;
+            }     
+        }
+        
+        }
+        
+        public void UpdateBookToBranch(String BranchName, Book bk) {  
+        
+        for(Branch branch: this.branches)
+        {
+            if(BranchName.equals(branch.getName()))
+            {
+                Library lib = branch.getLib();
+                ArrayList<Book> bc = lib.getBooklist().getBooklistCollection();
+                for(int i =0 ; i< bc.size();i++){
+                    if(bc.get(i).getRt().getRentId() == bk.getRt().getRentId()){
+                        System.out.println("Updated rent for rent-id" + bc.get(i).getRt().getRentId());
+                        bc.set(i, bk);
+                         break;
+                        
+                    }
+                }
+                
+                
+                
+//                System.out.println(" data in only branch: "+BranchName);
+               
             }     
         }
         

@@ -17,15 +17,27 @@ public class Rent {
     String status;
     String rentDuration;
     long serialNumber;
+    String bookRequested;
     private static int counter = 0;
+
+    public String getBookRequested() {
+        return bookRequested;
+    }
+
+    public void setBookRequested(String bookRequested) {
+        this.bookRequested = bookRequested;
+    }
     
     
-    public Rent(Double rentPrice, String status, String rentDuration, long serialNumber) {
+    
+    
+    public Rent(Double rentPrice, String status, String rentDuration, long serialNumber,String bookRequested) {
         this.rentId = "rentId" + this.counter++;
         this.rentPrice = rentPrice;
         this.status = status;
         this.rentDuration = rentDuration;
         this.serialNumber = serialNumber;
+        this.bookRequested = bookRequested;
     }
 
     public Rent() {

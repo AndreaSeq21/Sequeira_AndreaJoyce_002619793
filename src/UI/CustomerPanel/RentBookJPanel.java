@@ -55,8 +55,10 @@ public class RentBookJPanel extends javax.swing.JPanel {
         displayLocationDp();
         displayAuthorNameDp();
         displayGenreNameDp();
+//        String location = "Boston";
+//        displayBookTableDetails(location);
         //displayLibraryDp();
-//        displayBookDetails();
+//        
 //        displayBook();
     }
 
@@ -80,7 +82,7 @@ public class RentBookJPanel extends javax.swing.JPanel {
         tableBookTable = new javax.swing.JTable();
         btnRent = new javax.swing.JButton();
         btnViewGenre = new javax.swing.JButton();
-        btnViewLocation1 = new javax.swing.JButton();
+        btnViewLocation = new javax.swing.JButton();
         btnViewAuthor = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 204, 255));
@@ -145,6 +147,11 @@ public class RentBookJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 840, 270));
 
         btnRent.setText("RENT");
+        btnRent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRentActionPerformed(evt);
+            }
+        });
         add(btnRent, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 610, 150, 30));
 
         btnViewGenre.setText("VIEW");
@@ -155,13 +162,13 @@ public class RentBookJPanel extends javax.swing.JPanel {
         });
         add(btnViewGenre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 70, 30));
 
-        btnViewLocation1.setText("VIEW");
-        btnViewLocation1.addActionListener(new java.awt.event.ActionListener() {
+        btnViewLocation.setText("VIEW");
+        btnViewLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewLocation1ActionPerformed(evt);
+                btnViewLocationActionPerformed(evt);
             }
         });
-        add(btnViewLocation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 70, 30));
+        add(btnViewLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 70, 30));
 
         btnViewAuthor.setText("VIEW");
         btnViewAuthor.addActionListener(new java.awt.event.ActionListener() {
@@ -187,24 +194,53 @@ public class RentBookJPanel extends javax.swing.JPanel {
 
     private void btnViewGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewGenreActionPerformed
         // TODO add your handling code here:
-          String location = (String) comboLocation.getSelectedItem();
-        displayBookTableDetails(location);
+         
     }//GEN-LAST:event_btnViewGenreActionPerformed
 
-    private void btnViewLocation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocation1ActionPerformed
+    private void btnViewLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewLocation1ActionPerformed
+         String location = (String) comboLocation.getSelectedItem();
+        displayBookTableDetails(location);
+    }//GEN-LAST:event_btnViewLocationActionPerformed
 
     private void btnViewAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAuthorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnViewAuthorActionPerformed
+
+    private void btnRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableBookTable.getSelectedRow();
+        if(selectedRow >= 0 ){
+            String selectSerialNumber = tableBookTable.getValueAt(selectedRow, 11).toString();
+            Library lib = this.branch.getLib();
+             ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+             //update rent with requested
+              for(int i =0;i< bookcollection.size();i++ ){
+                  long serialNumber = bookcollection.get(i).getRt().getSerialNumber();
+                  
+               if( serialNumber == Long.valueOf(selectSerialNumber) )
+               {
+                   Book bk= bookcollection.get(i);
+                  Rent rt = bk.getRt();
+                  rt.setBookRequested("SENT");
+                  bk.setRt(rt);
+                  this.applicationsystem.UpdateBookToBranch(bookcollection.get(i).getLocation(),bk);
+                  this.applicationsystem.getCustomerList().updateCustomer(this.useraccount.getAccountId(), rt);
+                  break;
+               }
+              }
+               JOptionPane.showMessageDialog(null, "Rent Request Sent to Librarian");
+              
+        }
+        
+    }//GEN-LAST:event_btnRentActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRent;
     private javax.swing.JButton btnViewAuthor;
     private javax.swing.JButton btnViewGenre;
-    private javax.swing.JButton btnViewLocation1;
+    private javax.swing.JButton btnViewLocation;
     private javax.swing.JComboBox<String> comboAuthorName;
     private javax.swing.JComboBox<String> comboGenre;
     private javax.swing.JComboBox<String> comboLocation;
@@ -234,38 +270,38 @@ public String fetchBranchName()
         return BranchName;
     }
 
-    private void displayBook(){
-        viewTableModel.setRowCount(0);
-//        ArrayList<Branch> br = this.applicationsystem.getBranches();
-       
-        
-          Library lib = this.branch.getLib();
-          ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
-        
-        
-//        String branchNameFunc = fetchBranchName();
-          for(int i =0;i< bookcollection.size();i++ ){
-               Object row[] = new Object[11];
-               if(bookcollection.get(i).getLocation().equals(useraccount.getAccessTo()))
-               {
-                     row[0] = bookcollection.get(i).getMaterialName();
-                     row[1] = bookcollection.get(i).getNoOfPages();
-                     row[2] = bookcollection.get(i).getLanguages();
-                     row[3] = bookcollection.get(i).getAuthorName();
-                     row[4] = bookcollection.get(i).getGenre();
-                     row[5] = bookcollection.get(i).getTypeOfBinding();
-                     row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
-                     row[7] = bookcollection.get(i).getIsAvailableFlag();
-                     row[8] = bookcollection.get(i).getRt().getRentPrice();
-                     row[9] = bookcollection.get(i).getRt().getRentDuration();
-                     row[10] = bookcollection.get(i).getRt().getSerialNumber();
-                    
-                    viewTableModel.addRow(row);
-               }
-                  
-             
-              }    
-          }
+//    private void displayBook(){
+//        viewTableModel.setRowCount(0);
+////        ArrayList<Branch> br = this.applicationsystem.getBranches();
+//       
+//        
+//          Library lib = this.branch.getLib();
+//          ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+//        
+//        
+////        String branchNameFunc = fetchBranchName();
+//          for(int i =0;i< bookcollection.size();i++ ){
+//               Object row[] = new Object[11];
+//               if(bookcollection.get(i).getLocation().equals(useraccount.getAccessTo()))
+//               {
+//                     row[0] = bookcollection.get(i).getMaterialName();
+//                     row[1] = bookcollection.get(i).getNoOfPages();
+//                     row[2] = bookcollection.get(i).getLanguages();
+//                     row[3] = bookcollection.get(i).getAuthorName();
+//                     row[4] = bookcollection.get(i).getGenre();
+//                     row[5] = bookcollection.get(i).getTypeOfBinding();
+//                     row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
+//                     row[7] = bookcollection.get(i).getIsAvailableFlag();
+//                     row[8] = bookcollection.get(i).getRt().getRentPrice();
+//                     row[9] = bookcollection.get(i).getRt().getRentDuration();
+//                     row[10] = bookcollection.get(i).getRt().getSerialNumber();
+//                    
+//                    viewTableModel.addRow(row);
+//               }
+//                  
+//             
+//              }    
+//          }
 
     private void displayLocationDp() {
             comboLocation.removeAllItems();
@@ -340,22 +376,27 @@ public String fetchBranchName()
     }
 
     private void displayBookTableDetails(String location) {
+        
+        System.out.println("Display book details in customer ");
+        
         viewTableModel.setRowCount(0);
-          Library lib = this.branch.getLib();
-          ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+        Library lib = this.branch.getLib();
+        ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
         
         
 //        String branchNameFunc = fetchBranchName();
           for(int i =0;i< bookcollection.size();i++ ){
-               Object row[] = new Object[11];
+              Object row[] = new Object[11];
+              
                if(bookcollection.get(i).getLocation().equals(location))
                {
-                    System.out.println("Inside display book function");
+                   System.out.println("Inside display book function");
                      row[0] = bookcollection.get(i).getMaterialName();
                      row[1] = bookcollection.get(i).getNoOfPages();
                      row[2] = bookcollection.get(i).getLanguages();
                      row[3] = bookcollection.get(i).getAuthorName();
                      row[4] = bookcollection.get(i).getGenre();
+                     
                      row[5] = bookcollection.get(i).getTypeOfBinding();
                      row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
                      row[7] = bookcollection.get(i).getIsAvailableFlag();
@@ -365,6 +406,8 @@ public String fetchBranchName()
                     
                     viewTableModel.addRow(row);
                }
+               
+              
                   
              
               }    

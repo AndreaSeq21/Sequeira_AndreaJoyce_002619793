@@ -415,10 +415,10 @@ public String fetchBranchName()
         viewTableModel.setRowCount(0);
 //        ArrayList<Branch> br = this.applicationsystem.getBranches();
        
-        
+          
           Library lib = this.branch.getLib();
           ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
-        
+          
         
 //        String branchNameFunc = fetchBranchName();
           for(int i =0;i< bookcollection.size();i++ ){

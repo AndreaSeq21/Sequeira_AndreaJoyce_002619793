@@ -44,6 +44,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
         this.applicationsystem = applicationsystem;
         this.branch = branch;
         this.useraccount = useraccount;
+        displayCustomer();
         
 //        displayLibraryDp();
 //        displayBranchManager();
@@ -181,10 +182,6 @@ public class CustomerJPanel extends javax.swing.JPanel {
 //            UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new SystemAdminRole());
             //this.branch.getLib().getEmployeelist().createEmployeeAccount(user.getAccountId(), libName, Integer.valueOf(libAge), "branch manager", Integer.valueOf(experience),libraryName);
             UserAccount user = this.applicationsystem.getTopLevelUserAccountDirectory().createUserAccount(userName, passWord , new CustomerRole(),"ALL");
-//            Customer cust = new Customer();
-//            cust.setCustomerName(custName);
-//            cust.setCustomerAge(Integer.valueOf(custAge));
-//            cust.setCustomerId(user.getAccountId());
             this.applicationsystem.getCustomerList().addCustomer(custName,Integer.valueOf(custAge),user.getAccountId());
             JOptionPane.showMessageDialog(null, "Customer has been added");
             displayCustomer();
@@ -246,21 +243,9 @@ public class CustomerJPanel extends javax.swing.JPanel {
               row[1] = cust.get(i).getCustomerAge();
               row[2] = u.getUsername();
               row[3] = u.getPassword();
-
-             viewTableModel.addRow(row);
+              viewTableModel.addRow(row);
         }
-//        for (Employee emp: this.branch.getLib().getEmployeelist().getEmployeelist())
-//        {  
-//            UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(emp.getPersonId());
-//             Object row[] = new Object[6];
-//             row[0] = emp.getName();
-//             row[1] = emp.getAge();
-//             row[2] = emp.getLibraryName();
-//             row[3] = u.getUsername();
-//             row[4] = u.getPassword();
-//             row[5] = emp.getExperience();
-//             viewTableModel.addRow(row);
-//        }
+
                         
     }
 

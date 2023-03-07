@@ -5,6 +5,7 @@
  */
 package Model.Customer;
 
+import Model.Rental.Rent;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +39,19 @@ public class CustomerDirectory {
         this.customerlist.add(customer);
 //        return customer;
         return null;
+    }
+    
+      public void updateCustomer(String customerId,Rent rt){
+       for(Customer cust: this.customerlist)
+       {
+           if(cust.getCustomerId().equals(customerId)){
+               cust.getRentlist().add(rt);
+               
+           }
+       }
+       
+//        return customer;
+//        return null;
     }
     
 }

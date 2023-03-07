@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 public class CustomerRole extends Role {
         @Override
     public JFrame createWorkArea(ApplicationSystem appSystem, Branch branch, UserAccount useraccount) {
-        // return jframe
+       
         return new CustomerJFrame(appSystem, branch, useraccount);
          
     }

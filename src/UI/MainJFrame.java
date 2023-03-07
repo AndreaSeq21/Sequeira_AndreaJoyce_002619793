@@ -145,13 +145,13 @@ public class MainJFrame extends javax.swing.JFrame {
                 Role fetchRole = user.getRole();
                 System.out.println("The Role of this user is " +fetchRole.toString());
                 
-                if(fetchRole.toString().contains("SystemAdmin") || fetchRole.toString().contains("Customer") ){
-                    System.out.println("Entered the value of SystemAdmin");
+                if(fetchRole.toString().contains("SystemAdmin")  ){
+//                    System.out.println("Entered the value of SystemAdmin");
                      branch = new Branch();
                    
                     
                 }
-                else if(fetchRole.toString().contains("Librarian")){
+                else if(fetchRole.toString().contains("Librarian") ){
                     System.out.println("Entered the value of Librarian");
                     ArrayList<Branch> br = this.applicationsystem.getBranches();
                     for(int i =0 ; i< br.size();i++)
@@ -165,7 +165,13 @@ public class MainJFrame extends javax.swing.JFrame {
                            
                        
                     }
+                    
                     System.out.println("BRANCH IN "+branch.getName());
+                }
+                else if(fetchRole.toString().contains("Customer") ){
+                    System.out.println("Entered the value of Customer");
+                    ArrayList<Branch> br = this.applicationsystem.getBranches();
+                    branch = this.branch;
                 }
                 
             foundUser = true;

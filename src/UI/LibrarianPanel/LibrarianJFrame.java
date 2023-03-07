@@ -55,7 +55,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         controlJPanel = new javax.swing.JPanel();
         btnBranch = new javax.swing.JButton();
-        btnLibrarian = new javax.swing.JButton();
+        btnRentReq = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtLocation = new javax.swing.JTextField();
@@ -75,10 +75,10 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnLibrarian.setText("ACCEPT/REJECT RENTAL REQ");
-        btnLibrarian.addActionListener(new java.awt.event.ActionListener() {
+        btnRentReq.setText("ACCEPT/REJECT RENTAL REQ");
+        btnRentReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLibrarianActionPerformed(evt);
+                btnRentReqActionPerformed(evt);
             }
         });
 
@@ -120,7 +120,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnLibrarian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRentReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMagazine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBranch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -135,7 +135,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
                         .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelUser, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         controlJPanelLayout.setVerticalGroup(
             controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +153,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addComponent(btnMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnLibrarian, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRentReq, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(155, Short.MAX_VALUE))
@@ -187,9 +187,10 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         jSplitPane1.setRightComponent(new AddBookJPanel(this.applicationsystem,this.branch, this.useraccount));
     }//GEN-LAST:event_btnBranchActionPerformed
 
-    private void btnLibrarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibrarianActionPerformed
-       // jSplitPane1.setRightComponent(new ManageLibrarian(this.applicationsystem,this.branch, this.useraccount)); // TODO add your handling code here:
-    }//GEN-LAST:event_btnLibrarianActionPerformed
+    private void btnRentReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentReqActionPerformed
+       
+ jSplitPane1.setRightComponent(new RentReqJPanel(this.applicationsystem,this.branch, this.useraccount)); // TODO add your handling code here:
+    }//GEN-LAST:event_btnRentReqActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
@@ -262,9 +263,9 @@ public class LibrarianJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBranch;
-    private javax.swing.JButton btnLibrarian;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnMagazine;
+    private javax.swing.JButton btnRentReq;
     private javax.swing.JPanel controlJPanel;
     private javax.swing.JPanel displayJPanel;
     private javax.swing.JLabel jLabel1;
