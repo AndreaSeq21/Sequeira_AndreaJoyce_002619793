@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class ManageLibrarian extends javax.swing.JPanel {
 

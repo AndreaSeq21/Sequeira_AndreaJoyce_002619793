@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class SystemAdminJFrame extends javax.swing.JFrame {
 

@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class RentBookJPanel extends javax.swing.JPanel {
 

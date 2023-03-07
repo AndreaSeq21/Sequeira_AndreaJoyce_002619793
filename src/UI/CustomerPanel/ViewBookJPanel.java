@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class ViewBookJPanel extends javax.swing.JPanel {
 
@@ -180,6 +180,7 @@ public class ViewBookJPanel extends javax.swing.JPanel {
     
        private void displayLocationDp() {
             comboLocationBox.removeAllItems();
+            
          ArrayList<String> br = this.applicationsystem.getBranchName();
         for (int i = 0; i < br.size(); i++)
         {
@@ -189,6 +190,7 @@ public class ViewBookJPanel extends javax.swing.JPanel {
     }
 
     private void displayBookTableDetails(String location) {
+        viewTableModel.setRowCount(0);
         ArrayList<Customer> cust = this.applicationsystem.getCustomerList().getCustomerlist();
         ArrayList<String> rentArray = new ArrayList<String>();
       for(int i =0; i< cust.size();i++){

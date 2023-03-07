@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class RentMagazineJPanel extends javax.swing.JPanel {
 
@@ -106,7 +106,7 @@ public class RentMagazineJPanel extends javax.swing.JPanel {
                 btnRentActionPerformed(evt);
             }
         });
-        add(btnRent, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 560, 220, 40));
+        add(btnRent, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 540, 220, 40));
 
         btnViewRentMagazine.setText("VIEW");
         btnViewRentMagazine.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +160,7 @@ public class RentMagazineJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = tableBookTable.getSelectedRow();
         if(selectedRow >= 0 ){
-            String selectSerialNumber = tableBookTable.getValueAt(selectedRow, 10).toString();
+            String selectSerialNumber = tableBookTable.getValueAt(selectedRow, 6).toString();
             Library lib = this.branch.getLib();
              ArrayList<Magazine> magList = lib.getGeneralList().getMagazineCollection();
              //update rent with requested
@@ -214,7 +214,7 @@ public class RentMagazineJPanel extends javax.swing.JPanel {
 
     private void displayBookTableDetails(String location) {
         
-        System.out.println("Display book details in customer ");
+        System.out.println("Display magazine details in customer ");
         
         viewTableModel.setRowCount(0);
         Library lib = this.branch.getLib();
@@ -227,7 +227,7 @@ public class RentMagazineJPanel extends javax.swing.JPanel {
               
                if(maglist.get(i).getLocation().equals(location) && maglist.get(i).getIsAvailableFlag()!= false)
                {
-                   System.out.println("Inside display book function");
+                   System.out.println("Inside display magazine function");
                      row[0] = maglist.get(i).getMaterialName();
                      row[1] = maglist.get(i).getIssueType();
                      row[2] = String.valueOf(maglist.get(i).getRegisteredDate());

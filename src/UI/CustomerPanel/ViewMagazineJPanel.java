@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class ViewMagazineJPanel extends javax.swing.JPanel {
 
@@ -92,7 +92,7 @@ public class ViewMagazineJPanel extends javax.swing.JPanel {
         comboLocationBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(comboLocationBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 230, 30));
 
-        btnReturnBook.setText("RETURN BOOK");
+        btnReturnBook.setText("RETURN Magazine");
         btnReturnBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReturnBookActionPerformed(evt);
@@ -113,11 +113,11 @@ public class ViewMagazineJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Company Name", "issue type", "Date", "Available", "Rent Price", "Rent Duration", "Serial Number", "STATUS"
+                "Company Name", "issue type", "Date", "Rent Price", "Rent Duration", "Serial Number", "STATUS"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -126,14 +126,14 @@ public class ViewMagazineJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableBookTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 770, 400));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 770, 210));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnBookActionPerformed
         // TODO add your handling code here:
     int selectedRow = tableBookTable.getSelectedRow();
              if(selectedRow >= 0 ){
-            String selectSerialNumber = tableBookTable.getValueAt(selectedRow, 9).toString();
+            String selectSerialNumber = tableBookTable.getValueAt(selectedRow, 5).toString();
             Library lib = this.branch.getLib();
              ArrayList<Magazine> magList = lib.getGeneralList().getMagazineCollection();
              //update rent with requested
@@ -191,6 +191,7 @@ public class ViewMagazineJPanel extends javax.swing.JPanel {
     }
 
     private void displayBookTableDetails(String location) {
+        viewTableModel.setRowCount(0);
         ArrayList<Customer> cust = this.applicationsystem.getCustomerList().getCustomerlist();
         ArrayList<String> rentArray = new ArrayList<String>();
       for(int i =0; i< cust.size();i++){
@@ -218,15 +219,12 @@ public class ViewMagazineJPanel extends javax.swing.JPanel {
                    {
                        Object row[] = new Object[12];
                      row[0] = magList.get(i).getMaterialName();
-                  
                      row[1] = magList.get(i).getIssueType();
                      row[2] = String.valueOf(magList.get(i).getRegisteredDate());
-//                     row[7] = bookcollection.get(i).getIsAvailableFlag();
                      row[3] = magList.get(i).getRt().getRentPrice();
                      row[4] = magList.get(i).getRt().getRentDuration();
                      row[5] = magList.get(i).getRt().getSerialNumber();
                      row[6] = magList.get(i).getRt().getBookRequested();
-//                      row[11] = customerArray.get(j);
                      viewTableModel.addRow(row);
                    }
                    

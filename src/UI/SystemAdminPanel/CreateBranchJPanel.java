@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class CreateBranchJPanel extends javax.swing.JPanel {
 
@@ -88,11 +88,11 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "BRANCH", "LIBRARY", "BUILDING NUMBER"
+                "BRANCH"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class BranchManagerJFrame extends javax.swing.JFrame {
 
@@ -236,7 +236,8 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
     
     public void displayLocation()
     {
-        jLabelUser.setText(useraccount.getAccountId());
+        jLabelUser.setText(useraccount.getUsername());
+        txtLocation.setText(useraccount.getAccessTo());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

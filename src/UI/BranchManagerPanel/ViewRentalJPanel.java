@@ -15,6 +15,7 @@ import Model.Employee.EmployeeDirectory;
 import Model.Library.Library;
 import Model.Material.Book;
 import Model.Material.BookCollection;
+import Model.Material.Magazine;
 import Model.Rental.Rent;
 import Model.Role.LibrarianRole;
 import Model.Role.Role;
@@ -30,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class ViewRentalJPanel extends javax.swing.JPanel {
 
@@ -38,6 +39,7 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
     private Branch branch;
     private UserAccount useraccount;
     DefaultTableModel viewTableModel;
+    DefaultTableModel viewTableModel2;
     /** Creates new form CreateBranchJPanel */
 
     
@@ -49,6 +51,7 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
     public ViewRentalJPanel(ApplicationSystem applicationsystem, Branch branch, UserAccount useraccount) {
         initComponents();
         this.viewTableModel = (DefaultTableModel) tableBookTable.getModel();  
+        this.viewTableModel2 = (DefaultTableModel) tableMagazineTable.getModel();  
         this.applicationsystem = applicationsystem;
         this.branch = branch;
         this.useraccount = useraccount;
@@ -71,10 +74,14 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
 
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableBookTable = new javax.swing.JTable();
+        tableMagazineTable = new javax.swing.JTable();
         txtGenerateRevenue = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableBookTable = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,6 +89,35 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel12.setText("RENTAL REQUEST IN LIBRARY");
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 320, 20));
+
+        tableMagazineTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Customer Name", "BookName", "Rent Price", "Rent Duration", "Serial Number"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Long.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableMagazineTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 920, 150));
+        add(txtGenerateRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 500, 140, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("$");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, 20, 30));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel2.setText("GENERATE TOTAL REVENUE");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, 160, -1));
 
         tableBookTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,24 +128,24 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class, java.lang.Long.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Long.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableBookTable);
+        jScrollPane2.setViewportView(tableBookTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 920, 220));
-        add(txtGenerateRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 140, 30));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 920, 140));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("$");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 20, 30));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel3.setText("Magazine Rental Request");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 240, -1));
 
-        jLabel2.setText("GENERATE TOTAL REVENUE");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 140, -1));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel4.setText("Book Rental Request");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 240, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -117,8 +153,12 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tableBookTable;
+    private javax.swing.JTable tableMagazineTable;
     private javax.swing.JTextField txtGenerateRevenue;
     // End of variables declaration//GEN-END:variables
 
@@ -128,6 +168,8 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
         ArrayList<String> rentArray = new ArrayList<String>();
         ArrayList<Double> rentArrayPrice = new ArrayList<Double>();
          ArrayList<String> custArray = new ArrayList<String>();
+         viewTableModel.setRowCount(0);
+          viewTableModel2.setRowCount(0);
       for(int i =0; i< cust.size();i++){
             ArrayList<Rent> rt = cust.get(i).getRentlist();
           for(int j=0;j<rt.size();j++){
@@ -139,6 +181,7 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
 
       Library lib = this.branch.getLib();
         ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+        ArrayList<Magazine> magCollection = lib.getGeneralList().getMagazineCollection();
         
              for(int i =0;i< bookcollection.size();i++ ){
                if(bookcollection.get(i).getLocation().equals(useraccount.getAccessTo()))
@@ -158,13 +201,31 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
                    }
                }
              }
+             
+             
+               for(int i =0;i< magCollection.size();i++ ){
+               if(magCollection.get(i).getLocation().equals(useraccount.getAccessTo()))
+               {
+                   for(int j=0;j<rentArray.size();j++){
+                   if(rentArray.get(j) == magCollection.get(i).getRt().getRentId() )
+                   {
+                     Object row[] = new Object[6];  
+                     row[0] = custArray.get(j);
+                     row[1] = magCollection.get(i).getMaterialName();
+                     row[2] = magCollection.get(i).getRt().getRentPrice();
+                     row[3] = magCollection.get(i).getRt().getRentDuration();
+                     row[4] = magCollection.get(i).getRt().getSerialNumber();
+                     viewTableModel2.addRow(row);
+                   }
+                   }
+               }
+             }
+  
              double sum=0;
              for(int i = 0;i < rentArrayPrice.size() ;i++){
                  sum = sum + rentArrayPrice.get(i);
-                 
-    
     }
-             txtGenerateRevenue.setText(String.valueOf(sum));
+             txtGenerateRevenue.setText(String.valueOf(sum));                                                                                                                                           
     }
     
 }
