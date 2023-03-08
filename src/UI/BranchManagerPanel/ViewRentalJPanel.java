@@ -73,7 +73,7 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBookTable = new javax.swing.JTable();
         btnGenerateREvenue = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtGenerateRevenue = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 255));
@@ -104,13 +104,30 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 920, 220));
 
         btnGenerateREvenue.setText("CLICK HERE TO GENERATE TOTAL REVENUE");
+        btnGenerateREvenue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateREvenueActionPerformed(evt);
+            }
+        });
         add(btnGenerateREvenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 260, 40));
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 140, 30));
+        add(txtGenerateRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 140, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("$");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 20, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGenerateREvenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateREvenueActionPerformed
+        // TODO add your handling code here:
+        int getAllValues = tableBookTable.getColumnCount();
+        int sum=0;
+        for(int i=0;i< getAllValues;i++){
+            sum += Integer.valueOf(tableBookTable.getValueAt(i,2).toString());
+        }
+        txtGenerateRevenue.setText(String.valueOf(sum));
+        
+        
+    }//GEN-LAST:event_btnGenerateREvenueActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -118,8 +135,8 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tableBookTable;
+    private javax.swing.JTextField txtGenerateRevenue;
     // End of variables declaration//GEN-END:variables
 
 
@@ -130,46 +147,33 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
     private void displayRentalTableDetails() {
         ArrayList<Customer> cust = this.applicationsystem.getCustomerList().getCustomerlist();
         ArrayList<String> rentArray = new ArrayList<String>();
+         ArrayList<String> custArray = new ArrayList<String>();
       for(int i =0; i< cust.size();i++){
-          if(cust.get(i).getCustomerId().equals(useraccount.getAccountId()))
-          {
             ArrayList<Rent> rt = cust.get(i).getRentlist();
           for(int j=0;j<rt.size();j++){
               rentArray.add(rt.get(j).getRentId());
+              custArray.add(cust.get(i).getCustomerName());
           }  
-          }
-          
       }
-      
+
       Library lib = this.branch.getLib();
         ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
         
              for(int i =0;i< bookcollection.size();i++ ){
-               
-               
                if(bookcollection.get(i).getLocation().equals(useraccount.getAccessTo()))
                {
                    for(int j=0;j<rentArray.size();j++){
                    
                    if(rentArray.get(j) == bookcollection.get(i).getRt().getRentId() )
                    {
-                       Object row[] = new Object[12];
-                     row[0] = bookcollection.get(i).getMaterialName();
-                     row[1] = bookcollection.get(i).getNoOfPages();
-                     row[2] = bookcollection.get(i).getLanguages();
-                     row[3] = bookcollection.get(i).getAuthorName();
-                     row[4] = bookcollection.get(i).getGenre();
-                     row[5] = bookcollection.get(i).getTypeOfBinding();
-                     row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
-//                     row[7] = bookcollection.get(i).getIsAvailableFlag();
-                     row[7] = bookcollection.get(i).getRt().getRentPrice();
-                     row[8] = bookcollection.get(i).getRt().getRentDuration();
-                     row[9] = bookcollection.get(i).getRt().getSerialNumber();
-                     row[10] = bookcollection.get(i).getRt().getBookRequested();
-//                      row[11] = customerArray.get(j);
+                     Object row[] = new Object[6];  
+                     row[0] = custArray.get(j);
+                     row[1] = bookcollection.get(i).getMaterialName();
+                     row[2] = bookcollection.get(i).getRt().getRentPrice();
+                     row[3] = bookcollection.get(i).getRt().getRentDuration();
+                     row[4] = bookcollection.get(i).getRt().getSerialNumber();
                      viewTableModel.addRow(row);
                    }
-                   
                    }
                }
              }
