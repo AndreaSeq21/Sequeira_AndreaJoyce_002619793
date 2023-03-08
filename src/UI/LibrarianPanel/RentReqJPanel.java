@@ -117,11 +117,30 @@ public class RentReqJPanel extends javax.swing.JPanel {
 
     private void btnDeclineBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineBookActionPerformed
 
-          Library lib = this.branch.getLib();
-          Book book = new Book();
-          BookCollection bookcollection = lib.getBooklist();
-          
-         
+      int selectedRow = tableBookTable.getSelectedRow();
+             if(selectedRow >= 0 ){
+            String selectSerialNumber = tableBookTable.getValueAt(selectedRow, 10).toString();
+            Library lib = this.branch.getLib();
+             ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+             //update rent with requested
+              for(int i =0;i< bookcollection.size();i++ ){
+                  long serialNumber = bookcollection.get(i).getRt().getSerialNumber();
+                  
+               if( serialNumber == Long.valueOf(selectSerialNumber) )
+               {
+                   Book bk= bookcollection.get(i);
+                   bk.setIsAvailableFlag(true);
+                  Rent rt = bk.getRt();
+                  rt.setBookRequested("DECLINED");
+                  bk.setRt(rt);
+                  this.applicationsystem.UpdateBookToBranch(bookcollection.get(i).getLocation(),bk);
+                  this.applicationsystem.getCustomerList().updateRentStatus(this.useraccount.getAccountId(), rt);
+                  break;
+               }
+              }
+               JOptionPane.showMessageDialog(null, "Declined Request");
+              
+             }
           
           
           

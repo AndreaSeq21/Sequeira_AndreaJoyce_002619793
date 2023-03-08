@@ -88,8 +88,7 @@ public class ApplicationSystem {
      for(Branch branch: this.branches){
          if(branch.getName().equals(name))
          {
-             this.branches.remove(branch);
-             
+             this.branches.remove(branch); 
          }
          
      }
@@ -200,6 +199,10 @@ public class ApplicationSystem {
                   if(u.getName().equals(branchName) && getDesignationValue.equals(designation) ){    
                 return true;
             }
+                  else {
+                      return false; 
+                  }
+                 
               
                  
               }
@@ -207,6 +210,7 @@ public class ApplicationSystem {
             
          }
         return false;
+        
       }
 
        

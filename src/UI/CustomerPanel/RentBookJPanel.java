@@ -192,20 +192,11 @@ public class RentBookJPanel extends javax.swing.JPanel {
          
     }//GEN-LAST:event_comboLocationItemStateChanged
 
-    private void btnViewGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewGenreActionPerformed
-        // TODO add your handling code here:
-         
-    }//GEN-LAST:event_btnViewGenreActionPerformed
-
     private void btnViewLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocationActionPerformed
         // TODO add your handling code here:
          String location = (String) comboLocation.getSelectedItem();
         displayBookTableDetails(location);
     }//GEN-LAST:event_btnViewLocationActionPerformed
-
-    private void btnViewAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAuthorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewAuthorActionPerformed
 
     private void btnRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentActionPerformed
         // TODO add your handling code here:
@@ -235,6 +226,18 @@ public class RentBookJPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnRentActionPerformed
+
+    private void btnViewGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewGenreActionPerformed
+        // TODO add your handling code here:
+  String GenreName = (String) comboGenre.getSelectedItem();
+        displayGenreName(GenreName);
+    }//GEN-LAST:event_btnViewGenreActionPerformed
+
+    private void btnViewAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAuthorActionPerformed
+        // TODO add your handling code here:  String location = (String) comboLocation.getSelectedItem();
+          String AuthorName = (String) comboAuthorName.getSelectedItem();
+         displayAuthorName(AuthorName);
+    }//GEN-LAST:event_btnViewAuthorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -365,6 +368,76 @@ public class RentBookJPanel extends javax.swing.JPanel {
              
               }    
           }
+
+    private void displayGenreName(String GenreName) {
+         //To change body of generated methods, choose Tools | Templates.
+          viewTableModel.setRowCount(0);
+        Library lib = this.branch.getLib();
+        ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+        
+        
+//        String branchNameFunc = fetchBranchName();
+          for(int i =0;i< bookcollection.size();i++ ){
+              Object row[] = new Object[11];
+              
+               if(bookcollection.get(i).getGenre().equals(GenreName) && bookcollection.get(i).getIsAvailableFlag()!= false)
+               {
+                   System.out.println("Inside display book function");
+                     row[0] = bookcollection.get(i).getMaterialName();
+                     row[1] = bookcollection.get(i).getNoOfPages();
+                     row[2] = bookcollection.get(i).getLanguages();
+                     row[3] = bookcollection.get(i).getAuthorName();
+                     row[4] = bookcollection.get(i).getGenre();
+                     
+                     row[5] = bookcollection.get(i).getTypeOfBinding();
+                     row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
+                     row[7] = bookcollection.get(i).getIsAvailableFlag();
+                     row[8] = bookcollection.get(i).getRt().getRentPrice();
+                     row[9] = bookcollection.get(i).getRt().getRentDuration();
+                     row[10] = bookcollection.get(i).getRt().getSerialNumber();
+                    
+                    viewTableModel.addRow(row);
+               }
+          }
+              
+                  
+             
+    }
+
+    private void displayAuthorName(String AuthorName) {
+         viewTableModel.setRowCount(0);
+        Library lib = this.branch.getLib();
+        ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+        
+        
+//        String branchNameFunc = fetchBranchName();
+          for(int i =0;i< bookcollection.size();i++ ){
+              Object row[] = new Object[11];
+              
+               if(bookcollection.get(i).getAuthorName().equals(AuthorName) && bookcollection.get(i).getIsAvailableFlag()!= false)
+               {
+                   System.out.println("Inside display book function");
+                     row[0] = bookcollection.get(i).getMaterialName();
+                     row[1] = bookcollection.get(i).getNoOfPages();
+                     row[2] = bookcollection.get(i).getLanguages();
+                     row[3] = bookcollection.get(i).getAuthorName();
+                     row[4] = bookcollection.get(i).getGenre();
+                     
+                     row[5] = bookcollection.get(i).getTypeOfBinding();
+                     row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
+                     row[7] = bookcollection.get(i).getIsAvailableFlag();
+                     row[8] = bookcollection.get(i).getRt().getRentPrice();
+                     row[9] = bookcollection.get(i).getRt().getRentDuration();
+                     row[10] = bookcollection.get(i).getRt().getSerialNumber();
+                    
+                    viewTableModel.addRow(row);
+               }
+               
+              
+                  
+             
+              }    
+    }
     }
     
     

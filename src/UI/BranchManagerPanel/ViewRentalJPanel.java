@@ -72,9 +72,9 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBookTable = new javax.swing.JTable();
-        btnGenerateREvenue = new javax.swing.JButton();
         txtGenerateRevenue = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -102,37 +102,21 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tableBookTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 920, 220));
-
-        btnGenerateREvenue.setText("CLICK HERE TO GENERATE TOTAL REVENUE");
-        btnGenerateREvenue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerateREvenueActionPerformed(evt);
-            }
-        });
-        add(btnGenerateREvenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 260, 40));
-        add(txtGenerateRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 140, 30));
+        add(txtGenerateRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 140, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("$");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 20, 30));
-    }// </editor-fold>//GEN-END:initComponents
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 20, 30));
 
-    private void btnGenerateREvenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateREvenueActionPerformed
-        // TODO add your handling code here:
-        int getAllValues = tableBookTable.getColumnCount();
-        int sum=0;
-        for(int i=0;i< getAllValues;i++){
-            sum += Integer.valueOf(tableBookTable.getValueAt(i,2).toString());
-        }
-        txtGenerateRevenue.setText(String.valueOf(sum));
-        
-    }//GEN-LAST:event_btnGenerateREvenueActionPerformed
+        jLabel2.setText("GENERATE TOTAL REVENUE");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 140, -1));
+    }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGenerateREvenue;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableBookTable;
     private javax.swing.JTextField txtGenerateRevenue;
@@ -142,11 +126,13 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
     private void displayRentalTableDetails() {
         ArrayList<Customer> cust = this.applicationsystem.getCustomerList().getCustomerlist();
         ArrayList<String> rentArray = new ArrayList<String>();
+        ArrayList<Double> rentArrayPrice = new ArrayList<Double>();
          ArrayList<String> custArray = new ArrayList<String>();
       for(int i =0; i< cust.size();i++){
             ArrayList<Rent> rt = cust.get(i).getRentlist();
           for(int j=0;j<rt.size();j++){
               rentArray.add(rt.get(j).getRentId());
+              rentArrayPrice.add(rt.get(j).getRentPrice());
               custArray.add(cust.get(i).getCustomerName());
           }  
       }
@@ -172,6 +158,13 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
                    }
                }
              }
+             double sum=0;
+             for(int i = 0;i < rentArrayPrice.size() ;i++){
+                 sum = sum + rentArrayPrice.get(i);
+                 
+    
+    }
+             txtGenerateRevenue.setText(String.valueOf(sum));
     }
     
 }

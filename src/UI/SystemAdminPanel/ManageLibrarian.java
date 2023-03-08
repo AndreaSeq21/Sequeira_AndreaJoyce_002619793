@@ -326,14 +326,17 @@ public class ManageLibrarian extends javax.swing.JPanel {
         //EmployeeDirectory emp = this.branch.getLib().getEmployeelist();
         //UserAccountDirectory user = this.applicationsystem.getTopLevelUserAccountDirectory();
         ArrayList<Branch> x = this.applicationsystem.getBranches();
-        
+         ArrayList<String> rm = this.applicationsystem.getBranchName();
         System.out.println("Size of branches of librarian:  "+ x.size());
        //System.out.println("Size of employee list of librarian:  "+ empz.size());
         viewTableModel.setRowCount(0);
         
         for(int i=0 ; i < x.size(); i++ )
         {
-            
+            for(int j=0;j< rm.size();j++ ){
+                String designation = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getDesignation();
+            if(rm.get(j).equals(x.get(i).getName()) && designation.equals("librarian"))
+            {
             Object row[] = new Object[8];
              String userName = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
              UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(userName);
@@ -348,7 +351,7 @@ public class ManageLibrarian extends javax.swing.JPanel {
               row[7] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getDesignation();
              viewTableModel.addRow(row);
         }
-        
+            }
 //        for (Branch ap: this.applicationsystem.getBranches())
 //        {   
 //            
@@ -371,7 +374,7 @@ public class ManageLibrarian extends javax.swing.JPanel {
 //             }
 //             }
             }
-            
+    }
                          
     
     

@@ -44,9 +44,10 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
         this.applicationsystem = applicationsystem;
         this.branch = branch;
         this.useraccount = useraccount;
-        
+        displayRemoveBranch();
         displayLibraryDp();
         displayBranchManager();
+        
     }
 
     /** This method is called from within the constructor to
@@ -310,15 +311,19 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
         //EmployeeDirectory emp = this.branch.getLib().getEmployeelist();
         //UserAccountDirectory user = this.applicationsystem.getTopLevelUserAccountDirectory();
         ArrayList<Branch> x = this.applicationsystem.getBranches();
+         ArrayList<String> rm = this.applicationsystem.getBranchName();
         
         System.out.println("Size of branches of librarian:  "+ x.size());
        //System.out.println("Size of employee list of librarian:  "+ empz.size());
         viewTableModel.setRowCount(0);
-        
+       
         for(int i=0 ; i < x.size(); i++ )
         {
-            
-            Object row[] = new Object[8];
+         for(int j=0;j< rm.size();j++ ){
+             String designation = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getDesignation();
+            if(rm.get(j).equals(x.get(i).getName()) && designation.equals("branch manager") )
+            {
+                Object row[] = new Object[8];
              String userName = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
              UserAccount u = this.applicationsystem.getTopLevelUserAccountDirectory().findbyId(userName);
                row[0] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getName();
@@ -331,6 +336,10 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
               row[6] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getExperience();
                row[7] = x.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getDesignation();
              viewTableModel.addRow(row);
+            }
+        }
+            
+            
         }
             }
             
@@ -344,6 +353,11 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
         {
             comboBoxLib.addItem(br.get(i));
         }
+    }
+
+    private void displayRemoveBranch() {
+       
+       
     }
 
 }
