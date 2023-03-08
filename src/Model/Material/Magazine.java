@@ -9,7 +9,7 @@ import Model.Rental.Rent;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class Magazine extends Material {
    

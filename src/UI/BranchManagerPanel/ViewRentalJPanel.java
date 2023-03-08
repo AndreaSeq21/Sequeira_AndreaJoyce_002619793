@@ -126,7 +126,6 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
         }
         txtGenerateRevenue.setText(String.valueOf(sum));
         
-        
     }//GEN-LAST:event_btnGenerateREvenueActionPerformed
 
 
@@ -139,10 +138,6 @@ public class ViewRentalJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtGenerateRevenue;
     // End of variables declaration//GEN-END:variables
 
-
-
-    
-     
 
     private void displayRentalTableDetails() {
         ArrayList<Customer> cust = this.applicationsystem.getCustomerList().getCustomerlist();

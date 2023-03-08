@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import Model.Rental.Rent;
 /**
  *
- * @author A
+ * @author Andrea Joyce Sequeira
  */
 public class Customer {
     String customerId;

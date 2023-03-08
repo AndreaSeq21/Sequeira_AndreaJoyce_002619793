@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -170,7 +170,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
                 else if(fetchRole.toString().contains("Customer") ){
                     System.out.println("Entered the value of Customer");
-                    ArrayList<Branch> br = this.applicationsystem.getBranches();
+//                    ArrayList<Branch> br = this.applicationsystem.getBranches();
                     branch = this.branch;
                 }
                 

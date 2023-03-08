@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class Genre {
     

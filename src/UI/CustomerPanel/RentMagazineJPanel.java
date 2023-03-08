@@ -198,38 +198,7 @@ public class RentMagazineJPanel extends javax.swing.JPanel {
 
 
 
-//    private void displayBook(){
-//        viewTableModel.setRowCount(0);
-////        ArrayList<Branch> br = this.applicationsystem.getBranches();
-//       
-//        
-//          Library lib = this.branch.getLib();
-//          ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
-//        
-//        
-////        String branchNameFunc = fetchBranchName();
-//          for(int i =0;i< bookcollection.size();i++ ){
-//               Object row[] = new Object[11];
-//               if(bookcollection.get(i).getLocation().equals(useraccount.getAccessTo()))
-//               {
-//                     row[0] = bookcollection.get(i).getMaterialName();
-//                     row[1] = bookcollection.get(i).getNoOfPages();
-//                     row[2] = bookcollection.get(i).getLanguages();
-//                     row[3] = bookcollection.get(i).getAuthorName();
-//                     row[4] = bookcollection.get(i).getGenre();
-//                     row[5] = bookcollection.get(i).getTypeOfBinding();
-//                     row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
-//                     row[7] = bookcollection.get(i).getIsAvailableFlag();
-//                     row[8] = bookcollection.get(i).getRt().getRentPrice();
-//                     row[9] = bookcollection.get(i).getRt().getRentDuration();
-//                     row[10] = bookcollection.get(i).getRt().getSerialNumber();
-//                    
-//                    viewTableModel.addRow(row);
-//               }
-//                  
-//             
-//              }    
-//          }
+
 
     private void displayLocationDp() {
             comboLocation.removeAllItems();
@@ -249,28 +218,23 @@ public class RentMagazineJPanel extends javax.swing.JPanel {
         
         viewTableModel.setRowCount(0);
         Library lib = this.branch.getLib();
-        ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+        ArrayList<Magazine> maglist = lib.getGeneralList().getMagazineCollection();
         
         
 //        String branchNameFunc = fetchBranchName();
-          for(int i =0;i< bookcollection.size();i++ ){
+          for(int i =0;i< maglist.size();i++ ){
               Object row[] = new Object[11];
               
-               if(bookcollection.get(i).getLocation().equals(location) && bookcollection.get(i).getIsAvailableFlag()!= false)
+               if(maglist.get(i).getLocation().equals(location) && maglist.get(i).getIsAvailableFlag()!= false)
                {
                    System.out.println("Inside display book function");
-                     row[0] = bookcollection.get(i).getMaterialName();
-                     row[1] = bookcollection.get(i).getNoOfPages();
-                     row[2] = bookcollection.get(i).getLanguages();
-                     row[3] = bookcollection.get(i).getAuthorName();
-                     row[4] = bookcollection.get(i).getGenre();
-                     
-                     row[5] = bookcollection.get(i).getTypeOfBinding();
-                     row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
-                     row[7] = bookcollection.get(i).getIsAvailableFlag();
-                     row[8] = bookcollection.get(i).getRt().getRentPrice();
-                     row[9] = bookcollection.get(i).getRt().getRentDuration();
-                     row[10] = bookcollection.get(i).getRt().getSerialNumber();
+                     row[0] = maglist.get(i).getMaterialName();
+                     row[1] = maglist.get(i).getIssueType();
+                     row[2] = String.valueOf(maglist.get(i).getRegisteredDate());
+                     row[3] = maglist.get(i).getIsAvailableFlag();
+                     row[4] = maglist.get(i).getRt().getRentPrice();
+                     row[5] = maglist.get(i).getRt().getRentDuration();
+                     row[6] = maglist.get(i).getRt().getSerialNumber();
                     
                     viewTableModel.addRow(row);
                }

@@ -253,56 +253,8 @@ public class RentBookJPanel extends javax.swing.JPanel {
     private javax.swing.JTable tableBookTable;
     // End of variables declaration//GEN-END:variables
 
-public String fetchBranchName()
-    {
-        String BranchName = "";
-        String userAccountValue = this.useraccount.getAccountId();      
-        ArrayList<Branch> br = this.applicationsystem.getBranches();
-        int fetchNumber = 0;
-        for(int i=0;i< br.size(); i++){
-            String emp = br.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
-            if(emp.equals(userAccountValue) ){
-                fetchNumber = i;
-                break;  
-            }
-        }
-        BranchName = br.get(fetchNumber).getName();
-        System.out.println("BRANCH NAME PRINTING "+BranchName);
-        return BranchName;
-    }
 
-//    private void displayBook(){
-//        viewTableModel.setRowCount(0);
-////        ArrayList<Branch> br = this.applicationsystem.getBranches();
-//       
-//        
-//          Library lib = this.branch.getLib();
-//          ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
-//        
-//        
-////        String branchNameFunc = fetchBranchName();
-//          for(int i =0;i< bookcollection.size();i++ ){
-//               Object row[] = new Object[11];
-//               if(bookcollection.get(i).getLocation().equals(useraccount.getAccessTo()))
-//               {
-//                     row[0] = bookcollection.get(i).getMaterialName();
-//                     row[1] = bookcollection.get(i).getNoOfPages();
-//                     row[2] = bookcollection.get(i).getLanguages();
-//                     row[3] = bookcollection.get(i).getAuthorName();
-//                     row[4] = bookcollection.get(i).getGenre();
-//                     row[5] = bookcollection.get(i).getTypeOfBinding();
-//                     row[6] = String.valueOf(bookcollection.get(i).getRegisteredDate());
-//                     row[7] = bookcollection.get(i).getIsAvailableFlag();
-//                     row[8] = bookcollection.get(i).getRt().getRentPrice();
-//                     row[9] = bookcollection.get(i).getRt().getRentDuration();
-//                     row[10] = bookcollection.get(i).getRt().getSerialNumber();
-//                    
-//                    viewTableModel.addRow(row);
-//               }
-//                  
-//             
-//              }    
-//          }
+
 
     private void displayLocationDp() {
             comboLocation.removeAllItems();

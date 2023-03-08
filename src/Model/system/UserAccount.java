@@ -9,7 +9,7 @@ import Model.Role.Role;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class UserAccount {
     private String accountId;

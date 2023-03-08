@@ -199,14 +199,7 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLibSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibSubmitActionPerformed
-        // TODO add your handling code here:
-//        String branchName = txtAge.getText();
-//        String libraryName = "PublicLibrary-" + branchName;
-//        String buildingNum = txtBuildNumber.getText();
-//        this.branch = this.applicationsystem.createBranch(branchName,libraryName,Integer.valueOf(buildingNum));
-//        JOptionPane.showMessageDialog(null, "Added branch");
-//        displayBranch();
-   
+
             
         UserAccountDirectory ua = this.applicationsystem.getTopLevelUserAccountDirectory();
         if(ua.accountExists(txtUsername.getText())) {
@@ -239,7 +232,6 @@ public class ManageBranchMJPanel extends javax.swing.JPanel {
             
             this.applicationsystem.AddEmpToBranch((String) comboBoxLib.getSelectedItem(), lib);
             
-//            System.out.println("LIBARY VALUE OF CURRENT FLOW " + this.branch.getLib().getLibraryName());
             
             JOptionPane.showMessageDialog(null, "Employee has been added");
             }

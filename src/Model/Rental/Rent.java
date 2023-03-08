@@ -7,7 +7,7 @@ package Model.Rental;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class Rent {
     

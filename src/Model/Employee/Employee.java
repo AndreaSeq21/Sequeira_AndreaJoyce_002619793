@@ -10,7 +10,7 @@ import Model.Profile.Profile;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class Employee extends Profile {
     int EmployeeId;

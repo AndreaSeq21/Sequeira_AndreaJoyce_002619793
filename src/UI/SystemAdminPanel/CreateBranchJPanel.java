@@ -23,6 +23,7 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
     private Branch branch;
     private UserAccount useraccount;
     DefaultTableModel viewTableModel;
+    ArrayList<Integer> buildingNumber;
     /** Creates new form CreateBranchJPanel */
 
     public CreateBranchJPanel() {
@@ -36,6 +37,7 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
         this.applicationsystem = applicationsystem;
         this.branch = branch;
         this.useraccount = useraccount;
+        this.buildingNumber = new ArrayList<Integer>();
         displayBranch();
     }
 
@@ -57,7 +59,7 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
         txtLibName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtBuildNumber = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnDeleteBranch = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 153, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -99,7 +101,7 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableBranch);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 530, 260));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 570, 260));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel2.setText("LIBRARY NAME");
@@ -113,16 +115,22 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 130, 40));
         add(txtBuildNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 160, 30));
 
-        jButton1.setText("DELETE");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 340, -1, -1));
+        btnDeleteBranch.setText("DELETE");
+        btnDeleteBranch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteBranchActionPerformed(evt);
+            }
+        });
+        add(btnDeleteBranch, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBranchSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBranchSubmitActionPerformed
         // TODO add your handling code here:
         String branchName = txtBranch.getText();
         String libraryName = "PublicLibrary-" + branchName;
-        String buildingNum = txtBuildNumber.getText();
+        int buildingNum = Integer.valueOf(txtBuildNumber.getText());
         Boolean branchExist = this.applicationsystem.branchAlreadyUsed(branchName);
+        this.buildingNumber.add(buildingNum);
         
         if(!branchExist){
              this.applicationsystem.storeBranchName(branchName);
@@ -139,13 +147,29 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
     private void txtBranchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBranchFocusLost
         // TODO add your handling code here:
         String branchName = txtBranch.getText();
-        txtLibName.setText("PublicLibrary-"+branchName);
+        txtLibName.setText("Public Library "+branchName);
     }//GEN-LAST:event_txtBranchFocusLost
+
+    private void btnDeleteBranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBranchActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableBranch.getSelectedRow();
+        if(selectedRow >= 0 ){
+        String selectBranchName = tableBranch.getValueAt(selectedRow, 0).toString();
+        System.out.println(" selectBranch "+selectBranchName);
+        this.applicationsystem.removeBranch(selectBranchName);
+         JOptionPane.showMessageDialog(null, "Branch deleted");  
+         displayBranch();
+        }
+        else {
+             JOptionPane.showMessageDialog(null, "Please select branch");  
+        }
+ 
+    }//GEN-LAST:event_btnDeleteBranchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBranchSubmit;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDeleteBranch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -166,7 +190,8 @@ public class CreateBranchJPanel extends javax.swing.JPanel {
             // Printing and display the elements in ArrayList
              Object row[]= new Object[4];
                 row[0] = br.get(i);
-             
+//                row[1] =  "Public Library " +br.get(i);
+//                row[2] = buildingNumber.get(i);
                 viewTableModel.addRow(row);
     }
         }

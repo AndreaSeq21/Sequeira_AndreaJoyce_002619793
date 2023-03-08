@@ -82,7 +82,20 @@ public class ApplicationSystem {
         return branch;
     }
       
-      
+       public void removeBranch(String name) {  
+          //Creating new branch
+          this.branchName.remove(name);
+     for(Branch branch: this.branches){
+         if(branch.getName().equals(name))
+         {
+             this.branches.remove(branch);
+             
+         }
+         
+     }
+        
+//        return branch;
+    }
  
          
          

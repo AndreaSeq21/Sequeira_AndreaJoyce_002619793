@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class Book extends Material {
     

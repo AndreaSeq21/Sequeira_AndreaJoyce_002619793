@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class GenreDirectory {
     private ArrayList<Genre> genrelist;
