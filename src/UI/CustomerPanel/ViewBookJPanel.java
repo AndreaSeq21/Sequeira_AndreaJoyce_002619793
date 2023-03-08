@@ -73,14 +73,14 @@ public class ViewBookJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBookTable = new javax.swing.JTable();
         btnReturnBook = new javax.swing.JButton();
-        btnViewLocation1 = new javax.swing.JButton();
+        btnViewLocation = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel12.setText("BOOK RENT HISTORY");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 280, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 280, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel2.setText("SELECT LOCATION");
@@ -108,7 +108,7 @@ public class ViewBookJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableBookTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 840, 300));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 920, 220));
 
         btnReturnBook.setText("RETURN BOOK");
         btnReturnBook.addActionListener(new java.awt.event.ActionListener() {
@@ -116,31 +116,58 @@ public class ViewBookJPanel extends javax.swing.JPanel {
                 btnReturnBookActionPerformed(evt);
             }
         });
-        add(btnReturnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 160, 30));
+        add(btnReturnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 160, 30));
 
-        btnViewLocation1.setText("VIEW");
-        btnViewLocation1.addActionListener(new java.awt.event.ActionListener() {
+        btnViewLocation.setText("VIEW");
+        btnViewLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewLocation1ActionPerformed(evt);
+                btnViewLocationActionPerformed(evt);
             }
         });
-        add(btnViewLocation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 70, 30));
+        add(btnViewLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnBookActionPerformed
         // TODO add your handling code here:
-        String location = (String) comboLocationBox.getSelectedItem();
-        displayBookTableDetails(location);
+    int selectedRow = tableBookTable.getSelectedRow();
+             if(selectedRow >= 0 ){
+            String selectSerialNumber = tableBookTable.getValueAt(selectedRow, 9).toString();
+            Library lib = this.branch.getLib();
+             ArrayList<Book> bookcollection = lib.getBooklist().getBooklistCollection();
+             //update rent with requested
+              for(int i =0;i< bookcollection.size();i++ ){
+                  long serialNumber = bookcollection.get(i).getRt().getSerialNumber();
+                  
+               if( serialNumber == Long.valueOf(selectSerialNumber) )
+               {
+                   Book bk= bookcollection.get(i);
+                   bk.setIsAvailableFlag(true);
+                  Rent rt = bk.getRt();
+                  rt.setBookRequested("RETURNED");
+                  bk.setRt(rt);
+                  this.applicationsystem.UpdateBookToBranch(bookcollection.get(i).getLocation(),bk);
+                  this.applicationsystem.getCustomerList().updateRentStatus(this.useraccount.getAccountId(), rt);
+                  break;
+               }
+              }
+               JOptionPane.showMessageDialog(null, "Accepted Request");
+              
+        }
+        
+        
+        
     }//GEN-LAST:event_btnReturnBookActionPerformed
 
-    private void btnViewLocation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocation1ActionPerformed
+    private void btnViewLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLocationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewLocation1ActionPerformed
+            String location = (String) comboLocationBox.getSelectedItem();
+        displayBookTableDetails(location);
+    }//GEN-LAST:event_btnViewLocationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturnBook;
-    private javax.swing.JButton btnViewLocation1;
+    private javax.swing.JButton btnViewLocation;
     private javax.swing.JComboBox<String> comboLocationBox;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -208,6 +235,7 @@ public class ViewBookJPanel extends javax.swing.JPanel {
                }
              }
     }
+    
 }
       
       

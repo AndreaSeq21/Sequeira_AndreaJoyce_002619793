@@ -107,7 +107,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         });
 
         jLabelWelcome.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabelWelcome.setText("WELCOME ");
+        jLabelWelcome.setText("USERNAME");
 
         jLabelUser.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabelUser.setText("USER");
@@ -204,6 +204,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
 
     private void btnMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMagazineActionPerformed
         // TODO add your handling code here:
+        jSplitPane1.setRightComponent(new AddMagazineJPanel(this.applicationsystem,this.branch, this.useraccount));
     }//GEN-LAST:event_btnMagazineActionPerformed
 
     /**
@@ -244,21 +245,9 @@ public class LibrarianJFrame extends javax.swing.JFrame {
     
     public void displayLocation()
     {
-        String userAccount = this.useraccount.getAccountId();
-        System.out.println("Librarian - UserName logged in is "+userAccount);
-        ArrayList<Branch> br = this.applicationsystem.getBranches();
-        int fetchNumber = 0;
-        for(int i=0;i< br.size(); i++){
-            String emp = br.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
-//            System.out.println("USER VALUE in LIBRARY " + emp.getPersonId());
-            if(emp.equals(userAccount)){
-                fetchNumber = i;
-                break;  
-            }
-        }
-//        System.out.println("Librarian branch name" +br.get(fetchNumber).getName());
-        txtLocation.setText(br.get(fetchNumber).getName());
-        jLabelUser.setText(br.get(fetchNumber).getLib().getEmployeelist().getEmployeelist().get(fetchNumber).getName());
+        jLabelUser.setText(useraccount.getUsername());
+        
+        txtLocation.setText(useraccount.getAccessTo());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

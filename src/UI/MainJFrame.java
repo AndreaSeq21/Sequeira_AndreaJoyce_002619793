@@ -151,8 +151,8 @@ public class MainJFrame extends javax.swing.JFrame {
                    
                     
                 }
-                else if(fetchRole.toString().contains("Librarian") ){
-                    System.out.println("Entered the value of Librarian");
+                else if(fetchRole.toString().contains("Librarian") || fetchRole.toString().contains("BranchManager")){
+//                    System.out.println("Entered the value of Librarian");
                     ArrayList<Branch> br = this.applicationsystem.getBranches();
                     for(int i =0 ; i< br.size();i++)
                     {

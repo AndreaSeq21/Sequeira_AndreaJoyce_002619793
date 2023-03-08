@@ -10,6 +10,7 @@ import Model.BookInfo.AuthorDirectory;
 import Model.BookInfo.GenreDirectory;
 import Model.Employee.EmployeeDirectory;
 import Model.Material.BookCollection;
+import Model.Material.General;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,17 @@ public class Library {
     BookCollection booklist;
     AuthorDirectory authorCompleteList;
     GenreDirectory genreCompleteList;
+    General generalList;
+
+    public General getGeneralList() {
+        return generalList;
+    }
+
+    public void setGeneralList(General generalList) {
+        this.generalList = generalList;
+    }
+    
+
 
     public GenreDirectory getGenreCompleteList() {
         return genreCompleteList;
@@ -55,6 +67,7 @@ public class Library {
         this.booklist = new BookCollection();
         this.authorCompleteList = new AuthorDirectory();
         this.genreCompleteList = new GenreDirectory();
+        this.generalList = new General();
     }
 
     public String getLibraryName() {

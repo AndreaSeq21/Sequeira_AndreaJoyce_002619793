@@ -11,6 +11,7 @@ import Model.Employee.EmployeeDirectory;
 import Model.Library.Library;
 import Model.Material.Book;
 import Model.Material.BookCollection;
+import Model.Material.Magazine;
 import Model.Role.SystemAdminRole;
 import java.util.ArrayList;
 
@@ -100,6 +101,20 @@ public class ApplicationSystem {
         
         }
         
+        public void AddMagazineToBranch(String BranchName, Library lib) {  
+        
+        for(Branch branch: this.branches)
+        {
+            if(BranchName.equals(branch.getName()))
+            {
+                branch.setLib(lib);
+//                System.out.println("Appending data in only branch: "+BranchName);
+                break;
+            }     
+        }
+        
+        }
+        
         public void UpdateBookToBranch(String BranchName, Book bk) {  
         
         for(Branch branch: this.branches)
@@ -118,6 +133,32 @@ public class ApplicationSystem {
                 }
                 
                 
+
+               
+            }     
+        }
+        
+        }
+        
+        
+         public void UpdateMagazineToBranch(String BranchName, Magazine bk) {  
+        
+        for(Branch branch: this.branches)
+        {
+            if(BranchName.equals(branch.getName()))
+            {
+                Library lib = branch.getLib();
+                ArrayList<Magazine> bc = lib.getGeneralList().getMagazineCollection();
+                for(int i =0 ; i< bc.size();i++){
+                    if(bc.get(i).getRt().getRentId() == bk.getRt().getRentId()){
+                        System.out.println("Updated rent for rent-id" + bc.get(i).getRt().getRentId());
+                        bc.set(i, bk);
+                         break;
+                        
+                    }
+                }
+                
+
                 
 //                System.out.println(" data in only branch: "+BranchName);
                

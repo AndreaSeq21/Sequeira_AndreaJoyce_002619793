@@ -60,6 +60,8 @@ public class CustomerJFrame extends javax.swing.JFrame {
         btnRentHistory = new javax.swing.JButton();
         jLabelWelcome = new javax.swing.JLabel();
         jLabelUser = new javax.swing.JLabel();
+        btnRentMag = new javax.swing.JButton();
+        btnRentMagazine = new javax.swing.JButton();
         displayJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,10 +90,24 @@ public class CustomerJFrame extends javax.swing.JFrame {
         });
 
         jLabelWelcome.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabelWelcome.setText("WELCOME ");
+        jLabelWelcome.setText("USERNAME");
 
         jLabelUser.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabelUser.setText("USER");
+
+        btnRentMag.setText("RENT MAGAZINE");
+        btnRentMag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRentMagActionPerformed(evt);
+            }
+        });
+
+        btnRentMagazine.setText("VIEW MAGAZINE HISTORY");
+        btnRentMagazine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRentMagazineActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlJPanelLayout = new javax.swing.GroupLayout(controlJPanel);
         controlJPanel.setLayout(controlJPanelLayout);
@@ -99,19 +115,24 @@ public class CustomerJFrame extends javax.swing.JFrame {
             controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlJPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnRentHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                        .addComponent(btnRentBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(controlJPanelLayout.createSequentialGroup()
-                        .addComponent(jLabelWelcome)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabelUser, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlJPanelLayout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnRentHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                                .addComponent(btnRentBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRentMag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(controlJPanelLayout.createSequentialGroup()
+                                .addComponent(jLabelWelcome)
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabelUser, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlJPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRentMagazine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         controlJPanelLayout.setVerticalGroup(
@@ -125,9 +146,13 @@ public class CustomerJFrame extends javax.swing.JFrame {
                 .addComponent(btnRentBook, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRentHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRentMag, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(btnRentMagazine, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(controlJPanel);
@@ -166,9 +191,21 @@ public class CustomerJFrame extends javax.swing.JFrame {
 
     private void btnRentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentHistoryActionPerformed
         // TODO add your handling code here:
-                jSplitPane1.setRightComponent(new ViewBookJPanel(this.applicationsystem,this.branch, this.useraccount));
+     jSplitPane1.setRightComponent(new ViewBookJPanel(this.applicationsystem,this.branch, this.useraccount));
 
     }//GEN-LAST:event_btnRentHistoryActionPerformed
+
+    private void btnRentMagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentMagActionPerformed
+        // TODO add your handling code here:
+     jSplitPane1.setRightComponent(new RentMagazineJPanel(this.applicationsystem,this.branch, this.useraccount));
+
+    }//GEN-LAST:event_btnRentMagActionPerformed
+
+    private void btnRentMagazineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentMagazineActionPerformed
+        // TODO add your handling code here:
+     jSplitPane1.setRightComponent(new ViewMagazineJPanel(this.applicationsystem,this.branch, this.useraccount));
+
+    }//GEN-LAST:event_btnRentMagazineActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,25 +247,16 @@ public class CustomerJFrame extends javax.swing.JFrame {
     
     public void displayLocation()
     {
-        String userAccount = this.useraccount.getAccountId();
-        System.out.println("Librarian - UserName logged in is "+userAccount);
-        ArrayList<Branch> br = this.applicationsystem.getBranches();
-        int fetchNumber = 0;
-        for(int i=0;i< br.size(); i++){
-            String emp = br.get(i).getLib().getEmployeelist().getEmployeelist().get(i).getPersonId();
-//            System.out.println("USER VALUE in LIBRARY " + emp.getPersonId());
-            if(emp.equals(userAccount)){
-                fetchNumber = i;
-                break;  
-            }
-        }
-        jLabelUser.setText(br.get(fetchNumber).getLib().getEmployeelist().getEmployeelist().get(fetchNumber).getName());
+       
+        jLabelUser.setText(useraccount.getUsername());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnRentBook;
     private javax.swing.JButton btnRentHistory;
+    private javax.swing.JButton btnRentMag;
+    private javax.swing.JButton btnRentMagazine;
     private javax.swing.JPanel controlJPanel;
     private javax.swing.JPanel displayJPanel;
     private javax.swing.JLabel jLabelUser;

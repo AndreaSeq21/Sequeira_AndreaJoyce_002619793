@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public abstract class Role {
     

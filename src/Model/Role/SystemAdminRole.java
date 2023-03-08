@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Andrea Sequeira
+ * @author Andrea Joyce Sequeira
  */
 public class SystemAdminRole extends Role {
 

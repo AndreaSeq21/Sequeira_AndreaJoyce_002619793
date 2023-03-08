@@ -157,7 +157,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="WELCOME "/>
+                <Property name="text" type="java.lang.String" value="USERNAME"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelUser">

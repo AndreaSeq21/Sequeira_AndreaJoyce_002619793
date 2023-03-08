@@ -144,7 +144,7 @@ public class RentBookJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableBookTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 840, 270));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 840, 280));
 
         btnRent.setText("RENT");
         btnRent.addActionListener(new java.awt.event.ActionListener() {

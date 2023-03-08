@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author asequ
+ * @author Andrea Joyce Sequeira
  */
 public class CustomerRole extends Role {
         @Override
